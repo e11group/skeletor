@@ -1,0 +1,95 @@
+{{#subcategory}}
+<p></p>
+<div class="row">
+
+	<div class="twelve columns">
+
+		
+<ul class="breadcrumbs hide-for-small" style="margin-top: -1em; padding-left:1.4em;">
+  <li><span><a href="{{www}}">Home</a></span></li>
+  <li class="unavailable"><span>{{category}}</span></li>
+  <li class="current"><a href="url"><span>{{name}}</span></a></li>
+</ul>
+
+	</div>
+
+</div> 
+
+<div class="row">
+
+	<div class="twelve columns">
+		
+		<img src="{{root}}uploads/uploads/{{image}}{{ext}}" class="twelve" style="max-height: 23em;">
+
+	</div>
+
+
+</div>
+<div class="row">
+	<hr style="margin-bottom: 6em;">
+</div>
+
+
+<div class="row">
+
+	<div class="nine columns mobile-four">
+
+		<div style="line-height: 1.5em" class="description-style">
+
+			{{{description}}}
+
+		</div>
+		
+	</div>
+
+	<div class="three columns mobile-four">
+				<a href="#" class="button large radius twelve" style="margin-top: 1em;">Contact Us</a>
+		<center><p class="sub_detail">For More Information</p></center>
+		<hr>
+		<h5>Featured Video</h5>
+		{{{featured_video}}}
+		<hr>
+		<h5>Related Links</h5>
+		<div id="related_links_widget" class="twelve radius">
+			<ul>
+				{{{related_links}}}
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+</div>
+
+
+
+{{/subcategory}}
+
+<div class="row">
+	<div class="twelve columns">
+		<h5>Products</h5>
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="twelve columns">
+		<hr>
+		<ul class="block-grid four-up mobile-two-up" id="subcategory_products_widget">
+			{{#product_categories}}
+		<li>
+				<div class="image-hover"><img src="{{root}}uploads/uploads/{{image}}" class="ten"><hr>{{name}}<hr></div>
+				<hr>
+				<ul>
+					{{{products}}}
+				</ul>
+
+		</li>	
+			{{/product_categories}}
+
+		</ul>
+		<hr>
+	</div>
+
+</div>
+

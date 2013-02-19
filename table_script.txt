@@ -1,0 +1,134 @@
+
+
+CREATE TABLE IF NOT EXISTS pages_templates (
+        id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(100) NOT NULL,
+        PRIMARY KEY (id)
+
+
+);
+
+CREATE TABLE IF NOT EXISTS pages_templates_modules (
+		id INT NOT NULL AUTO_INCREMENT,
+		template VARCHAR(100) NOT NULL,
+		name VARCHAR(100) NOT NULL,
+		module MEDIUMTEXT,
+		PRIMARY KEY (id)
+
+
+);
+
+CREATE TABLE IF NOT EXISTS pages (
+        id INT NOT NULL AUTO_INCREMENT,
+        template VARCHAR(100) NULL,
+        name VARCHAR(100) NOT NULL,     
+        module MEDIUMTEXT,
+        PRIMARY KEY (id)	
+
+);
+
+CREATE TABLE IF NOT EXISTS people (
+ 		id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,     
+       	state VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL,     
+       	phone VARCHAR(100) NOT NULL,     
+        PRIMARY KEY (id)
+);
+
+
+CREATE TABLE IF NOT EXISTS blog_categories (
+ 		id INT NOT NULL AUTO_INCREMENT,
+ 		name VARCHAR(255) NOT NULL,
+        PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS blog (
+ 		id INT NOT NULL AUTO_INCREMENT,
+ 		name VARCHAR(255) NOT NULL,
+ 		category VARCHAR(255) NOT NULL,
+ 		post MEDIUMTEXT,
+        PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS featured_video (
+ 		id INT NOT NULL AUTO_INCREMENT,
+ 		name VARCHAR(255) NOT NULL,
+ 		link MEDIUMTEXT,
+        PRIMARY KEY (id)
+);
+
+
+
+CREATE TABLE IF NOT EXISTS products_category ( 
+		id INT NOT NULL AUTO_INCREMENT,
+		name VARCHAR(100) NOT NULL, 
+        PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS products_subcategory_links (
+		id INT NOT NULL AUTO_INCREMENT,
+		subcategory VARCHAR(255) NOT NULL,
+		name VARCHAR(255) NOT NULL,
+		href VARCHAR(255) NOT NULL,
+		PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS products_subcategory (
+		id INT NOT NULL AUTO_INCREMENT,
+		category VARCHAR(255) NOT NULL,
+		name VARCHAR(255) NOT NULL,
+		description MEDIUMTEXT NULL,
+		image VARCHAR(255) NULL,
+		image_ext VARCHAR(10) NULL,
+		video VARCHAR(555) NULL,
+		PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS products_product_category (
+		id INT NOT NULL AUTO_INCREMENT,
+		subcategory VARCHAR(255) NOT NULL,
+		name VARCHAR(255) NOT NULL,
+		PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS products_product_fields_id(
+		id INT NOT NULL AUTO_INCREMENT,
+		name VARCHAR(255) NOT NULL,
+		PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS products_product_fields (
+		id INT NOT NULL AUTO_INCREMENT,
+		field_id VARCHAR(255) NOT NULL,
+ 		primary_field VARCHAR(255) NOT NULL,
+		sub_field VARCHAR(255) NULL,
+		PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS products_product (
+		id INT NOT NULL AUTO_INCREMENT,
+		field_id VARCHAR(255) NOT NULL,
+		product_category VARCHAR(255) NOT NULL,
+		name VARCHAR(255) NOT NULL,
+		description MEDIUMTEXT,
+		image VARCHAR(255) NULL,
+		image_ext VARCHAR(255) NULL,
+		PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS products_product_number (
+		id INT NOT NULL AUTO_INCREMENT,
+		product_id VARCHAR(255) NOT NULL,
+		part_number VARCHAR(255) NOT NULL,
+		fields MEDIUMTEXT, 
+		PRIMARY KEY (id) 
+
+);
+
+CREATE TABLE IF NOT EXISTS products_product_tolerances (
+		id INT NOT NULL AUTO_INCREMENT,
+		tolerance_a VARCHAR(255),
+		tolerance_b VARCHAR(255), 
+		PRIMARY KEY (id) 
+);

@@ -1,0 +1,24 @@
+    /* TEAM */
+    
+    Your title: weather corp
+    Site: http://github.com/madebyweather
+    Location: Seattle, WA
+
+                 
+    /* SITE */
+
+    Standards: HTML5, CSS3, PHP 5.3+, PSR-0, AMDJS 
+    Version Control: Git
+    Dependency / Package Managers : Composer / Bower
+    REST Framework : Slim
+    Database Abstraction: Dibi
+    Testing : PHPUnit
+    Security : PDO, locked access, CSRF + XSS token protection
+    Templates : Mustache
+    Front End : Zurb Foundation, Compass + Sass
+    UI : jQuery, Modernizr, RequireJS
+    Typography : Optimized with FontSquirrel
+    Image Optimization : OptiPNG
+
+    check out composer.json, component.json, config.rb, .gitignore for additional depedencies + packages and other shit
+

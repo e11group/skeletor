@@ -1,0 +1,42 @@
+.parsley-validated {
+
+
+	
+}
+
+
+.parsley-success 
+{
+	
+
+}
+
+.parsley-error 	{
+
+
+
+}
+
+ul.parsley-error-list 	{
+
+list-style-type:none;
+background: url(../images/app/error.png) top left no-repeat;
+			font-weight: normal;
+			color: #000;
+			font-size:.8em;	
+			display:block;
+			padding: 5px 8px 15px 35px;
+			margin-top: 2px;
+			margin-bottom: 15px;
+			border-bottom: 1px solid #dadada
+	
+
+}
+
+
+li.parsley-error {
+
+
+	font-size:.8em;	
+
+}

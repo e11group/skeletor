@@ -1,0 +1,14 @@
+/app/views/cache/*
+/.sass-cache/*
+/scss/.sass-cache/*
+/logs/*
+/fonts/*
+/vendor/*
+/components/*
+/images/*
+/uploads/uploads/*
+/javascripts/lib/*
+/app/config/config.php
+composer.phar
+composer.lock
+.DS_STORE

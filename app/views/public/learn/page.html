@@ -1,0 +1,61 @@
+<img src="{{root}}images/002.jpg" class="bg">
+
+
+
+<div class="row">
+<div class="nine columns">
+
+<div class="product-box">
+
+<a href="{{www}}learn"><h3 style="margin-top:60px">LEARNING DEPT.</h3></a><h6>Your guide to tea knowledge from Star Tea</h6>
+<ul class="nav-bar">
+	{{#page_cats}}
+ <li class='{{class}}'><a href="{{www}}learn/{{encoded}}">{{name}}</a></li>
+ {{/page_cats}}
+</ul>
+
+{{#cats}}
+
+
+
+		<h3><a href="{{www}}learn/{{encoded_cat}}/{{encoded_name}}">{{name}}</a></h3>
+		<i>{{category}}</i>
+		{{{text}}}
+
+
+
+<hr>
+	{{/cats}}
+
+</div>
+</div>
+	
+
+<div class="three columns">
+
+<div class="home-side-box">
+
+	<span class="title">Featured Items</span>
+	
+</div>
+
+<div class="home-side-box">
+	<img src="{{root}}images/003.JPG">
+	<a href="#" class="right">+ More Info</a>
+
+</div>
+<div class="home-side-box">
+	<img src="{{root}}images/003.JPG">
+	<a href="#" class="right">+ More Info</a>
+	
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
