@@ -1,6 +1,6 @@
 #skeletor
 
-skeletor is a got damn dry kiss skeleton with muscles for rapid app development 
+skeletor is a got damn dry kiss skeleton with muscles for rapid app development. pre-pre-alpha.
 
 ##requirements
 
@@ -18,30 +18,43 @@ skeletor is a got damn dry kiss skeleton with muscles for rapid app development
 
 ##buzzwords
 
-- restful
 - security
 - performance
 - scalability
 - extensibility
+- maintainability
 
 ##concept
 
-skeletor is based around the idea that lists are quicker than poetry.   as a 'working-class developer', client and schedule demands often take precedent over best-practices.  by taking the concepts of dry kiss as far as possible, we can assure security, performance and extensibility in every project, even with rapid delivery demands.  tldr; practical rapid crud app machine. love it, hate it, help make it better. 
+skeletor is based around the idea that lists are quicker than poetry.  
+
+tldr; practical rapid open-source crud app machine. 
+
+love it, hate it, help make it better. 
 
 ##todo
 
-- route conversion + handling
+- yaml form interface
+- build script
+
+- implement orm
 - convert functions & includes into custom maps w/ filters
-- json form interface
-- phar build script : crud uri admin / public + optimization
+- add flight js
 - second pass at code style guides
 - add logging calls
 - add test units
+- localization
 - example
 - documentation
 
 
 ###log
+
+0.03
+
+- route conversion + handling
+- change from autoloader to composer
+
 
 0.02
 

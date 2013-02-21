@@ -10,8 +10,9 @@ define('STYLE_DIR', ROOT . 'stylesheets/');
 define('INC_DIR', '../app/inc/');
 define('VIEW_DIR', '../app/views/');
 define('VIEW_INC_DIR', '../app/views/inc/');
-define('ROUTE_DIR', '../app/routes/');
-define('CLASS_DIR', '../app/classes/');
+define('MODELS_DIR', '../app/models/');
+define('CONTROLLERS_DIR', '../app/controllers/');
+define('METHODS_DIR', '../app/methods/');
 define('VENDOR_DIR', '../vendor/');
 
 define('BASE_URL', $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);

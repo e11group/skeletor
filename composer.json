@@ -13,7 +13,6 @@
  ],
     "require": {
         "php": ">=5.3.0",
-        "apix/autoloader" : "dev-master",
         "mikecao/flight": "dev-master",
         "mustache/mustache": "dev-master",
         "xmeltrut/wing-commander": "dev-master",
@@ -23,6 +22,10 @@
         "swiftmailer/swiftmailer": "4.3.*@dev",
         "phpunit/phpunit": "*",
         "monolog/monolog": "1.4.*@dev"
+    },
+
+     "autoload": {
+        "psr-0": {"": "app/methods/"}
     }
 }
 

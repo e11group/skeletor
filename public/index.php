@@ -64,16 +64,7 @@
 
     // skeletor custom classes
 
-    // TODO : add this into composer autoloader
-
-    require CLASS_DIR . 'Weather/Skeletor/DatabaseService.php';
-    require CLASS_DIR . 'Weather/Skeletor/FormService.php';
-    require CLASS_DIR . 'Weather/Skeletor/GenerateHash.php';
-    require CLASS_DIR . 'Weather/Skeletor/LoginService.php';
-    require CLASS_DIR . 'Weather/Skeletor/OrderService.php';
-    require CLASS_DIR . 'Weather/Skeletor/ProductService.php';
-    require CLASS_DIR . 'Weather/Skeletor/UserService.php';
-
+    // $us = new Weather\Skeletor\UserService(1,1);
 
 //-------------------------------------------------------------------------------------------------------------
 
@@ -184,19 +175,24 @@
     */
 
 
-    // views path
-	// Flight::set('flight.views.path', '/path/to/views');
-
-	// routes
-	//include '../app/routes.php';
-
     // all hail WingCommander
 	WingCommander::init();
 
+    // ready ...
 
-	Flight::route('/', function(){
+    Weather\Skeletor\AppService::loadRoutes();
+   
+	Flight::route('/', function()
+    {
 
-		$pageTitle = 'asdf';
+        $routes_dir = '../app/routes/';
+
+        
+        $us = new Weather\Skeletor\UserService(1,1);
+   
+            
+
+    $pageTitle = 'asdf';
 		Flight::view()->set("someVar", "Hello, World!");
 		Flight::render("templates/add_page", array("title" => $pageTitle));
 
