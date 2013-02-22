@@ -81,82 +81,84 @@ class SkeletorAdminModel extends AdminModel {
     $template_data['table_head'] = new ArrayIterator( $table_head );
 
     $template_data['table_body'] = new ArrayIterator( $table_body );
+
+         // grab view
+
+      echo Weather\Skeletor\AppService::loadView('adminRetreive');
    
     }
 
-      // grab view
-
-      echo Weather\Skeletor\AppService::loadView('adminRetreive');
+ 
 
 
-}
+      //-------------------------------------------------------------------------------------------------------------
+
+    /**
+     *
+     * The Admin View Page Template
+     *
+     *
+    */
+
+    public static function adminAdd() { 
 
 
-	
 
 
-	
-
-/********* ADD PAGE ********/
-
-
-
-$app->get('/pages/add', function () use ($app) {
-
-	$app->etag('lt-add_pages');
+  $app->etag('lt-add_pages');
     $app->expires('+1 week');
 
     $now = time();
 
     /* SIDEBAR TITLE */
 
-	$add_pages_active = 'true';
- 	
- 	/* MENU TYPE */
- 	$menu_no = 'pages';
+  $add_pages_active = 'true';
+  
+  /* MENU TYPE */
+  $menu_no = 'pages';
 
- 	/* SUBHEADER */
+  /* SUBHEADER */
 
- 	$template_subheader = 'Add a New Page';
+  $template_subheader = 'Add a New Page';
 
- 	/* LEGEND */
+  /* LEGEND */
 
- 	$template_legend = 'Page Information';
+  $template_legend = 'Page Information';
 
- 	/* FORM INFO */
+  /* FORM INFO */
 
- 	$form_name = 'add_pages';
+  $form_name = 'add_pages';
 
- 	$submit_name = 'submit_pages';
+  $submit_name = 'submit_pages';
 
- 	$submit_value = 'Save New Page';
+  $submit_value = 'Save New Page';
 
- 	/* UPLOAD FLAG */
+  /* UPLOAD FLAG */
 
- 	$upload_flag_set = null;
+  $upload_flag_set = null;
 
- 	$upload_flag = empty($upload_flag_set) ? '' : '<span id="upload-flag"></span>';
+  $upload_flag = empty($upload_flag_set) ? '' : '<span id="upload-flag"></span>';
 
- 	 /* TEMPLATE + COPY */
+   /* TEMPLATE + COPY */
 
- 	 $page_object_name = 'Page';
+   $page_object_name = 'Page';
 
 
- 	/* INCLUDES */
+  /* INCLUDES */
 
-	include_once VIEW_INC_DIR . 'head.php';
+  include_once VIEW_INC_DIR . 'head.php';
 
-	include_once VIEW_INC_DIR . 'header.php';
+  include_once VIEW_INC_DIR . 'header.php';
 
-	include_once INC_DIR . 'page.php';
+  include_once INC_DIR . 'page.php';
 
-	include_once INC_DIR . 'subheader.php';
+  include_once INC_DIR . 'subheader.php';
 
-	include_once INC_DIR . 'admin_sidebar.php';
+  include_once INC_DIR . 'admin_sidebar.php';
 
-	$alert = '';
+  $alert = '';
 
-		///*** END HEADER END ***////
+    ///*** END HEADER END ***////
 
 
   $dbService = new dbService('pages');
@@ -168,31 +170,31 @@ $app->get('/pages/add', function () use ($app) {
    $result = $dbBlogCategories->selectAll('*');
 
     $select_category_options[] = array(
-		'value' => '',
+    'value' => '',
         'name' => 'Please Select A Category',
         'active' => false
         );
 
-	foreach ($result as $n => $row) {
-	
-	$select_category_options[] = array(
-		'value' => $row['id'],
+  foreach ($result as $n => $row) {
+  
+  $select_category_options[] = array(
+    'value' => $row['id'],
         'name' => $row['name'],
         'active' => false
         );
-	}
-	$forms_arr = array(
- 	
-		$formService->makeInput('name', 'Enter Page Name: '),
-		$formService->makeSelect('template', 'Select Template: ', $select_category_options)
+  }
+  $forms_arr = array(
+  
+    $formService->makeInput('name', 'Enter Page Name: '),
+    $formService->makeSelect('template', 'Select Template: ', $select_category_options)
 
-		);
+    );
 
    $template_data['form'] = new ArrayIterator( $forms_arr ); 
 
 
 
-	if($app->request()->isPost() && sizeof($app->request()->post()) >= 1)
+  if($app->request()->isPost() && sizeof($app->request()->post()) >= 1)
     
     {
 
@@ -205,20 +207,20 @@ $app->get('/pages/add', function () use ($app) {
 
       $insert_arr = array(
 
-      		'name' => $add_page_name,
-      		'template' => $add_page_template,
+          'name' => $add_page_name,
+          'template' => $add_page_template,
 
-      	);
+        );
 
       $insert = $dbService->insert($insert_arr);
 
       if ($insert == 1) {
-      	
-      			$modal_head = 'Success!';
+        
+            $modal_head = 'Success!';
               
-              	$modal_subhead = 'The form has been succesfully submitted!';
+                $modal_subhead = 'The form has been succesfully submitted!';
           
-              	$modal_text = 'You created a new '.$page_object_name.'.';
+                $modal_text = 'You created a new '.$page_object_name.'.';
 
                 include(INC_DIR . 'modal.php');           
 
@@ -226,7 +228,7 @@ $app->get('/pages/add', function () use ($app) {
 
       else {
 
-      			$modal_head = 'There was an error!';
+            $modal_head = 'There was an error!';
               
                 $modal_subhead = 'The form was not submitted!';
           
@@ -236,36 +238,43 @@ $app->get('/pages/add', function () use ($app) {
 
       }
  
-  	}
+    }
 
-	$app->render('templates/add_page.html',
-		
-		array( 
+  $app->render('templates/add_page.html',
+    
+    array( 
 
-			'alert' => $alert,
-			'www' => WWW,
-			'root' => ROOT,
-			'sidebar' => $admin_sidebar,
-			'subheader' => $template_subheader,
-			'upload_flag' => $upload_flag,
-			'legend' => $template_legend,
-			'form' => $template_data['form'],
-			'form_name' => $form_name,
-			'submit_name' => $submit_name,
-			'submit_value' => $submit_value,
-			'modal_head' => $modal_head,
-			'modal_subhead' => $modal_subhead,
-			'modal_text' => $modal_text,
-			'modal_link' => WWW . 'pages',
+      'alert' => $alert,
+      'www' => WWW,
+      'root' => ROOT,
+      'sidebar' => $admin_sidebar,
+      'subheader' => $template_subheader,
+      'upload_flag' => $upload_flag,
+      'legend' => $template_legend,
+      'form' => $template_data['form'],
+      'form_name' => $form_name,
+      'submit_name' => $submit_name,
+      'submit_value' => $submit_value,
+      'modal_head' => $modal_head,
+      'modal_subhead' => $modal_subhead,
+      'modal_text' => $modal_text,
+      'modal_link' => WWW . 'pages',
 
-		 )
-    	
+     )
+      
     );
 
     include_once VIEW_INC_DIR . 'footer.php';
 
 
-})->via('GET','POST');
+    }
+
+
+}
+
+
+	
+
 
 
 /********* EDIT PAGE ********/

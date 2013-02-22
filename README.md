@@ -24,6 +24,8 @@ skeletor is a got damn dry kiss skeleton with muscles for rapid app development.
 - extensibility
 - maintainability
 
+for more see wiki
+
 ##concept
 
 skeletor is based around the idea that lists are quicker than poetry.  
@@ -36,7 +38,6 @@ love it, hate it, help make it better.
 
 - yaml form interface
 - build script
-
 - implement orm
 - convert functions & includes into custom maps w/ filters
 - add flight js
