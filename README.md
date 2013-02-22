@@ -1,16 +1,19 @@
 #skeletor
 
-skeletor is a got damn dry kiss skeleton with muscles for rapid app development. pre-pre-alpha.
+skeletor is a got damn dry kiss skeleton with muscles for rapid app development. 
+
+pre-pre-alpha.
 
 ##requirements
 
 - server side
 	- php 5.3+
+	- db agnostic
 
 - build environment
 	- lamp, mamp, lasp, lemp etc
-	- node + npm
-	- ruby + compass + sass (use rvm)
+	- node + npm (optional)
+	- ruby + compass + sass (use rvm) (optional)
 
 ##components
 
@@ -30,9 +33,12 @@ for more see wiki
 
 skeletor is based around the idea that lists are quicker than poetry.  
 
-tldr; practical rapid open-source crud app machine. 
+don't like automated builds or lib dependency - this isn't made for you.
 
-love it, hate it, help make it better. 
+love it, hate it - help make it better. 
+
+**tldr;** practical rapid open-source crud app machine. 
+
 
 ##todo
 
