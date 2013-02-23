@@ -1,4 +1,5 @@
 <?php
+/*
 $app->get('/dashboard', function () use ($app) {
 
 	$app->etag('lt-dashboard');
@@ -53,5 +54,5 @@ $app->get('/dashboard', function () use ($app) {
     include_once VIEW_INC_DIR . 'footer.php';
 
 });
-
+*/
 ?>

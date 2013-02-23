@@ -1,5 +1,11 @@
 <?php
 
+	error_reporting(E_ALL);
+	
+	ini_set('display_errors', '1');
+	
+	date_default_timezone_set('America/Los_Angeles');
+
 define('ROOT', 'http://localhost/leadertech/');
 define('WWW', '/leadertech/public/');
 define('BASE', '/');
@@ -23,5 +29,7 @@ define('PAGE_TITLE', ucwords($routes[3]));
 } else {
 define('PAGE_TITLE', 'LeaderTech'); 
 }
+
+
 
 ?>

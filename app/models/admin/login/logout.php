@@ -1,4 +1,5 @@
 <?php
+/*
 $app->get('/logout', function () use ($app) {
 
 
@@ -13,5 +14,5 @@ window.location = '<?php echo WWW . 'login'; ?>'
 <?php
 
 });
-
+*/
 ?>

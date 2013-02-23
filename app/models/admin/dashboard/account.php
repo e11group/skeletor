@@ -1,4 +1,5 @@
 <?php
+/*
 $app->get('/account', function () use ($app) {
 
 	include_once VIEW_INC_DIR . 'head.php';
@@ -111,5 +112,5 @@ $app->get('/account', function () use ($app) {
 
 
 })->via('GET','POST');
-
+*/
 ?>

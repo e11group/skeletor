@@ -45,12 +45,16 @@ love it, hate it - help make it better.
 - yaml form interface
 - build script
 - implement orm
-- convert functions & includes into custom maps w/ filters
+- convert functions & includes into custom methods 
 - add flight js
+
 - second pass at code style guides
 - add logging calls
 - add test units
 - localization
+- local storage
+- memcached
+- acl
 - example
 - documentation
 
@@ -59,9 +63,10 @@ love it, hate it - help make it better.
 
 0.03
 
+- template + mv* structures
 - route conversion + handling
 - change from autoloader to composer
-
+- change layouts to flight compatibiltiy
 
 0.02
 

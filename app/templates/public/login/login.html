@@ -1,0 +1,77 @@
+<img src="{{root}}images/EMI_shielding.jpg" class="bg">
+
+<div class="row" style="margin-top:25px; margin-bottom: 25px;">
+
+	<div class="four columns centered">
+
+		{{{alert}}}
+
+	</div>
+
+</div>
+
+<div class="row">
+		<div class="four columns centered">
+
+			<div class="panel">
+
+				<center>
+
+					<img src="{{root}}images/lt_header_logo.png">
+
+				</center>
+
+			
+				<form method="post" action="" class="custom" name="lp_login" id="lp_login" data-validate="parsley">
+
+				<fieldset>
+					 
+					 <div class="control-group">
+
+					 <label for="login_email" class="control-group">Email Addresss</label>
+
+					<input name="login_email" id="login_email" type="text" data-type="email" data-required="true">
+
+					</div>
+
+					<div class="control-group">
+
+					 <label for="login_password">Password</label>
+
+					<input name="login_password" id="login_password" type="password">
+
+					</div>
+
+				</fieldset>
+
+					<div class="row">
+
+						<div class="six mobile-two columns">
+
+							<!--
+
+							TODO ::
+
+							<label for="login_remember"><small>Remember Me</small></label>
+
+							<input type="checkbox" name="login_remember" id="login_remember">
+
+							-->
+
+						</div>
+				<div class="six mobile-two columns"style="text-align:right">
+
+					<!-- CSRF protection yall -->
+
+					<input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+
+					<input type="submit" value="Submit" class="button">
+
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+</div> 

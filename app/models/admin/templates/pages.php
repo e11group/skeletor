@@ -38,6 +38,7 @@
      *
     */
 
+/*
     Flight::route('/admin/pages', function()
     {
 
@@ -52,34 +53,6 @@ $app->get('/pages', function () use ($app) {
 	$app->etag('lt-pages');
     $app->expires('+1 week');
 
-    /* SIDEBAR TITLE */
-
-	$pages_active = 'true';
- 	
- 	/* MENU TYPE */
- 	$menu_no = 'pages';
-
- 	/* SUBHEADER */
-
- 	$template_subheader = 'View All Pages';
-
- 	/* INCLUDES */
-
-	include_once VIEW_INC_DIR . 'head.php';
-
-	include_once VIEW_INC_DIR . 'header.php';
-
-	include_once INC_DIR . 'tablesorter_pager.php';
-
-	include_once INC_DIR . 'page.php';
-
-	include_once INC_DIR . 'subheader.php';
-
-	include_once INC_DIR . 'admin_sidebar.php';
-
-	$alert = '';
-
-	///*** END HEADER END ***////
   
   $dbService = new dbService('pages');
 
@@ -137,9 +110,6 @@ $app->get('/pages', function () use ($app) {
 
 
 
-/********* ADD PAGE ********/
-
-
 
 $app->get('/pages/add', function () use ($app) {
 
@@ -148,22 +118,17 @@ $app->get('/pages/add', function () use ($app) {
 
     $now = time();
 
-    /* SIDEBAR TITLE */
 
 	$add_pages_active = 'true';
  	
- 	/* MENU TYPE */
  	$menu_no = 'pages';
 
- 	/* SUBHEADER */
 
  	$template_subheader = 'Add a New Page';
 
- 	/* LEGEND */
 
  	$template_legend = 'Page Information';
 
- 	/* FORM INFO */
 
  	$form_name = 'add_pages';
 
@@ -171,18 +136,15 @@ $app->get('/pages/add', function () use ($app) {
 
  	$submit_value = 'Save New Page';
 
- 	/* UPLOAD FLAG */
 
  	$upload_flag_set = null;
 
  	$upload_flag = empty($upload_flag_set) ? '' : '<span id="upload-flag"></span>';
 
- 	 /* TEMPLATE + COPY */
 
  	 $page_object_name = 'Page';
 
 
- 	/* INCLUDES */
 
 	include_once VIEW_INC_DIR . 'head.php';
 
@@ -196,7 +158,6 @@ $app->get('/pages/add', function () use ($app) {
 
 	$alert = '';
 
-		///*** END HEADER END ***////
 
 
   $dbService = new dbService('pages');
@@ -308,7 +269,6 @@ $app->get('/pages/add', function () use ($app) {
 })->via('GET','POST');
 
 
-/********* EDIT PAGE ********/
 
 
 $app->get('/pages/edit/:id', function ($id) use ($app) {
@@ -318,21 +278,16 @@ $app->get('/pages/edit/:id', function ($id) use ($app) {
 
     $now = time();
 
-    /* SIDEBAR TITLE */
 
 	$pages_active = 'true';
  	
- 	/* MENU TYPE */
  	$menu_no = 'pages';
 
- 	/* SUBHEADER */
 
  	$template_subheader = 'Edit Page';
- 	/* LEGEND */
 
  	$template_legend = 'Page Info';
 
- 	/* FORM INFO */
 
  	$form_name = 'edit_pages';
 
@@ -340,18 +295,15 @@ $app->get('/pages/edit/:id', function ($id) use ($app) {
 
  	$submit_value = 'Edit Page';
 
- 	/* UPLOAD FLAG */
 
  	$upload_flag_set = null;
 
  	$upload_flag = empty($upload_flag_set) ? '' : '<span id="upload-flag"></span>';
 
 
- 	/* TEMPLATE + COPY */
 
   	$page_object_name = 'Page';
 
- 	/* INCLUDES */
 
 	include_once VIEW_INC_DIR . 'head.php';
 
@@ -508,18 +460,15 @@ $dbBlogCategories = new dbService('pages_templates');
 })->via('GET','POST');
 
 
-/********* DELETE PAGE ********/
 
 
 
 $app->get('/pages/delete/:id', function ($id) use ($app) {
 
 
-  /* TEMPLATE + COPY */
 
   $page_object_name = 'Person';
 
-  /* INCLUDES */
 
   include_once VIEW_INC_DIR . 'head.php';
 
@@ -612,6 +561,6 @@ $app->get('/pages/delete/:id', function ($id) use ($app) {
 
 
 
-
+*/
 
 ?>

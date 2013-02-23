@@ -1,4 +1,5 @@
 <?php
+/*
 $app->get('/server/returnJSON/:value', function ($value = 1) use ($app) {
 
 	 $response = $app->response();
@@ -16,5 +17,5 @@ $app->get('/server/returnJSON/:value', function ($value = 1) use ($app) {
     exit();
 
 })->via('GET','POST');
-
+*/
 ?>

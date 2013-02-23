@@ -1,5 +1,5 @@
 <?php
-
+/*
 
 $app->get('/login', function () use ($app) {
 
@@ -66,7 +66,7 @@ $app->get('/login', function () use ($app) {
 
 		}
 
-	/* end post */
+	/* end post 
 
     }
 
@@ -86,5 +86,5 @@ $app->get('/login', function () use ($app) {
 
 
 })->via('GET','POST')->name('lp_login');
-
+*/
 ?>

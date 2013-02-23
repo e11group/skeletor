@@ -1,0 +1,115 @@
+<img src="{{root}}images/005.JPG" class="bg">
+
+<style>
+body { background: url({{root}}images/005.JPG) }
+</style>
+
+<div class="row">
+
+<div class="twelve columns">
+</div>
+
+
+</div>
+
+<div class="row">
+
+<div class="three columns catnav">
+	
+	<ul>
+		{{#menu}}
+		<li><a class="{{class}}" href="{{www}}shop/{{link}}"><strong>{{name}}</strong></a></li>
+		
+		{{/menu}}
+	</ul>
+
+
+</div>
+
+
+<div class="nine columns">
+
+	{{#categories}}
+
+<div class="product-box">
+	<div class="row">
+		<div class="six columns">
+			<h3 style="margin-top: 2em">{{name}}</h3>
+		</div>
+		<div class="six columns" style="text-align:right;">
+			<h4 style="margin-top: 2em">${{price_1}} / <span>{{option_1}}</span></h4>
+		</div>
+	</div>
+<hr>
+<div class="row">
+
+	<div class="four columns">
+		<img src="{{root}}uploads/uploads/{{image}}{{ext}}"></a>
+	</div>
+
+	<div class="eight columns">
+	
+		<h5>Description</h5>
+		<p>{{{description}}}</p>
+
+	</div>
+
+	<div class="eight columns" style="background-color:#fff;">
+		 <form action="?action=add" method="post">
+                       
+                        <input type="hidden" name="product[name]" value="{{name}}" />
+                        <input type="hidden" name="product[SKU]" value="{{id}}" />
+                        <input type="hidden" name="product[id]" value="{{id}}" />
+                        <input type="hidden" name="product[price]" value="{{price_1}}" />
+                        <input type="hidden" name="product[tax]" value="" />
+                        <input type="hidden" name="product[weight]" value="" />
+                        <hr>
+                        <div>
+                        	<!--
+                        	 <div class="row">
+                                <label class="two columns">Options</label>
+                                <select name="product[options]" class="six columns">
+                                    {{#options}}
+
+                                    	<option value="{{option1}}">{{option1}}</option>
+                                    	<option value="{{option2}}">{{option2}}</option>
+                                    	<option value="{{option3}}">{{option3}}</option>
+                                    	<option value="{{option4}}">{{option4}}</option>
+                                    	<option value="{{option5}}">{{option5}}</option>
+
+
+                                    {{/options}}
+                                </select>
+                            </div>
+                            <hr>
+                        -->
+                            <div class="row">
+                                <label class="two columns">Quantity</label>
+                                <select name="product[quantity]" class="six columns">
+                                    {{#quantity}}
+
+                                    	<option value="{{.}}">{{.}}</option>
+
+                                    {{/quantity}}
+                                </select>
+                            </div>
+                            <hr>
+                            <div>
+                                <input type="submit" value="Add To Cart" style="background: #000; border:0; padding: 1em; color: #fff; text-tranform: uppercase; margin-top: 10px; cursor: pointer;"  />
+                            </div>
+                        </div>
+
+                    </form>
+	</div>
+
+</div>
+</div>
+<hr>
+	
+
+{{/categories}}
+
+	
+</div>
+
+</div>
