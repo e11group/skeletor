@@ -8,6 +8,23 @@ class appService
 
     public static function loadRoutes() {
 
+  
+
+        $controllers_dir = '../app/controllers/';
+
+        $controllers = directoryToArray($controllers_dir, true);
+
+        foreach ($controllers as $controller) {
+
+         $is_php = substr($controller, -3);  
+
+            if($is_php == 'php') {
+        
+                include($controller);
+
+         }
+
+      }
 
 
         $models_dir = '../app/models/';
@@ -26,19 +43,40 @@ class appService
 
       }
 
-      // and now the pseudo-controllers "routes"
+      // and now the routes
 
-        $controllers_dir = '../app/routes/';
+         // and now the routes
 
-        $controllers = directoryToArray($controllers_dir, true);
+        $routes_dir = '../app/routes/';
 
-        foreach ($controllers as $controller) {
+        $routes = directoryToArray($routes_dir, true);
 
-         $is_php = substr($controller, -3);  
+        foreach ($routes as $route) {
+
+         $is_php = substr($route, -3);  
 
             if($is_php == 'php') {
         
-                include($controller);
+                include($route);
+
+         }
+
+      }
+
+
+      // views
+
+      $views_dir = '../app/views/';
+
+        $views = directoryToArray($views_dir, true);
+
+        foreach ($views as $view) {
+
+         $is_php = substr($view, -3);  
+
+            if($is_php == 'php') {
+        
+                include($view);
 
          }
 
@@ -46,7 +84,7 @@ class appService
 
     }
 
-    private static function createNameVariety($page_name) 
+ static function createNameVariety($page_name) 
     {
 
 
@@ -59,148 +97,21 @@ class appService
         'upperName' => strtoupper($page_name),
         'ucName' => ucwords($page_name)
 
-
-
       );
       
       return $page_name_arr;
 
     }
 
-    public static function loadViewTemplate($page_name, $page_variables) 
-    {
 
-     
-     $page_name = AppService::createNameVariety($page_name);
+  static function getGlobals()
+  {
 
-          // sidebar title
-      $pages_active = 'true';
-  
-      // menu type
-      $menu_no = $page_name['lower_name_ess'];
+          \Flight::view()->set("style", STYLE_DIR);
+          \Flight::view()->set("components", COMPONENTS_DIR);
+          \Flight::view()->set("scripts", SCRIPTS_DIR);
 
-       // subheader
-      $template_subheader = 'View All '. $page_name['upper_name_ess'];
-
-
-      // set any last minute variables
-      // Flight::view()->set("someVar", "Hello, World!");
-      
-      // main view body
-      \Flight::render("templates/view_page_body.html", $page_variables, 'body_content');
-
-      // required admin header nav 
-      \Flight::render('layout/admin_header.html', array('heading' => 'Hello'), 'header_content');
-
-      // optional subheader template component
-      \Flight::render('layout/admin_subheader.html', array('heading' => 'Hello'), 'subheader_content');
-      
-      // required admin sidebar
-    //  \Flight::render('layout/admin_sidebar.html', array('heading' => 'Hello'), 'sidebar_content');
-
-      // required admin footer
-      \Flight::render('layout/admin_footer.html', array('footer' => 'World'), 'footer_content');
-
-      /* add any additional template components here
-
-      
-
-      */
-
-      // main admin layout
-      \Flight::render('layout/admin_layout.html', array('title' => 'Home Page'));
-
-    }
-
-
-
-    public static function loadAddTemplate($page_name, $page_variables) 
-    {
-      
-      // main view body
-      \Flight::render("templates/view_page_body.html", $page_variables, 'body_content');
-
-      // required admin header nav 
-      \Flight::render('layout/admin_header.html', array('heading' => 'Hello'), 'header_content');
-
-      // optional subheader template component
-      \Flight::render('layout/admin_subheader.html', array('heading' => 'Hello'), 'subheader_content');
-      
-      // required admin sidebar
-    //  \Flight::render('layout/admin_sidebar.html', array('heading' => 'Hello'), 'sidebar_content');
-
-      // required admin footer
-      \Flight::render('layout/admin_footer.html', array('footer' => 'World'), 'footer_content');
-
-      /* add any additional template components here
-
-      
-
-      */
-
-      // main admin layout
-      \Flight::render('layout/admin_layout.html', array('title' => 'Home Page'));
-    }
-
-    
-    public static function loadEditTemplate($page_name, $page_variables) 
-    {
-
-            // main view body
-      \Flight::render("templates/view_page_body.html", $page_variables, 'body_content');
-
-      // required admin header nav 
-      \Flight::render('layout/admin_header.html', array('heading' => 'Hello'), 'header_content');
-
-      // optional subheader template component
-      \Flight::render('layout/admin_subheader.html', array('heading' => 'Hello'), 'subheader_content');
-      
-      // required admin sidebar
-    //  \Flight::render('layout/admin_sidebar.html', array('heading' => 'Hello'), 'sidebar_content');
-
-      // required admin footer
-      \Flight::render('layout/admin_footer.html', array('footer' => 'World'), 'footer_content');
-
-      /* add any additional template components here
-
-      
-
-      */
-
-      // main admin layout
-      \Flight::render('layout/admin_layout.html', array('title' => 'Home Page'));
-
-    }
-
-    
-    public static function loadDeleteTemplate($page_name, $page_variables) 
-    {
-
-            // main view body
-      \Flight::render("templates/view_page_body.html", $page_variables, 'body_content');
-
-      // required admin header nav 
-      \Flight::render('layout/admin_header.html', array('heading' => 'Hello'), 'header_content');
-
-      // optional subheader template component
-      \Flight::render('layout/admin_subheader.html', array('heading' => 'Hello'), 'subheader_content');
-      
-      // required admin sidebar
-    //  \Flight::render('layout/admin_sidebar.html', array('heading' => 'Hello'), 'sidebar_content');
-
-      // required admin footer
-      \Flight::render('layout/admin_footer.html', array('footer' => 'World'), 'footer_content');
-
-      /* add any additional template components here
-
-      
-
-      */
-
-      // main admin layout
-      \Flight::render('layout/admin_layout.html', array('title' => 'Home Page'));
-
-    }
+  }
 
 
 

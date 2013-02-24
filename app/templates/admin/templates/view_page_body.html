@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="twelve columns">
+          {{alert}}
+  </div>
+</div>
+
+
+<div class="row">
+
+{{{sidebar}}}
+
+<div class="ten columns">
+
+  <h3 class="subheader">{{subheader}}</h3>
+
+<div class="panel">
+
+<div class="row collapse">
+
+  <div class="ten mobile-three columns">
+
+    <input type="text" name="filter" id="filter-box" value="" placeholder="Filter Content"/>
+  </div>
+  <div class="two mobile-one columns">
+    <input id="filter-clear-button" class="button expand postfix" type="submit" value="Clear"/>
+
+  </div>
+</div>
+</div>
+
+<table class="twelve tsort" id="employee_widget">
+
+    <thead>
+    <tr>
+
+        {{#table_head}}
+          <th>{{.}}</th>
+
+        {{/table_head}}
+
+    </tr>
+  </thead>
+<tbody>
+  
+  {{#table_body}}
+    
+    {{{.}}}
+  
+  {{/table_body}}
+
+</tbody>
+
+</table>
+
+<hr>
+
+{{{tablesorter_pager}}}
+
+</div>
+
+</div>
+
+
+<div id="modal" class="reveal-modal xlarge">
+  <h2>{{modal_head}}</h2>
+  <p class="lead">{{modal_subhead}}</p>
+  <p>{{modal_text}}</p>
+  <a href="{{modal_link}}" class="button alert">Close</a>
+  <a class="close-reveal-modal" href="{{modal_link}}">&#215;</a>
+</div>
+

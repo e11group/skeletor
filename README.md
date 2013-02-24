@@ -42,11 +42,17 @@ love it, hate it - help make it better.
 
 ##todo
 
-- yaml form interface
-- build script
+- add flight js
+
+
 - implement orm
 - convert functions & includes into custom methods 
-- add flight js
+
+
+- yaml form interface
+- build script
+- auto nav builder
+
 
 - second pass at code style guides
 - add logging calls

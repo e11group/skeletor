@@ -6,8 +6,8 @@
 	
 	date_default_timezone_set('America/Los_Angeles');
 
-define('ROOT', 'http://localhost/leadertech/');
-define('WWW', '/leadertech/public/');
+define('ROOT', 'http://localhost/skeletor/');
+define('WWW', '/skeletor/public/');
 define('BASE', '/');
 define('CONFIG_DIR', '../app/config/');
 define('SCRIPTS_DIR', ROOT . 'javascripts/');
