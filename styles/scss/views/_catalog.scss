@@ -1,0 +1,173 @@
+/* WIDGETS */
+
+#related_links_widget {
+
+	background: #fff;
+	padding: 2em;
+	box-shadow: 0px 0px 2px #9a9a9a;
+	border-radius: 2px;
+
+	ul {
+
+		list-style-type:none;
+
+		li {
+
+			display: block;
+				background: url(../images/lt-body-sprite.png) 0px -7px no-repeat;
+		height: 12px;
+		margin: 6px 0;
+		padding-left: 1em;
+		padding-top: 0px;
+
+			a {
+
+				display: block;
+				font-size: .9em;
+
+			}
+
+			a:hover {
+
+
+			}
+
+
+		}
+
+
+
+	}
+
+}
+
+/* descrption particulars */
+
+.arrow-link {
+
+font-weight:bold;
+padding-right: 25px;
+background: url(../images/lt-body-sprite.png) right -20px no-repeat;
+
+}
+
+.description-style ul {
+
+	list-style-type: none;
+
+	li { 
+
+		background: url(../images/lt-bullet.png) 0px 6px no-repeat;
+		min-height: 18px;
+		margin: 8px 0;
+		padding-left: 1em;
+
+	}
+
+}
+
+#subcategory_products_widget {
+
+	
+
+		li {
+
+			.image-hover {
+
+					text-align:center;
+				color: #003a6a;
+				font-size: 1.4em;
+				background: rgba(0,0,0,0.05);
+				border-radius: 4px;
+				box-shadow: 0px 0px 2px #9a9a9a;
+
+			}
+
+			.image-hover:hover {
+
+				img { 
+				opacity: 0.2;
+				}
+
+	
+
+					color: #000;
+					text-decoration: underline;
+
+				 
+
+
+			
+
+			}
+
+			div {
+
+				font-size: 1em;
+				font-weight: bold;
+
+			}
+
+			ul {
+
+				list-style-type:none;
+
+				li {
+
+					a { 
+						display:block;
+						font-size: .9em;
+						font-weight:bold;
+
+					 }
+
+					 a:hover {
+
+					 	text-decoration:underline;
+					 }
+
+				}
+
+			}
+
+		}
+
+}
+
+.product-box {
+	
+	 background: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  margin: 0 0 18px;
+  padding:0;
+  border: 1px solid #ddd;
+    padding: 2px;
+}
+
+.product-box-head {
+	
+
+
+background-image: linear-gradient(bottom, rgb(21,85,138) 35%, rgb(36,115,179) 100%);
+background-image: -o-linear-gradient(bottom, rgb(21,85,138) 35%, rgb(36,115,179) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(21,85,138) 35%, rgb(36,115,179) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(21,85,138) 35%, rgb(36,115,179) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(21,85,138) 35%, rgb(36,115,179) 100%);
+
+background-image: -webkit-gradient(
+  linear,
+  left bottom,
+  left top,
+  color-stop(0.35, rgb(21,85,138)),
+  color-stop(1, rgb(36,115,179))
+);
+
+color: #fff;
+padding: 8px 10px 9px;
+  font-size: 14px;
+  font-weight: bold;
+}

@@ -29,31 +29,21 @@ pre-pre-alpha.
 
 for more see wiki
 
-##concept
+##goal
 
-skeletor is based around the idea that lists are quicker than poetry.  
-
-don't like automated builds or lib dependency - this isn't made for you.
-
-love it, hate it - help make it better. 
-
-**tldr;** practical rapid open-source crud app machine. 
+best practice + speed
 
 
 ##todo
 
-- add flight js
-
-
-- implement orm
-- convert functions & includes into custom methods 
-
-
+cli-tool
 - yaml form interface
 - build script
 - auto nav builder
 
-
+skeleton
+- add flight js
+- convert functions & includes into custom methods 
 - second pass at code style guides
 - add logging calls
 - add test units
@@ -69,6 +59,7 @@ love it, hate it - help make it better.
 
 0.03
 
+- implement orm
 - template + mv* structures
 - route conversion + handling
 - change from autoloader to composer

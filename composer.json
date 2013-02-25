@@ -17,6 +17,7 @@
         "mustache/mustache": "dev-master",
         "xmeltrut/wing-commander": "dev-master",
         "dg/dibi" :  "*",
+        "doctrine/orm": "*",
         "mjohnson/resession": "dev-master",
         "bkcore/nocsrf": "dev-master",
         "swiftmailer/swiftmailer": "4.3.*@dev",

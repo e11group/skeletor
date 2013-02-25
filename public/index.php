@@ -13,10 +13,7 @@
     require_once '../app/config/definitions.php';
 
     // autoloader
-    require_once VENDOR_DIR . 'autoload.php';
-
-    // configuration
-	require_once CONFIG_DIR . 'config.php';
+    require_once '../bootstrap.php';
 
 	// helper functions
 	require_once INC_DIR . 'helper.php';
@@ -46,3 +43,5 @@
 
     // lift off
 	Flight::start();
+
+    //new Weather\Skeletor\Models\Test::get();

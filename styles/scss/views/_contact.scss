@@ -1,0 +1,69 @@
+.homebox { 
+		
+		text-align:left;
+		min-height: 16em;
+		background: #fff;
+		@include lt-drop;
+		border: 1px solid #bababa;
+		border-radius: 4px;
+		padding: 1em;
+
+}
+
+.address {
+	
+	p {
+
+		display:block;
+		margin: 0;
+
+	}
+
+}
+
+#sales_contacts {
+	
+
+	label { 
+
+		font-size: .9em;
+
+	}
+
+}
+
+.featured_contact {
+
+		text-align:left;
+		min-height: 16em;
+		background: #f9f9f9;
+		@include lt-drop;
+		border: 1px solid #bababa;
+		border-radius: 4px;
+		padding: 1em;
+	
+	p {
+
+		display:block;
+		margin: 0;
+
+	}
+
+	a {
+
+		font-weight:bold;
+		color: #003a6a;
+	}
+
+}
+
+#contact_form {
+	
+	label {
+
+		margin-bottom: .7em;
+		margin-top: 1em;
+
+	}
+
+}

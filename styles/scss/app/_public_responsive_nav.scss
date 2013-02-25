@@ -1,0 +1,602 @@
+/* =Navigation
+-------------------------------------------------------------- */
+/* clip skip link for screen readers */
+.skip-link {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+}
+#access {
+    font-family: "dinff_boldregular", helvetica neue, arial, sans-serif;
+    color: #000;
+    font-size: 1.1em;
+    overflow:visible;
+    z-index:100;
+}
+/* style the main menu 8*/
+.sf-menu{
+    border-top: none;
+}
+/* get rid of padding and margin off all ul's (not sure about using * here, could be better) */
+.sf-menu, .sf-menu * {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+/* position all dropdowns off screen */
+.sf-menu ul {
+    position:absolute;
+    top:-999em;
+}
+/* style the main nav list items */
+.sf-menu li {
+ 
+    clear: left;
+    float:left;
+    position:relative;
+    width: 100%;
+}
+/* change the main nav list items on hover */ 
+.sf-menu li:hover {
+    /* background-image: url('../img/menuBg.png'); */
+    visibility:inherit; /* fixes IE7 'sticky bug' */
+}
+/* style all the links */
+.sf-menu a {
+    font-size: 1.1em;
+    color: #333;
+    display:block;
+    padding: 1px 0;
+    text-decoration: none;
+    text-indent: 12px;
+}
+
+.sf-menu li.active a {
+
+    color: #d9bb04;
+
+}
+
+.sf-menu li.active ul li a {
+    color: #003a6a;
+}
+/* style the first drop */
+.sf-menu li li, .sf-menu li li:hover{
+    background: none;
+    background-image: none;
+}
+/* add a larger text indent for the first drop links */
+.sf-menu li li a{
+    text-indent: 24px;
+    font-family: Helvetica Neue, arial, sans-serif;
+}
+/* add a larger text indent for the second drop links */
+.sf-menu li li li a{
+    text-indent: 36px;
+}
+/* add a larger text indent for the third drop links */
+.sf-menu li li li li a{
+    text-indent: 48px;
+}
+/* position first drop */
+.sf-menu li:hover ul {
+    top:auto; /* match top ul list item height */
+    position:relative;
+}
+/* make sure second drop is still off screen */
+ul.sf-menu li:hover li ul {
+    position: absolute;
+    top:-999em;
+}
+/* position second drop */
+ul.sf-menu li li:hover ul {
+    top:auto;
+    position:relative;
+}
+/* make sure third drop is still off screen */
+ul.sf-menu li li:hover li ul {
+    position: absolute;
+    top:-999em;
+}
+/* position third drop */
+ul.sf-menu li li li:hover ul {
+    top:auto;
+    position:relative;
+}
+@media only screen and (min-width: 480px) {
+}
+@media only screen and (min-width: 600px) {
+    /* set height so content isn't pushed down */
+    #access{
+        min-height: 5em;
+    }
+    /* set height so content isn't pushed down add z-index to keep drops above content */
+    .sf-menu{
+        height: 50px;
+        z-index: 100;
+    }
+    /* restyle so main links are horizontally aligned */
+  
+    /* new style for drop list items */
+    .sf-menu li li{
+        background: #fff;
+      
+        clear: left;
+        width: 100%;
+    }
+    /* reset text indent on all drop a tags and set the width to 100% */
+    .sf-menu li li a, .sf-menu li li li a, .sf-menu li li li li a{
+        text-indent: 12px;
+        width: 100%;
+    }
+    /* reposision and style the first drop */
+    .sf-menu li:hover ul{
+        background: #003a6a;
+        color: #fff !important;
+        left: auto;
+        position: absolute;
+        top: -1;
+        width: 100%;
+        z-index: 100;
+    }
+    /* reposision and style the second drop */
+    ul.sf-menu li li:hover ul{
+        background: #000;
+        position: absolute;
+        top: -1px;
+        left:100%;
+    }
+    /* reposision and style the third drop */
+    ul.sf-menu li li li:hover ul{
+        background: #000;
+        position: absolute;
+        top: -1px;
+        left:100%;
+    }
+    .sf-menu li ul { 
+
+            width: 25em !important;
+            border-right: 1px solid #dadada;
+            border-left: 1px solid #dadada;
+            border-bottom: 1px solid #dadada;
+            z-index: 10000;
+            box-shadow: 0px 6px 3px rgba(0,0,0,.3);
+            margin-left: -1px !important;
+            padding-top: 10px !important;
+            background:#fff !important;
+
+
+    }
+
+    .sf-menu li ul li {
+
+        background: #fff url(../images/app/lt_header_sprite.png) 22em -2.4em no-repeat;
+
+    }
+
+        .sf-menu li ul li.ontop {
+        background: #003a6a !important;
+        color: #fff !important;
+        }
+        .sf-menu li ul li.ontop a {
+        color: #fff !important;
+
+        }
+
+        .sf-menu li ul li.ontop ul li a {
+        color: #003a6a !important;
+
+        }
+
+
+    .sf-menu li ul li a {
+
+        font-size: 1em;
+        padding: .7em .2em;
+        color: #003a6a !important;
+        border-bottom: 1px solid #dadada;
+                font-weight: bold !important;
+
+
+    }
+
+
+    .sf-menu li ul li a:hover {
+
+        color: #fff !important;
+        background: #003a6a !important;
+
+    }
+
+
+.top-tab {
+
+    background : #fff !important;
+    box-shadow: 0px 0px 3px rgba(0,0,0,.3);
+    z-index:20000;
+    border-left: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    border-top: 1px solid #dadada;
+    margin-top: -1em;
+    padding-top: 1em !important;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    width: 25em !important;
+
+
+
+   /* Safari 4+, Chrome 1-9 */
+   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f3f3f3), to(#ffffff));
+
+   /* Safari 5.1+, Mobile Safari, Chrome 10+ */
+   background-image: -webkit-linear-gradient(top, #f3f3f3, #ffffff); 
+
+   /* Firefox 3.6+ */
+   background-image: -moz-linear-gradient(top, #f3f3f3, #ffffff);
+ 
+   /* IE 10+ */
+   background-image: -ms-linear-gradient(top, #f3f3f3, #ffffff);
+
+   /* Opera 11.10+ */
+   background-image: -o-linear-gradient(top, #f3f3f3, #ffffff);
+}
+
+
+ .sf-menu li ul { 
+
+            width: 25em !important;
+            border-right: 1px solid #dadada;
+            border-left: 1px solid #dadada;
+            border-bottom: 1px solid #dadada;
+            z-index: 10000;
+            box-shadow: 0px 6px 3px rgba(0,0,0,.3);
+            margin-left: -1px !important;
+            padding-top: 10px !important;
+            background:#fff !important;
+
+
+    }
+
+    .sf-menu li ul li {
+
+        background: #fff url(../images/app/lt_header_sprite.png) 22em -2.4em no-repeat;
+
+    }
+
+        .sf-menu li ul li.ontop {
+        background: #003a6a !important;
+        color: #fff !important;
+        }
+        .sf-menu li ul li.ontop a {
+        color: #fff !important;
+
+        }
+
+        .sf-menu li ul li.ontop ul li a {
+        color: #003a6a !important;
+
+        }
+
+
+    .sf-menu li ul li a {
+
+        font-size: 1.1em;
+        padding: .7em .2em;
+        color: #003a6a !important;
+        border-bottom: 1px solid #dadada;
+                font-weight: bold !important;
+
+
+    }
+
+
+    .sf-menu li ul li a:hover {
+
+        color: #fff !important;
+        background: #003a6a !important;
+
+    }
+
+        .sf-menu li.drop:hover {
+
+         background : #fff !important;
+    box-shadow: 0px 0px 3px rgba(0,0,0,.3);
+    z-index:20000;
+    border-left: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    border-top: 1px solid #dadada;
+    margin-top: -1em;
+    padding-top: 1em !important;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+
+    }
+
+    .sf-menu li ul li:hover, .sf-menu li ul li ul li:hover {
+
+    box-shadow: 0;
+    margin: 0 !important;
+     padding: 0 !important;
+     border-top: 0 !important;
+     border-top-right-radius: 0px !important;
+     border-top-left-radius: 0px !important;
+
+    }
+
+
+    .sf-menu li ul li ul:hover {
+
+      background: #000 !important;
+
+    }
+
+    .sf-menu li ul li ul {
+            width: 15em !important;
+            padding-top: 0 !important;
+            margin-left: -5px !important;
+              border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            box-shadow: 0px 0px 2px rgba(0,0,0,.2);
+                        z-index: 1000;
+
+    }
+
+     .sf-menu li ul li ul li {
+
+        background: #fff !important;
+
+    }
+
+        .sf-menu li ul li ul li a {
+
+        font-size: .9em;
+        padding: .3em .1em;
+        color: #003a6a !important;
+        border-bottom: 1px solid #dadada;
+        font-weight: normal !important;
+
+    }
+
+
+    .sf-menu li ul li ul li a:hover {
+
+         background: #003a6a !important;
+
+        color: #fff !important
+
+    }
+
+
+
+
+
+}
+@media only screen and (min-width: 768px) {
+
+
+    #access {
+        min-height: 5em;
+
+
+    }
+
+    .sf-menu{
+        border-top: 1px solid #dadada;
+        padding: 1.1em 0 1em;
+        min-height: 4em;
+        margin: 1em 0;
+        border-bottom: 1px solid #dadada;
+
+
+         }
+  .sf-menu li {
+        clear: none;
+        width: 14.285714286%; /* this will need to be adjusted for your needs */
+
+    }
+
+
+         .drop {
+            background: url(../images/app/lt_header_sprite.png) 7.6em 4px repeat;
+         }
+
+
+
+.top-tab {
+
+    background : #fff !important;
+    box-shadow: 0px 0px 3px rgba(0,0,0,.3);
+    z-index:20000;
+    border-left: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    border-top: 1px solid #dadada;
+    margin-top: -1em;
+    padding-top: 1em !important;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+
+
+
+   /* Safari 4+, Chrome 1-9 */
+   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f3f3f3), to(#ffffff));
+
+   /* Safari 5.1+, Mobile Safari, Chrome 10+ */
+   background-image: -webkit-linear-gradient(top, #f3f3f3, #ffffff); 
+
+   /* Firefox 3.6+ */
+   background-image: -moz-linear-gradient(top, #f3f3f3, #ffffff);
+ 
+   /* IE 10+ */
+   background-image: -ms-linear-gradient(top, #f3f3f3, #ffffff);
+
+   /* Opera 11.10+ */
+   background-image: -o-linear-gradient(top, #f3f3f3, #ffffff);
+}
+
+    /* bigger screen bigger font size and padding */
+    .sf-menu a {
+        font-size: 1.1em;
+        padding: 0em 0;
+    }
+
+    .sf-menu li ul { 
+
+            width: 25em !important;
+            border-right: 1px solid #dadada;
+            border-left: 1px solid #dadada;
+            border-bottom: 1px solid #dadada;
+            z-index: 10000;
+            box-shadow: 0px 6px 3px rgba(0,0,0,.3);
+            margin-left: -1px !important;
+            padding-top: 10px !important;
+            background:#fff !important;
+
+
+    }
+
+    .sf-menu li ul li {
+
+        background: #fff url(../images/app/lt_header_sprite.png) 22em -2.4em no-repeat;
+
+    }
+
+        .sf-menu li ul li.ontop {
+        background: #003a6a !important;
+        color: #fff !important;
+        }
+        .sf-menu li ul li.ontop a {
+        color: #fff !important;
+
+        }
+
+        .sf-menu li ul li.ontop ul li a {
+        color: #003a6a !important;
+
+        }
+
+
+    .sf-menu li ul li a {
+
+        font-size: 1.1em;
+        padding: .7em .2em;
+        color: #003a6a !important;
+        border-bottom: 1px solid #dadada;
+                font-weight: bold !important;
+
+
+    }
+
+
+    .sf-menu li ul li a:hover {
+
+        color: #fff !important;
+        background: #003a6a !important;
+
+    }
+
+        .sf-menu li.drop:hover {
+
+         background : #fff !important;
+    box-shadow: 0px 0px 3px rgba(0,0,0,.3);
+    z-index:20000;
+    border-left: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    border-top: 1px solid #dadada;
+    margin-top: -1em;
+    padding-top: 1em !important;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+
+    }
+
+    .sf-menu li ul li:hover, .sf-menu li ul li ul li:hover {
+
+    box-shadow: 0;
+    margin: 0 !important;
+     padding: 0 !important;
+     border-top: 0 !important;
+     border-top-right-radius: 0px !important;
+     border-top-left-radius: 0px !important;
+
+    }
+
+
+    .sf-menu li ul li ul:hover {
+
+      background: #000 !important;
+
+    }
+
+    .sf-menu li ul li ul {
+            width: 15em !important;
+            padding-top: 0 !important;
+            margin-left: -5px !important;
+              border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            box-shadow: 0px 0px 2px rgba(0,0,0,.2);
+                        z-index: 1000;
+
+    }
+
+     .sf-menu li ul li ul li {
+
+        background: #fff !important;
+
+    }
+
+        .sf-menu li ul li ul li a {
+
+        font-size: .9em;
+        padding: .3em .1em;
+        color: #003a6a !important;
+        border-bottom: 1px solid #dadada;
+        font-weight: normal !important;
+
+    }
+
+
+    .sf-menu li ul li ul li a:hover {
+
+         background: #003a6a !important;
+
+        color: #fff !important
+
+    }
+
+
+
+
+
+}
+@media only screen and (min-width: 992px) {
+ 
+
+
+
+}
+@media only screen and (min-width: 1382px) {
+    /* move the header to the left side of the screen */
+    header{
+      
+    }
+
+     .drop {
+            background: url(../images/app/lt_header_sprite.png) 6.9em 3px repeat;
+         }
+    
+    /* bigger screen bigger nav */
+    #access{
+        height:1.5em;
+    }
+    /* bigger screen bigger nav */
+    .sf-menu{
+        height:1.5em;
+    }
+    /* bigger screen bigger font size and padding */
+    .sf-menu a {
+        font-size: 1em;
+        padding: 0 0;
+    }
+    
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
+}

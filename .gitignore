@@ -1,6 +1,6 @@
 /app/views/cache/*
 /.sass-cache/*
-/scss/.sass-cache/*
+/styles/scss/.sass-cache/*
 /logs/*
 /fonts/*
 /vendor/*
