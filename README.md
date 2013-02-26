@@ -38,18 +38,20 @@ best practice + speed
 
 cli-tool
 - yaml form interface
+- framework creator
+- form creator
+- nav creator
 - build script
-- auto nav builder
 
 skeleton
-- add flight js
+
+- add backbone
 - convert functions & includes into custom methods 
 - second pass at code style guides
 - add logging calls
 - add test units
-- localization
+- i18n / l10n
 - local storage
-- memcached
 - acl
 - example
 - documentation
@@ -59,6 +61,7 @@ skeleton
 
 0.03
 
+- opcode caching option
 - implement orm
 - template + mv* structures
 - route conversion + handling
