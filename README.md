@@ -46,7 +46,8 @@ cli-tool
 skeleton
 
 - add backbone
-- convert functions & includes into custom methods 
+- json api
+ 
 - second pass at code style guides
 - add logging calls
 - add test units
