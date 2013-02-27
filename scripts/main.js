@@ -23,11 +23,11 @@ require.config({
 		}
 	},
 	paths: {
-		jquery: 'vendor/jquery.min',
-		underscore: '../../../assets/lodash.min',
-		backbone: 'lib/backbone/backbone',
-		backboneLocalstorage: 'lib/backbone/backbone.localStorage',
-		text: 'lib/require/text'
+		jquery: 'vendor/jquery/jquery.min',
+		underscore: 'vendor/lodash/dist/lodash.min',
+		backbone: 'vendor/backbone/backbone',
+		backboneLocalstorage: 'vendor/Backbone.localStorage/backbone.localStorage-min',
+		text: 'vendor/text/text'
 	}
 });
 

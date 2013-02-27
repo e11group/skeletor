@@ -10,6 +10,10 @@
     "chosen": null,
     "html5-boilerplate": null,
     "jquery-marcopolo": null,
-    "jquery.maskedinput": null
-    }
+    "jquery.maskedinput": null,
+    "lodash": null,
+    "Backbone.localStorage": null,
+    "text": "https://github.com/requirejs/text.git#~2.0.5",
+    "Backbone.dualStorage": "https://github.com/lucian1900/Backbone.dualStorage.git"
+  }
 }

@@ -45,23 +45,24 @@ cli-tool
 
 skeleton
 
-- add backbone
-- json api
- 
-- second pass at code style guides
+- i18n / l10n
+- acl
 - add logging calls
 - add test units
-- i18n / l10n
-- local storage
-- acl
+- second pass at code style guides
 - example
 - documentation
+
 
 
 ###log
 
 0.03
 
+- json crud api
+- local storage caching
+
+- add backbone
 - opcode caching option
 - implement orm
 - template + mv* structures
