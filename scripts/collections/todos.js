@@ -3,8 +3,8 @@ define([
 	'underscore',
 	'backbone',
 	'backboneLocalstorage',
-	'models/todo'
-], function (_, Backbone, Store, Todo) {
+	'models/admin'
+], function (_, Backbone, Store, Admin) {
 	'use strict';
 
 	var TodosCollection = Backbone.Collection.extend({
@@ -42,4 +42,6 @@ define([
 	});
 
 	return new TodosCollection();
+
+
 });

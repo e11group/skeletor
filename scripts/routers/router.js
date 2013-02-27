@@ -9,8 +9,7 @@ define([
 
 	var Workspace = Backbone.Router.extend({
 		routes: {
-			'*filter': 'setFilter',
-			'*templates': 'testNow'
+			'*filter': 'setFilter'
 		},
 
 		setFilter: function (param) {
@@ -21,13 +20,6 @@ define([
 			// of the Todo view items
 			Todos.trigger('filter');
 		}
-
-
-		testNow: function () {
-			
-				console.log('ass');
-		}
-
 	});
 
 	return Workspace;
