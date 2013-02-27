@@ -6,14 +6,15 @@ pre-pre-alpha.
 
 ##requirements
 
-- server side
-	- php 5.3+
-	- db agnostic
+server side
 
-- build environment
-	- lamp, mamp, lasp, lemp etc
-	- node + npm (optional)
-	- ruby + compass + sass (use rvm) (optional)
+- php 5.3+
+- db agnostic
+
+build environment
+
+- lamp, mamp, lasp, lemp, wisp etc
+- (optional) build tool - node + npm + ruby + compass + sass (via rvm) - linux or mac only
 
 ##components
 
@@ -29,14 +30,22 @@ pre-pre-alpha.
 
 for more see wiki
 
-##goal
+##goals
 
-best practice + speed
-
+best practices everywhere - style guides, specs, industry standard libs, etc
+fucking speed for 'real world developers' - dry kiss all day
+hypermedia api, view+template agnostic (client-side mv*, server side mv*, cli / json)
+opionated about being practical for dry kindness
+flexible base for large variety of medium-scale projects - custom cms, mobile server, app api, etc
+agnostic to code design preferences, patterns and style based on a lightweight, flexible serverside framework
+be maintained at some level by non-programmers, entry level etc etc 
+test-driven development
+simple yaml config
 
 ##todo
 
-cli-tool
+cli
+
 - yaml form interface
 - framework creator
 - form creator
@@ -54,14 +63,12 @@ skeleton
 - documentation
 
 
-
 ###log
 
 0.03
 
 - json crud api
 - local storage caching
-
 - add backbone
 - opcode caching option
 - implement orm
