@@ -32,15 +32,15 @@ for more see wiki
 
 ##goals
 
-best practices everywhere - style guides, specs, industry standard libs, etc
-fucking speed for 'real world developers' - dry kiss all day
-hypermedia api, view+template agnostic (client-side mv*, server side mv*, cli / json)
-opionated about being practical for dry kindness
-flexible base for large variety of medium-scale projects - custom cms, mobile server, app api, etc
-agnostic to code design preferences, patterns and style based on a lightweight, flexible serverside framework
-be maintained at some level by non-programmers, entry level etc etc 
-test-driven development
-simple yaml config
+- best practices everywhere - style guides, specs, industry standard libs, etc
+- fucking speed for 'real world developers' - dry kiss all day
+- hypermedia api, view+template agnostic (client-side mv*, server side mv*, cli / json)
+- opionated about being practical for dry kindness
+- flexible base for large variety of medium-scale projects - custom cms, mobile server, app api, etc
+- agnostic to code design preferences, patterns and style based on a lightweight, flexible serverside framework
+- be maintained at some level by non-programmers, entry level etc etc 
+- test-driven development
+- simple yaml config
 
 ##todo
 
