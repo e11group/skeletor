@@ -47,9 +47,7 @@ for more see wiki
 cli
 
 - yaml form interface
-- framework creator
-- form creator
-- nav creator
+- creator
 - build script
 
 skeleton
@@ -64,6 +62,11 @@ skeleton
 
 
 ###log
+
+0.04
+
+- cli app framework
+
 
 0.03
 

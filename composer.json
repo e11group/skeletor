@@ -22,7 +22,9 @@
         "bkcore/nocsrf": "dev-master",
         "swiftmailer/swiftmailer": "4.3.*@dev",
         "phpunit/phpunit": "*",
-        "monolog/monolog": "1.4.*@dev"
+        "monolog/monolog": "1.4.*@dev",
+        "herrera-io/cli-app": "*",
+        "symfony/yaml" : "*"
     },
 
      "autoload": {
