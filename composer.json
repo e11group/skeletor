@@ -16,7 +16,7 @@
         "mikecao/flight": "dev-master",
         "mustache/mustache": "dev-master",
         "xmeltrut/wing-commander": "dev-master",
-        "dg/dibi" :  "*",
+        "aura/http": "*",
         "doctrine/orm": "*",
         "mjohnson/resession": "dev-master",
         "bkcore/nocsrf": "dev-master",
@@ -25,6 +25,7 @@
         "monolog/monolog": "1.4.*@dev",
         "herrera-io/cli-app": "*",
         "symfony/yaml" : "*"
+
     },
 
      "autoload": {

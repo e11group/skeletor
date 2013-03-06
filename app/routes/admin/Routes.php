@@ -16,6 +16,7 @@
 	Flight::route('POST /templates/model/@id',  array('\Weather\Skeletor\AdminTemplateController','update'));
 
 
-
+    Flight::route('GET /api/templates',  array('\Weather\Skeletor\Controllers\API\Templates','getAll'));
+    Flight::route('POST /api/templates/template',  array('\Weather\Skeletor\AdminTemplateController','create'));
 
 ?>
