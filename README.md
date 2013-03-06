@@ -33,7 +33,7 @@ for more see wiki
 ##goals
 
 - best practices everywhere - style guides, specs, industry standard libs, etc
-- fucking speed for 'real world  / working class developers' - dry kiss all day
+- fucking speed for 'real world developers' - dry kiss all day
 - hypermedia api, view+template agnostic (client-side mv*, server side mv*, cli / json)
 - opionated about being practical for dry kindness
 - flexible base for large variety of medium-scale projects - custom cms, mobile server, app api, etc
