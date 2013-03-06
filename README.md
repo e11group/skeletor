@@ -33,12 +33,12 @@ for more see wiki
 ##goals
 
 - best practices everywhere - style guides, specs, industry standard libs, etc
-- fucking speed for 'real world developers' - dry kiss all day
+- fucking speed for 'real world  / working class developers' - dry kiss all day
 - hypermedia api, view+template agnostic (client-side mv*, server side mv*, cli / json)
 - opionated about being practical for dry kindness
 - flexible base for large variety of medium-scale projects - custom cms, mobile server, app api, etc
-- agnostic to code design preferences, patterns and style based on a lightweight, flexible serverside framework
-- be maintained at some level by non-programmers, entry level etc etc 
+- agnostic about some things, opionated about others - practical and pragmatic above all
+- be maintained at some level by info handlers, designers, project managers etc etc 
 - test-driven development
 - simple yaml config
 
@@ -46,14 +46,16 @@ for more see wiki
 
 cli
 
-- yaml form interface
-- creator
+- creator script
 - build script
 
 skeleton
+- oauth authorization api
+- response / request controllers
+- vendor mime type
+- form front
 
 - i18n / l10n
-- acl
 - add logging calls
 - add test units
 - second pass at code style guides
@@ -70,7 +72,6 @@ skeleton
 
 0.03
 
-- json crud api
 - local storage caching
 - add backbone
 - opcode caching option
