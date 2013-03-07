@@ -32,9 +32,9 @@ class AppService
 
         $controllers = directoryToArray($controllers_dir, true);
 
-        foreach ($models as $model) {
+        foreach ($controllers as $c0ntroller) {
 
-         $is_php = substr($model, -3);  
+         $is_php = substr($controller, -3);  
 
             if($is_php == 'php') {
         
