@@ -1,0 +1,5 @@
+Table:
+  - [items_foreign]
+
+column name 1:
+  - ["name", "type", ]

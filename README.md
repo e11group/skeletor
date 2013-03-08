@@ -54,7 +54,8 @@ skeleton
 - response / request controllers
 - vendor mime type
 - form front
-
+- openid login
+- server-side template caching
 - i18n / l10n
 - add logging calls
 - add test units
