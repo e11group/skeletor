@@ -51,8 +51,8 @@ cli
 
 skeleton
 
+- change name space
 - oauth authorization api
-- vendor mime type
 - form front
 
 - openid login
@@ -69,6 +69,7 @@ skeleton
 
 0.04
 
+- vendor mime type
 - response / request controllers
 - dbal automation
 - dbal schema creator

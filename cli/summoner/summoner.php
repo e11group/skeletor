@@ -7,7 +7,7 @@ require_once '../../vendor/autoload.php';
 
 use Herrera\Cli\Application;
 use Symfony\Component\Yaml\Yaml;
-use Weather\Skeletor;
+use Skeletor;
 
 
 $app = new Application('Summoner', '1.2.3');
@@ -56,7 +56,7 @@ $app->add('customSchema', function ($input, $output) use ($app) {
   $file_name = $input->getArgument('name');
 
 
-  $conn = \Weather\Skeletor\DatabaseService::bootstrapDBAL();
+  $conn = \Skeletor\Methods\DatabaseService::bootstrapDBAL();
 
   // get tables
 

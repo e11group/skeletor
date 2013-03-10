@@ -27,33 +27,12 @@
 		'name' => 'Skeletor'
 	));
 
-    $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
-   
-
-$request = $http->newRequest();
-
-$request->setUrl('https://api.github.com/orgs/auraphp/repos');
-$stack = $http->send($request);
-$repos = json_decode($stack[0]->content);
-foreach ($repos as $repo) {
-    echo $repo->name . PHP_EOL;
-}
-
-    /**
-     *
-     * and Launch
-     *
-     *
-    */
-
-
     // all hail WingCommander
 	WingCommander::init();
 
-    // ready ...
-    Weather\Skeletor\appService::loadRoutes();
+
+        Flight::route('/items',  array('\Skeletor\Controllers\Items\Items','get_items_page'));
+
 
     // lift off
 	Flight::start();
-
-    //new Weather\Skeletor\Models\Test::get();

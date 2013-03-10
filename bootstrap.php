@@ -33,7 +33,7 @@
     );
     
 
-    $paths = array('../app/models');
+    $paths = array('../app/Skeletor/Entities');
     $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
     $entityManager = EntityManager::create($dbParams, $config);
 
