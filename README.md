@@ -52,7 +52,6 @@ cli
 skeleton
 
 - oauth authorization api
-- response / request controllers
 - vendor mime type
 - form front
 
@@ -70,6 +69,7 @@ skeleton
 
 0.04
 
+- response / request controllers
 - dbal automation
 - dbal schema creator
 - custom(non-api) services
