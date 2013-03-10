@@ -46,17 +46,10 @@ for more see wiki
 
 cli
 
-- summon script
 - build script
 
 skeleton
 
-- change name space
-- oauth authorization api
-- form front
-
-- openid login
-- server-side template caching
 - i18n / l10n
 - add logging calls
 - add test units
@@ -67,8 +60,22 @@ skeleton
 
 ###log
 
+todo: today:
+
+- set up mapper classes
+- backend api
+- serverside api client
+- clientside api client + forms + local storage
+- generator scripts
+- oauth authorization api
+- openid login
+
+
 0.04
 
+
+- server-side template caching
+- change name space
 - vendor mime type
 - response / request controllers
 - dbal automation

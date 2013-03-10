@@ -1,5 +1,6 @@
 <?php
 namespace Skeletor\Controllers\API;
+use Skeletor\API\Template;
 
 //-------------------------------------------------------------------------------------------------------------
 
@@ -20,8 +21,10 @@ class Templates
       //caching
       \Flight::etag('skeletor-admin-view-template');
 
-      // begin business logic //
+      // fetch model data
+      $templateOne = new Template('title', 'content');
 
+      $templates = array($templateOne);
   /*
       $dbService = new dbService('pages');
 

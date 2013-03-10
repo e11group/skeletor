@@ -17,6 +17,7 @@
         "mustache/mustache": "dev-master",
         "xmeltrut/wing-commander": "dev-master",
         "aura/http": "*",
+        "aura/di": "*",
         "doctrine/orm": "*",
         "mjohnson/resession": "dev-master",
         "bkcore/nocsrf": "dev-master",
