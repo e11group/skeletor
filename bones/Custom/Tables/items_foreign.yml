@@ -1,5 +1,17 @@
-Table:
-  - [items_foreign]
-
-column name 1:
-  - ["name", "type", ]
+"Table":
+  TableName:       "users_foreign"
+"Column_id":
+  ColumnName:     "id"    
+  Type:           "integer"
+  Options:
+    Unsigned:     "true"
+"Column_user_id":
+  ColumnName:     "user_id"
+  Type:           "integer"
+"Keys":
+  PrimaryKey:      "id"
+  ForeignKey:
+    PrimaryTable:  "users"
+    PrimaryKey:    "user_id"
+    ForeignKey:    "id"
+    onUpdate:      "CASCADE"  

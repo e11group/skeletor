@@ -4,8 +4,8 @@ namespace Weather\Skeletor;
 class SchemaService
 {
 	
-  protected $schema;
-  protected $table;
+  protected $_schema;
+  protected $_custom_table;
 
   public function __construct() {
 
@@ -13,62 +13,74 @@ class SchemaService
 
   }
 
-  public function set_table($table = null) {
+  public function set_custom_table($table = null) {
 
    if ($table) {
-     $myTable = $this->_schema->createTable($table);
+     $this->_custom_table = $this->_schema->createTable($table);
    }
 
   }
 
-  public function get_table() {
-  	return $this->_table;
+  public function get_custom_table() {
+  	return $this->_custom_table;
   }
 
-	 public static function createSchema() {
 
-      $myTable->addColumn("id", "integer", array("unsigned" => true));
-      $myTable->addColumn("username", "string", array("length" => 32));
-      $myTable->setPrimaryKey(array("id"));
-      $myTable->addUniqueIndex(array("username"));
-      $schema->createSequence("my_table_seq");      
+  public function add_column($name, $type, $options = null) {
 
-      $myForeign = $schema->createTable("my_foreign");
-      $myForeign->addColumn("id", "integer");
-      $myForeign->addColumn("user_id", "integer");
-      $myForeign->addForeignKeyConstraint($myTable, array("user_id"), array("id"), array("onUpdate" => "CASCADE"));     
+    $options = empty($options) ? array() : array($options);
 
-      $queries = $schema->toSql($myPlatform); // get queries to create this schema.
-      $dropSchema = $schema->toDropSql($myPlatform); // get queries to safely delete this schema.
+    $myForeign = $this->_schema->createTable("my_foreign");
 
-      }
+    $add_col = $myForeign->addColumn($name, $type, $options);
+  
+ //   $add_column = $this->_custom_table->addColumn($name, $type, $options);
 
-  public function add_column($name, $type, $options = array()) {
 
-    $myTable = $this->_schema->createTable($table);
+    $this->_custom_table = $myForeign;
 
   }
 
   public function set_primary_key($primary = array()) {
 
+    $primary = empty($primary) ? array() : array($primary);
+  
+    $set_primary = $this->_custom_table->setPrimaryKey($primary);
 
 
   }
 
-  public function add_unique_ndex($uid = array()) {
+  public function add_unique_index($uid = array()) {
+
+        $uid = empty($uid) ? array() : array($uid);
+
+        $table = $this->_custom_table;
+
+
+  
+        $add_unique = $table->addUniqueIndex($uid);
 
   }
 
   public function create_sequence($sequence) {
 
+        $create_sequence = $this->_schema->createSequence($sequence);      
+
+
   }
 
-  public function add_foreign_key_constraint($primary_table, $foreign_id, $id = array('id'), $option = array('onUpdate' => 'CASCADE')) {
+  public function add_foreign_key_constraint($primary_custom_table = array(), $foreign_id = array(), $id = array('id'), $option = array('onUpdate' => 'CASCADE')) {
+        
+       $add_foreign = $this->_custom_table->addForeignKeyConstraint($primary_custom_table, $foreign_id, $id, $option);     
 
   }
 
   public function get_queries($platform) {
-  	
+    
+  	      $queries = $this->_schema->toSql($platform); // get queries to create this schema.
+
+          return $queries;
+
   }
 
 

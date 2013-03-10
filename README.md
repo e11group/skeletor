@@ -46,14 +46,16 @@ for more see wiki
 
 cli
 
-- creator script
+- summon script
 - build script
 
 skeleton
+
 - oauth authorization api
 - response / request controllers
 - vendor mime type
 - form front
+
 - openid login
 - server-side template caching
 - i18n / l10n
@@ -68,6 +70,9 @@ skeleton
 
 0.04
 
+- dbal automation
+- dbal schema creator
+- custom(non-api) services
 - cli app framework
 
 

@@ -1,0 +1,16 @@
+"Table":
+  TableName:      "users"
+"Column_id":
+  ColumnName:     "id"    
+  Type:           "integer"
+  Options:
+    Unsigned:     "false"
+"Column_username":
+  ColumnName:     "username"
+  Type:           "string"
+  Options:
+    Length:       32
+"Keys":
+  PrimaryKey:     "id"
+  UniqueIndex:    "username"
+  # Sequence:       "uid"
