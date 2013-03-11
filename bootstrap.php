@@ -33,11 +33,13 @@
     );
     
 
-    $paths = array('../app/Skeletor/Entities');
+    $paths = array('../app/skeletor/Skeletor/Entities');
     $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
     $entityManager = EntityManager::create($dbParams, $config);
 
     $em = $entityManager;
+
+    \Flight::set('em', $em);
 
     $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
         'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($em->getConnection()),

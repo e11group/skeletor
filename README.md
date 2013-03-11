@@ -72,6 +72,7 @@ todo: today:
 
 0.04
 
+- dependency injection
 - backend api
 - server-side template caching
 - change name space

@@ -1,7 +1,6 @@
 <?php
 namespace Skeletor\Controllers\API;
-use \Skeletor\API;
-use \Skeletor\Package;
+
 
 //-------------------------------------------------------------------------------------------------------------
 
@@ -15,34 +14,30 @@ use \Skeletor\Package;
 
 class Templates
 {
-
-
        
     public static function retreiveAll() {
 
+
       //caching
-//      \Flight::etag('skeletor-admin-view-template');
-      // fetch model data
+      \Flight::etag('skeletor-admin-view-template');
 
-      include '../app/skeletor/Skeletor/Abstract/AbstractEntity.php';
-      include '../app/skeletor/Skeletor/Interfaces/API/TemplateInterface.php';
-      include '../app/skeletor/Skeletor/Models/API/TemplateModel.php';
-        include '../app/skeletor/Skeletor/Methods/Container/Container.php';
+      // do business logic and load into model, fetch model
+      // build transaction
+      $em = \Flight::get('em');
+      $mapper = new \Skeletor\Mappers\API\TemplateMapper($em);
+      $select = $mapper->findAll();
 
-      //include '../app/skeletor/Skeletor/Methods/jsonService.php';
-
-      $templateOne = new \Skeletor\API\TemplateModel('title', 'content');
-      $templateTwo = new \Skeletor\API\TemplateModel('title2', 'content2');
-
-      $templates = array($templateOne, $templateTwo);
-
-
-      $templates = json_encode($templates);
-
-      //echo $templates;
-  
-      \Flight::json($templates);
-   
+      // run transaction
+      $template = $mapper->run();
+      var_dump($template);
+      // load modelled data into the view
+      //$templates = array($template);
+      // json encode
+      $templates = json_encode($template);
+      // send json
+      // TODO replace this with aura response system
+      //\Flight::json(array($templates));
+      echo $templates;
     }
 
 

@@ -1,5 +1,5 @@
 <?php
-namespace Skeletor\API;
+namespace Skeletor\Interfaces\API;
 
 interface TemplateInterface
 {

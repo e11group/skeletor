@@ -2,19 +2,23 @@
 namespace Skeletor\Entities\API;
 
 /** @Entity **/
-class Post
+class Templates
 {
   /** @Id @GeneratedValue @Column(type="integer") **/
     protected $id;
     /** @Column(type="string") **/
     protected $title;
-    /** @Column(type="text") **/
-    protected $body;
-    protected $author;
 
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->author = $user;
+        
+    }
+
+    public function getTitle() {
+
+        return $this->title;
+
+
     }
 
 }
