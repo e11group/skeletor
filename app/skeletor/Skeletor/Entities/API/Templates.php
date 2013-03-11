@@ -21,4 +21,13 @@ class Templates
 
     }
 
+// horrible hack i know
+
+    public function __get($name)
+{
+  if(property_exists($this, $name)){
+    return $this->$name;
+  }
+}
+
 }

@@ -36,14 +36,11 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
     	try {
     		$this->em->persist($this->template);
     		$data = $this->findAll();
-    		echo $data->getTitle();
     		foreach ($data as $n => $row) {
-    			var_dump($row);
-    			    echo 'asd';
-    			
-
-    			$template = new \Skeletor\Models\API\TemplateModel('title', 'content');
-    			$templates[] = array($template);
+    			    $title = $row->title;
+    		
+    			$template = new \Skeletor\Models\API\TemplateModel($title, 'content');
+    			$templates[] = $template;
 
     		}
     		//$this->em->flush();

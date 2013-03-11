@@ -29,15 +29,11 @@ class Templates
 
       // run transaction
       $template = $mapper->run();
-      var_dump($template);
-      // load modelled data into the view
-      //$templates = array($template);
       // json encode
       $templates = json_encode($template);
       // send json
       // TODO replace this with aura response system
-      //\Flight::json(array($templates));
-      echo $templates;
+      \Flight::json(array($templates));
     }
 
 
