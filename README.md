@@ -63,7 +63,6 @@ skeleton
 todo: today:
 
 - set up mapper classes
-- backend api
 - serverside api client
 - clientside api client + forms + local storage
 - generator scripts
@@ -73,7 +72,7 @@ todo: today:
 
 0.04
 
-
+- backend api
 - server-side template caching
 - change name space
 - vendor mime type

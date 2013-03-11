@@ -18,7 +18,7 @@ abstract class AbstractEntity
         $mutator = "set" . ucfirst(strtolower($name));
         if (method_exists($this, $mutator) &&
             is_callable(array($this, $mutator))) {
-            $this->$mutator($value)
+            $this->$mutator($value);
         }
         else {
             $this->$field = $value;

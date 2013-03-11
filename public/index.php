@@ -32,6 +32,7 @@
 
 
         Flight::route('/items',  array('\Skeletor\Controllers\Items\Items','get_items_page'));
+        Flight::route('/api/templates',  array('\Skeletor\Controllers\API\Templates','retreiveAll'));
 
 
     // lift off
