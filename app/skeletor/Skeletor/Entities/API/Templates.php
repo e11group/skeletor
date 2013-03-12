@@ -18,7 +18,6 @@ class Templates
 
         return $this->title;
 
-
     }
 
 // horrible hack i know

@@ -18,22 +18,23 @@
 	// helper functions
 	require_once INC_DIR . 'helper.php';
 
-    // sessions
-    use mjohnson\resession\Resession;
- 
-	$session = new Resession(array(
-		'security' => Resession::SECURITY_HIGH,
-		'cookies' => true,
-		'name' => 'Skeletor'
-	));
+   
 
     // all hail WingCommander
 	WingCommander::init();
 
 
         Flight::route('/items',  array('\Skeletor\Controllers\Items\Items','get_items_page'));
-        Flight::route('/api/templates',  array('\Skeletor\Controllers\API\Templates','retreiveAll'));
 
+        Flight::route('GET /api/templates',  array('\Skeletor\Controllers\API\TemplateController','find_all'));
+        Flight::route('POST /api/templates',  array('\Skeletor\Controllers\API\TemplateController','create'));
+        Flight::route('GET /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','find_by_id'));
+        Flight::route('POST /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','update'));
+
+
+
+
+        Flight::route('GET /admin/templates',  array('\Skeletor\Controllers\Client\ClientController','find_all'));
 
     // lift off
 	Flight::start();

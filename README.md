@@ -49,7 +49,9 @@ cli
 - build script
 
 skeleton
-
+- change to symcom dic
+- change to symcom console
+- clientside api client
 - i18n / l10n
 - add logging calls
 - add test units
@@ -61,19 +63,17 @@ skeleton
 ###log
 
 todo: today:
-
-- set up mapper classes
-- serverside api client
-- clientside api client + forms + local storage
+- hmac authorization api
+- server side forms
+- security / openid login
 - generator scripts
-- oauth authorization api
-- openid login
-
 
 0.04
 
+- set up mapper classes
+- serverside api client templates
 - dependency injection
-- backend api
+- api templates
 - server-side template caching
 - change name space
 - vendor mime type

@@ -7,9 +7,10 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
     protected $em;
     protected $works = array();
 
-    public function __construct($em) {
+    public function __construct() {
     // TODO add these to dependency injection container
-      $this->em = $em;
+      $this->em = \Flight::get('em');
+
       $this->em->getConnection()->beginTransaction(); // suspend auto-commit
       $this->template = new \Skeletor\Entities\API\Templates();
     }
@@ -34,7 +35,7 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
     public function run() {
 
     	try {
-    		$this->em->persist($this->template);
+    		//$this->em->persist($this->template);
     		$data = $this->findAll();
     		foreach ($data as $n => $row) {
     			    $title = $row->title;
@@ -46,7 +47,6 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
     		//$this->em->flush();
             //$this->em->getConnection()->commit();
           
-            return $templates;
     		} catch (Exception $e) {
       $this->em->getConnection()->rollback();
       $this->em->close();
@@ -65,8 +65,14 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
 
     	$query = $this->em->createQuery('SELECT u FROM Skeletor\Entities\API\Templates u');
 		$users = $query->getResult();
+		foreach ($users as $n => $row) {
+    			    $title = $row->title;
+    		
+    			$template = new \Skeletor\Models\API\TemplateModel($title, 'content');
+    			$templates[] = $template;
 
-		return $users;
+    		}
+		return $templates;
     	
     }
 

@@ -21,8 +21,6 @@ class Items
 
       // init models and params //
 
-      $di = require VENDOR_DIR . '/aura/di/scripts/instance.php';
-
       $conn = \Skeletor\Methods\DatabaseService::bootstrapDBAL();
 /*
 // SQL Prepared Statements: Named
