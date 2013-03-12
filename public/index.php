@@ -38,5 +38,12 @@
 
 
     Flight::set('api-service','http://localhost/skeletor/public/api/');
+    Flight::set('api-private-key', 'P4p79B9N369w48z9Qrcf8sRk29gVJUKX');
+    Flight::set('api-public-key', 'uH9UVCSJ5yV3jo7VZi7jPXyfLzxmga54');
+      $query = \Flight::set('api-phrase', 'Skeletor');
+
+
+
+
     // lift off
 	Flight::start();

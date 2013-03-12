@@ -2,21 +2,76 @@
 namespace Skeletor\Controllers\API;
 
 
-//-------------------------------------------------------------------------------------------------------------
-
-    /**
-     *
-     * The Admin All Page Controller
-     *
-     *
-    */
-
-
 class TemplateController
 {
+
+    public function __construct()
+    {
+
+    }
        
     public static function find_all() {
 
+    $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
+
+// make this into an authentication controller
+// figure out if we need to challenge the user  
+
+if(empty($_SERVER['PHP_AUTH_USER']) || (empty($_SERVER['PHP_AUTH_PW'])))  
+{  
+    
+
+
+    // show the error if they hit cancel  
+
+    // TODO add these request calls to di
+
+    $response = $http->newResponse();
+    $response->setStatusCode(401);
+    $http->send($response);
+   
+    exit;
+}
+
+$client_key = $_SERVER['PHP_AUTH_USER'];
+$client_phrase = $_SERVER['PHP_AUTH_PW'];
+
+// TODO replace with di
+$em = \Flight::get('em');
+
+$query = $em->createQuery("SELECT u FROM Skeletor\Entities\Client\Clients u WHERE u.public_key = '$client_key'");
+    $users = $query->getResult();
+
+foreach($users as $row) {
+
+  $private = $row->private_key;
+}
+if(!empty($private)) {
+
+      $query = \Flight::get('api-phrase');
+
+      $query = \Skeletor\Methods\AppService::hashHMAC($query, $private);
+
+      if ($query == $client_phrase){
+
+      } 
+
+      else {
+         $response = $http->newResponse();
+         $response->setStatusCode(401);
+         $http->send($response);
+         exit;
+      }
+
+
+} else {
+
+    $response = $http->newResponse();
+         $response->setStatusCode(401);
+         $http->send($response);
+         exit;
+
+}
       //caching
       \Flight::etag('skeletor-admin-view-template');
 
@@ -27,11 +82,36 @@ class TemplateController
       $select = $mapper->findAll();
 
 
-      // make this into a helper method
+      // make this into a responsecontroller
 
-      $accept_header = \Flight::request();
-      $isHtml = strpos($accept_header->accept, 'text/html');
-      $isJson = strpos($accept_header->accept, 'application/json');
+$request_method = strtolower($_SERVER['REQUEST_METHOD']);
+switch ($request_method)
+    {
+      // gets are easy...
+      case 'get':
+        $data = $_GET;
+        break;
+      // so are posts
+      case 'post':
+        $data = $_POST;
+        break;
+
+    }
+foreach($data as $n => $d) {
+  echo $n;
+}
+
+
+
+
+
+      $http_headers = \Flight::request();
+    // $client_public_key = $http_headers->authorization;
+     // $client_query = $http->getContent();
+     // echo $client_query;
+      //echo $client_public_key; 
+      $isHtml = strpos($http_headers->accept, 'text/html');
+      $isJson = strpos($http_headers->accept, 'application/json');
       if ($isHtml !== false) {
           // load our server side client
           Print \Skeletor\Views\API\TemplatesView::load_page('Template', $select);

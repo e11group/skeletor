@@ -67,13 +67,15 @@ class RequestController
         }
   }
 
-  public function request() 
+  public function request($api_client_key = null) 
   {
     
 
     $request = $this->http->newRequest();
     $method = $this->getMethodHeader();
     $accept = $this->getAcceptHeader();
+    $api_key = \Flight::get('api-public-key');
+    if (empty($api_key)) { $api_key = $api_client_key; }
 
     if (empty($request)) {
           throw new \InvalidArgumentException("Request not constructed.");
@@ -87,13 +89,40 @@ class RequestController
       throw new \InvalidArgumentException("The accept header is invalid.");
     }
 
+    if (empty($api_key)) {
+    
+      $response = $this->http->newResponse();
+      $response->headers->set('Content-Type', 'application/json');
+	  $response->setStatusCode(400);
+      $this->http->send($response);
+      exit;
+
+    }
+
     $request->setUrl($this->target);
     if ($method = 'METHOD_GET') {
     	$request->setMethod(\Aura\Http\Message\Request::METHOD_GET);
       } elseif ($method = 'METHOD_POST') {
         $request->setMethod(\Aura\Http\Message\Request::METHOD_POST);
       }
-    $request->headers->set('Accept', $accept);      
+
+      $query = \Flight::get('api-phrase');
+    // hash the query
+    $query = \Skeletor\Methods\AppService::hashHMAC($query); 
+
+    $request->setAuth(\Aura\Http\Message\Request::AUTH_BASIC);
+    $request->setUsername($api_key);
+    $request->setPassword($query);
+
+    $request->headers->set('Accept', $accept);  
+    $request->headers->set('Content-Type', 'application/json');
+
+    /*
+    $request->setContent(json_encode([
+        'key' => $api_key,
+        'phrase' => $query
+    ]));    
+	*/
 
     $stack = $this->http->send($request);
     return $stack[0]->content;

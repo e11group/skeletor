@@ -24,7 +24,7 @@ class ClientController
       $api_service = \Flight::get('api-service');
       $request_controller = new \Skeletor\Controllers\Client\RequestController( $api_service . 'templates');
       $set_method = $request_controller->setMethodHeader('METHOD_GET');
-      $set_method = $request_controller->setAcceptHeader('application/json');
+      $set_method = $request_controller->setAcceptHeader('text/html');
       $request = $request_controller->request();
       Print $request;
  

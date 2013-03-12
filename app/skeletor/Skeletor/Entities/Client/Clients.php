@@ -1,32 +1,27 @@
 <?php
-namespace Skeletor\Entities\API;
+namespace Skeletor\Entities\Client;
 
 /** @Entity **/
-class Templates
+class Clients
 {
   /** @Id @GeneratedValue @Column(type="integer") **/
     protected $id;
     /** @Column(type="string") **/
     protected $title;
+    /** @Column(type="string") **/
+    protected $private_key;
+    /** @Column(type="string") **/
+    protected $public_key;
 
     public function __construct()
     {
-        
     }
 
-    public function getTitle() {
-
-        return $this->title;
-
-    }
-
-// horrible hack i know
-
+    // horrible hack i know
     public function __get($name)
     {
       if(property_exists($this, $name)){
         return $this->$name;
       }
     }
-
 }

@@ -36,10 +36,21 @@ class AppService
 
   }
 
-  public static function hashHMAC($data, $key) 
+  public static function hashHMAC($data, $api_client_key = null) 
   {
 
-      return hash_hmac("sha1", $data, $key, $raw_output = true);
+    $api_key = $api_client_key; 
+    if (empty($api_key)) { $api_key = \Flight::get('api-private-key'); }
+    if (empty($api_key)) {
+    
+      $response = $this->http->newResponse();
+      $response->headers->set('Content-Type', 'application/json');
+    $response->setStatusCode(400);
+      $this->http->send($response);
+      exit;
+
+    }
+    return hash_hmac("sha256", $data, $api_key, $raw_output = false);
 
   }
 

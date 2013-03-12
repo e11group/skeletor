@@ -49,7 +49,7 @@ cli
 - build script
 
 skeleton
-- change to symcom dic
+- change to symcom di
 - change to symcom console
 - clientside api client
 - i18n / l10n
@@ -73,6 +73,7 @@ todo today:
 
 0.04
 
+- client request controller
 - set up mapper classes
 - serverside api client templates
 - dependency injection
