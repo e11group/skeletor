@@ -36,5 +36,7 @@
 
         Flight::route('GET /admin/templates',  array('\Skeletor\Controllers\Client\ClientController','find_all'));
 
+
+    Flight::set('api-service','http://localhost/skeletor/public/api/');
     // lift off
 	Flight::start();

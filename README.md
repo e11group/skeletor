@@ -62,10 +62,13 @@ skeleton
 
 ###log
 
-todo: today:
+todo today:
 - hmac authorization api
 - server side forms
-- security / openid login
+- hybrid auth
+- pages widget
+- blog widget
+- account widget
 - generator scripts
 
 0.04

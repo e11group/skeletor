@@ -7,7 +7,7 @@ class AppService
 {
 
    
- static function createNameVariety($page_name) 
+ public static function createNameVariety($page_name) 
     {
 
 
@@ -27,12 +27,19 @@ class AppService
     }
 
 
-  static function getGlobals()
+  public static function getGlobals()
   {
 
           \Flight::view()->set("style", STYLE_DIR);
           \Flight::view()->set("components", COMPONENTS_DIR);
           \Flight::view()->set("scripts", SCRIPTS_DIR);
+
+  }
+
+  public static function hashHMAC($data, $key) 
+  {
+
+      return hash_hmac("sha1", $data, $key, $raw_output = true);
 
   }
 

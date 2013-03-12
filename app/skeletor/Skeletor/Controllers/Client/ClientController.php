@@ -2,53 +2,32 @@
 namespace Skeletor\Controllers\Client;
 use Aura\Http\Message\Request;
 
-//-------------------------------------------------------------------------------------------------------------
-
-    /**
-     *
-     * The Admin All Page Controller
-     *
-     *
-    */
-
-
 class ClientController
 {
        
-    public static function find_all() {
+    public static function find_all() 
+    {
 
       //caching
       \Flight::etag('skeletor-client-view-template');
 
        // sessions
       // TODO yea yea di that shit
- 
+ /*
   $session = new \mjohnson\resession\Resession(array(
     'security' => \mjohnson\resession\Resession::SECURITY_HIGH,
     'cookies' => false,
     'name' => 'Skeletor'
   ));
 
-
-    // make this into a method
-  
-         $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
-
-$request = $http->newRequest();
-
-
-$request->setUrl('http://localhost/skeletor/public/api/templates');
-$request->setMethod(\Aura\Http\Message\Request::METHOD_GET);
-$request->headers->set('Accept', 'text/html');
-
-$stack = $http->send($request);
-Print $stack[0]->content;
-/*
-$repos = json_decode($stack[0]->content);
-foreach ($repos as $repo) {
-    echo $repo->name . PHP_EOL;
-}
 */
+      $api_service = \Flight::get('api-service');
+      $request_controller = new \Skeletor\Controllers\Client\RequestController( $api_service . 'templates');
+      $set_method = $request_controller->setMethodHeader('METHOD_GET');
+      $set_method = $request_controller->setAcceptHeader('application/json');
+      $request = $request_controller->request();
+      Print $request;
+ 
     }
 
 
