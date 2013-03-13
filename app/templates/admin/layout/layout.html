@@ -13,26 +13,29 @@
 	<title>{{title}}</title>
 
 	<!-- Included CSS Files -->
-		<link rel="stylesheet" href="{{style}}foundation.css">
-	<link rel="stylesheet" href="{{style}}style.css">
+		<link rel="stylesheet" href="../../styles/foundation.css">
+	<link rel="stylesheet" href="../../style.css">
 
-	<script src="{{scripts}}vendor/modernizr/modernizr.js"></script>
+	<script src="../../scripts/vendor/modernizr/modernizr.js"></script>
 
 	<!-- IE Fix for HTML5 Tags -->
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	
-	<script data-main="{{scripts}}main" src="{{scripts}}vendor/requirejs/require.js"></script>
+	<script data-main="../../scripts/main" src="../../scripts/vendor/requirejs/require.js"></script>
 
 
 </head>
 <body>
-	{{{header_content}}}
-	{{{subheader_content}}}
-	<!-- {{{sidebar_content}}} -->
+{% include 'admin/layout/header.html' %}
+{% include 'admin/layout/subheader.html' %}
 
-	{{{body_content}}}
+{% include 'admin/templates/view_page_body.html' %}
+<form action="#" method="post">
+    {{ form_widget(form) }}
+    <input type="submit" />
+</form>
 
 	<section id="todoapp">
 		<header id="header">
@@ -48,7 +51,7 @@
 		<footer id="footer"></footer>
 	</section>
 
-	{{{footer_content}}}
+{% include 'admin/layout/footer.html' %}
 
 	</body>
 </html>

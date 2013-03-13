@@ -12,7 +12,7 @@
   <p>{{modal_text}}</p>
   <form method="post" action="">
   <input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
-  {{{modal_form}}}
+  {{modal_form}}
 </form>
   <a href="{{modal_link}}" class="button alert">Close</a>
   <a class="close-reveal-modal" href="{{modal_link}}">&#215;</a>

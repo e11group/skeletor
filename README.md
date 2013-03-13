@@ -51,6 +51,7 @@ cli
 skeleton
 - change to symcom di
 - change to symcom console
+- implement symcom config
 - clientside api client
 - i18n / l10n
 - add logging calls
@@ -63,8 +64,6 @@ skeleton
 ###log
 
 todo today:
-- hmac authorization api
-- server side forms
 - hybrid auth
 - pages widget
 - blog widget
@@ -72,7 +71,9 @@ todo today:
 - generator scripts
 
 0.04
-
+- server side forms
+- switched from mustache to twig
+- hmac authorization api
 - client request controller
 - set up mapper classes
 - serverside api client templates

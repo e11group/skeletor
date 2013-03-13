@@ -30,9 +30,9 @@ class AppService
   public static function getGlobals()
   {
 
-          \Flight::view()->set("style", STYLE_DIR);
-          \Flight::view()->set("components", COMPONENTS_DIR);
-          \Flight::view()->set("scripts", SCRIPTS_DIR);
+          \Flight::set("style", STYLE_DIR);
+          \Flight::set("components", COMPONENTS_DIR);
+          \Flight::set("scripts", SCRIPTS_DIR);
 
   }
 
