@@ -55,7 +55,8 @@ try {
 
    \Flight::view_form()->display("admin/layout/layout.html",array(
     'form' => $form->createView(),
-    'title' => 'title'
+    'title' => 'title',
+    'www' => WWW
         )
       );
 
