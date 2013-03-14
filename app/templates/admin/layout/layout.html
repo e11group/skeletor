@@ -28,28 +28,26 @@
 
 </head>
 <body>
+
+
 {% include 'admin/layout/header.html' %}
 {% include 'admin/layout/subheader.html' %}
 
 {% include 'admin/templates/view_page_body.html' %}
-<form action="#" method="post">
-    {{ form_widget(form) }}
-    <input type="submit" />
-</form>
+{{ form_errors(form) }}
 
-	<section id="todoapp">
-		<header id="header">
-			<a href="javascript:;" class="test">test</a>
-			<h1>todos</h1>
-			<input id="new-todo" placeholder="What needs to be done?" autofocus>
-		</header>
-		<section id="main">
-			<input id="toggle-all" type="checkbox">
-			<label for="toggle-all">Mark all as complete</label>
-			<ul id="todo-list"></ul>
-		</section>
-		<footer id="footer"></footer>
-	</section>
+<form action="" method="post">
+
+
+<div>
+
+    {{ form_widget(form) }}
+</div>
+
+
+{{ form_rest(form) }}
+   <input type="submit" class="button" />
+</form>
 
 {% include 'admin/layout/footer.html' %}
 
