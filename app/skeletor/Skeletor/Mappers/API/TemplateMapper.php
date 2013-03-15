@@ -32,31 +32,23 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
      	*/
     }
 
-    public function run() {
-
-    	try {
-    		//$this->em->persist($this->template);
-    		$data = $this->findAll();
-    		foreach ($data as $n => $row) {
-    			    $title = $row->title;
-    		
-    			$template = new \Skeletor\Models\API\TemplateModel($title, 'content');
-    			$templates[] = $template;
-
-    		}
-    		//$this->em->flush();
-            //$this->em->getConnection()->commit();
-          
-    		} catch (Exception $e) {
-      $this->em->getConnection()->rollback();
-      $this->em->close();
-      throw $e;
-	}
-
-    }
+   public function flush() {
+    
+   }
 
     public function findById($id) {
+    
+    $query = $this->em->createQuery('SELECT u FROM Skeletor\Entities\API\Templates u WHERE u.id = '.$id);
+    $users = $query->getResult();
+    foreach ($users as $n => $row) {
+          $template = new \Skeletor\Models\API\TemplateModel();
+          $setTitle = $template->setTitle($row->title);
+          $setId = $template->setId($row->id);
+          $templates[] = $template;
 
+        }
+    return $templates;
+      
     	
 
     }
@@ -66,10 +58,10 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
     	$query = $this->em->createQuery('SELECT u FROM Skeletor\Entities\API\Templates u');
 		$users = $query->getResult();
 		foreach ($users as $n => $row) {
-    			    $title = $row->title;
-    		
-    			$template = new \Skeletor\Models\API\TemplateModel($title, 'content');
-    			$templates[] = $template;
+    			$template = new \Skeletor\Models\API\TemplateModel();
+          $setTitle = $template->setTitle($row->title);
+          $setId = $template->setId($row->id);
+          $templates[] = $template;
 
     		}
 		return $templates;

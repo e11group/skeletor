@@ -8,15 +8,23 @@ class Templates
     protected $id;
     /** @Column(type="string") **/
     protected $title;
+    /** @Column(type="datetime") **/
+    protected $datetime;
 
     public function __construct()
     {
-        
+        $this->datetime = new \DateTime(); 
     }
 
     public function getTitle() {
 
         return $this->title;
+
+    }
+
+    public function getId() {
+
+        return $this->id;
 
     }
 

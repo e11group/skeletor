@@ -15,82 +15,62 @@ class TemplateController
       \Skeletor\Controllers\API\ResponseController::authenticate();
       //caching
       \Flight::etag('skeletor-admin-view-template');
-
-      // do business logic and load into model, fetch model
-      // build transaction
-      // TODO inject entity manager with di
       $mapper = new \Skeletor\Mappers\API\TemplateMapper();
       $select = $mapper->findAll();
-      
-      \Skeletor\Controllers\API\ResponseController::respond($select);
-
-  
+      \Skeletor\Controllers\API\ResponseController::respond($select, 'view_all');
     }
-
 
     public static function find_by_id($id) {
 
-      //caching
+      \Skeletor\Controllers\API\ResponseController::authenticate();
       \Flight::etag('skeletor-admin-template-' . $id);
-       // do business logic and load into model, fetch model
-      // build transaction
-      $em = \Flight::get('em');
-      $mapper = new \Skeletor\Mappers\API\TemplateMapper($em);
+      $mapper = new \Skeletor\Mappers\API\TemplateMapper();
       $select = $mapper->findById($id);
+      \Skeletor\Controllers\API\ResponseController::respond($select, 'view_item');
 
-      // json encode
-      $templates = json_encode($select);
-      // send json
-      // TODO replace this with aura response system
-      \Flight::json(array($templates));
     }
 
 
-    public static function create($id) {
-
-      //caching
-      Flight::etag('skeletor-admin-edit-template');
-
-      /* begin business logic
-
-      */
-
-      // grab view
-
-      echo AdminEditView::load('Page', array());
+    public static function create() {
+      
+      \Skeletor\Controllers\API\ResponseController::authenticate();
+      \Flight::etag('skeletor-admin-view-template');
+      $mapper = new \Skeletor\Mappers\API\TemplateMapper();
+      $select = $mapper->findAll();
+      \Skeletor\Controllers\API\ResponseController::respond($select, 'view_all');
    
     }
 
 
-    public static function update($id) {
+    public static function create_view() {
 
+      \Skeletor\Controllers\API\ResponseController::authenticate();
       //caching
-      Flight::etag('skeletor-admin-edit-template');
+     \Flight::etag('skeletor-admin-view-template');
 
-      /* begin business logic
-
-      */
+      \Skeletor\Controllers\API\ResponseController::respond(array(), 'view_item');
 
       // grab view
 
-      echo AdminEditView::load('Page', array());
    
     }
 
-        public static function delete($id) {
 
-      //caching
-      Flight::etag('skeletor-admin-edit-template');
 
-      /* begin business logic
+    public static function edit($id) {
 
-      */
+      \Skeletor\Controllers\API\ResponseController::authenticate();
+      $mapper = new \Skeletor\Mappers\API\TemplateMapper();
+      $select = $mapper->update($id);
+      \Skeletor\Controllers\API\ResponseController::respond($select, 204);
+
 
       // grab view
 
-      echo AdminEditView::load('Page', array());
    
     }
+
+  
 
 
 }

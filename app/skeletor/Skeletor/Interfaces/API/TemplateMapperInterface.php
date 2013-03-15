@@ -8,7 +8,6 @@ interface TemplateMapperInterface
    public function insert();
    public function update();
    public function delete($id);
-   public function run();
-	 
+   public function flush();	 
 
 }

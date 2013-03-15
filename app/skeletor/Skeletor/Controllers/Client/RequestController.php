@@ -67,9 +67,8 @@ class RequestController
         }
   }
 
-  public function request($api_client_key = null) 
+  public function request($post = null, $api_client_key = null) 
   {
-    
 
     $request = $this->http->newRequest();
     $method = $this->getMethodHeader();
@@ -100,10 +99,11 @@ class RequestController
     }
 
     $request->setUrl($this->target);
-    if ($method = 'METHOD_GET') {
+    if ($method == 'METHOD_GET') {
     	$request->setMethod(\Aura\Http\Message\Request::METHOD_GET);
-      } elseif ($method = 'METHOD_POST') {
+      } elseif ($method == 'METHOD_POST') {
         $request->setMethod(\Aura\Http\Message\Request::METHOD_POST);
+        $request->setContent(json_encode($_POST));    
       }
 
       $query = \Flight::get('api-phrase');
@@ -118,14 +118,37 @@ class RequestController
     $request->headers->set('Content-Type', 'application/json');
 
     /*
-    $request->setContent(json_encode([
-        'key' => $api_key,
-        'phrase' => $query
-    ]));    
-	*/
 
-    $stack = $this->http->send($request);
-    return $stack[0]->content;
+	*/
+     $stack = $this->http->send($request);
+
+
+    if ($post !== null) {
+    
+      $status_code = $stack[0]->status_code;
+      $status_code_type = substr($status_code, 0, 1);
+
+      switch ($status_code_type) {
+          case 2:
+              header("Location: ./");
+              break;
+          case 3:
+              break;
+          case 4:
+              throw new Exception('Client Error');
+              break;
+          case 5:
+              throw new Exception('Server Error');
+              break;
+      }    
+    } else {
+      return $stack[0]->content;
+    }
+
+
+ 
+
+
     /*
     $repos = json_decode($stack[0]->content);
     foreach ($repos as $repo) {

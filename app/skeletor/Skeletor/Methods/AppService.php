@@ -45,111 +45,92 @@ class AppService
 
   }
 
+  public static function setDevMode($dev_mode) {
+
+    if ($dev_mode == true) {
+      error_reporting(E_ALL);
+      ini_set('display_errors', '1');
+    }
+
+  } 
+
   public static function setDefinitions() {
 
 
-  error_reporting(E_ALL);
-  
-  ini_set('display_errors', '1');
-  
-  date_default_timezone_set('America/Los_Angeles');
-
-define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/skeletor/');
-define('WWW', '/skeletor/public/');
-define('BASE', '/');
-define('CONFIG_DIR', '../app/config/');
-define('SCRIPTS_DIR', ROOT . 'scripts/');
-define('COMPONENTS_DIR', ROOT . 'components/');
-define('STYLE_DIR', ROOT . 'styles/');
-define('INC_DIR', '../app/inc/');
-define('VIEW_DIR', '../app/views/');
-define('VIEW_INC_DIR', '../app/views/inc/');
-define('MODELS_DIR', '../app/models/');
-define('CONTROLLERS_DIR', '../app/controllers/');
-define('METHODS_DIR', '../app/methods/');
-define('VENDOR_DIR', '../vendor/');
-
-define('BASE_URL', $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-$routes = explode('/', str_replace($_SERVER['HTTP_HOST'], '', BASE_URL));
-
-if (isset($routes[3])) {
-define('PAGE_TITLE', ucwords($routes[3])); 
-} else {
-define('PAGE_TITLE', 'LeaderTech'); 
-}
-
-// Overwrite this with your own secret
-define('CSRF_SECRET', 'c2ioeEU1n48QF2WsHGWd2HmiuUUT6dxr');
-define('DEFAULT_FORM_THEME', 'form_div_layout.html.twig');
-
-define('VENDORDIR', realpath(__DIR__ . '/../vendor'));
-define('VENDOR_FORM_DIR', VENDORDIR . '/symfony/form/Symfony/Component/Form');
-define('VENDOR_VALIDATOR_DIR', VENDORDIR . '/symfony/validator/Symfony/Component/Validator');
-define('VENDOR_TWIG_BRIDGE_DIR', VENDORDIR . '../vendor/symfony/twig-bridge/Symfony/Bridge/Twig');
-define('VIEWS_DIR', realpath(__DIR__ . '/../views'));
-
-
+    date_default_timezone_set('America/Los_Angeles');  
+    define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/skeletor/');
+    define('WWW', '/skeletor/public/');
+    define('API_LOC', 'http://localhost/skeletor/public/api/');
+    define('BASE', '/');
+    define('CONFIG_DIR', '../app/config/');
+    define('SCRIPTS_DIR', ROOT . 'scripts/');
+    define('COMPONENTS_DIR', ROOT . 'components/');
+    define('STYLE_DIR', ROOT . 'styles/');
+    define('INC_DIR', '../app/inc/');
+    define('VIEW_DIR', '../app/views/');
+    define('VIEW_INC_DIR', '../app/views/inc/');
+    define('MODELS_DIR', '../app/models/');
+    define('CONTROLLERS_DIR', '../app/controllers/');
+    define('METHODS_DIR', '../app/methods/');
+    define('VENDOR_DIR', '../vendor/');  
+    define('BASE_URL', $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+    $routes = explode('/', str_replace($_SERVER['HTTP_HOST'], '', BASE_URL));  
+    define('CSRF_SECRET', 'c2ioeEU1n48QF2WsHGWd2HmiuUUT6dxr');
+    define('DEFAULT_FORM_THEME', 'form_div_layout.html.twig');  
+    define('VENDORDIR', realpath(__DIR__ . '/../vendor'));
+    define('VENDOR_FORM_DIR', VENDORDIR . '/symfony/form/Symfony/Component/Form');
+    define('VENDOR_VALIDATOR_DIR', VENDORDIR . '/symfony/validator/Symfony/Component/Validator');
+    define('VENDOR_TWIG_BRIDGE_DIR', VENDORDIR . '../vendor/symfony/twig-bridge/Symfony/Bridge/Twig');
+    define('VIEWS_DIR', realpath(__DIR__ . '/../views'));
+    if (isset($routes[3])) {
+    define('PAGE_TITLE', ucwords($routes[3])); 
+    } else {
+    define('PAGE_TITLE', 'LeaderTech'); 
+    }
   }
 
   public static function prepareFlight() {
 
-        /**
-     *
-     * Load up
-     *
-     *
-    */
+    // TODO Clean this up
+    AppService::setDevMode(true);
+    AppService::setDefinitions();
 
-        // TODO Clean this up
+   /**
+   * Initiate Twig, and register to Flight
+   */
+   $loader = new \Twig_Loader_Filesystem(array(
+    $_SERVER['DOCUMENT_ROOT'] . '/skeletor/app/templates',
+         VENDOR_TWIG_BRIDGE_DIR . '/Resources/views/Form',
+     )
+   );
+   $twigConfig = array(
+       // 'cache'  =>  './cache/twig/',
+       // 'cache'  =>  false,
+       'debug' =>  false,
+   );
+   \Flight::register('view_form', 'Twig_Environment', array($loader, $twigConfig), function($twig) {
+      $translator = new \Symfony\Component\Translation\Translator('en');
+      $translator->addLoader('xlf', new \Symfony\Component\Translation\Loader\XliffFileLoader());
+      $translator->addResource('xlf', VENDOR_FORM_DIR . '/Resources/translations/validators.en.xlf', 'en', 'validators');
+      $translator->addResource('xlf', VENDOR_VALIDATOR_DIR . '/Resources/translations/validators.en.xlf', 'en', 'validators');
+      $formEngine = new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(DEFAULT_FORM_THEME));
+      $formEngine->setEnvironment($twig);
+      $csrfProvider = new \Symfony\Component\Form\Extension\Csrf\CsrfProvider\DefaultCsrfProvider(CSRF_SECRET);
+      $validator = \Symfony\Component\Validator\Validation::createValidator();
+      $twig->addExtension(new \Twig_Extension_Debug()); // Add the debug extension
+      $twig->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($translator));
+      $twig->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer($formEngine, $csrfProvider)));
+      
+   });
+   \Flight::register('view', 'Twig_Environment', array($loader, $twigConfig), function() {
+      
+   });
 
-        AppService::setDefinitions();
-
-
-
-  /**
-    * Initiate Twig, and register to Flight
-    */
-    $loader = new \Twig_Loader_Filesystem(array(
-     $_SERVER['DOCUMENT_ROOT'] . '/skeletor/app/templates',
-          VENDOR_TWIG_BRIDGE_DIR . '/Resources/views/Form',
-
-      )
-    );
-
-    $twigConfig = array(
-        // 'cache'  =>  './cache/twig/',
-        // 'cache'  =>  false,
-        'debug' =>  false,
-    );
-    \Flight::register('view_form', 'Twig_Environment', array($loader, $twigConfig), function($twig) {
-       $translator = new \Symfony\Component\Translation\Translator('en');
-       $translator->addLoader('xlf', new \Symfony\Component\Translation\Loader\XliffFileLoader());
-       $translator->addResource('xlf', VENDOR_FORM_DIR . '/Resources/translations/validators.en.xlf', 'en', 'validators');
-       $translator->addResource('xlf', VENDOR_VALIDATOR_DIR . '/Resources/translations/validators.en.xlf', 'en', 'validators');
-       $formEngine = new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(DEFAULT_FORM_THEME));
-       $formEngine->setEnvironment($twig);
-       $csrfProvider = new \Symfony\Component\Form\Extension\Csrf\CsrfProvider\DefaultCsrfProvider(CSRF_SECRET);
-       $validator = \Symfony\Component\Validator\Validation::createValidator();
-       $twig->addExtension(new \Twig_Extension_Debug()); // Add the debug extension
-       $twig->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($translator));
-       $twig->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer($formEngine, $csrfProvider)));
-       
-    });
-
-  \Flight::register('view', 'Twig_Environment', array($loader, $twigConfig), function() {
-       
-    });
-
-
-
-
-
-
-
-// helper functions
+  // helper functions
+  // TODO remove when i can
   require_once INC_DIR . 'helper.php';
 
-// get config stuff
+  // get config stuff (autogenerated in our build)
 
   // ready
 
@@ -158,16 +139,83 @@ define('VIEWS_DIR', realpath(__DIR__ . '/../views'));
   \Flight::set('api-private-key', 'P4p79B9N369w48z9Qrcf8sRk29gVJUKX');
   \Flight::set('api-public-key', 'uH9UVCSJ5yV3jo7VZi7jPXyfLzxmga54');
   \Flight::set('api-phrase', 'Skeletor');
+  \Flight::set('formal-name', 'Skeletor');
 
 
   // auto generated routes
-  \Flight::route('/items',  array('\Skeletor\Controllers\Items\Items','get_items_page'));
-  \Flight::route('GET /api/templates',  array('\Skeletor\Controllers\API\TemplateController','find_all'));
-  \Flight::route('POST /api/templates',  array('\Skeletor\Controllers\API\TemplateController','find_all'));
-  \Flight::route('GET /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','find_by_id'));
-  \Flight::route('POST /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','update'));
-  \Flight::route('GET /admin/templates/template',  array('\Skeletor\Controllers\Client\ClientController','find_all'));
 
+  // dbal
+  \Flight::route('/items',  array('\Skeletor\Controllers\Items\Items','get_items_page'));
+
+  // api
+
+  // template routes
+  \Flight::route('GET /api/templates',  array('\Skeletor\Controllers\API\TemplateController','find_all'));
+  \Flight::route('POST /api/template',  array('\Skeletor\Controllers\API\TemplateController','create'));
+  \Flight::route('GET /api/template',  array('\Skeletor\Controllers\API\TemplateController','create_view'));
+  \Flight::route('GET /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','find_by_id'));
+  \Flight::route('POST /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','edit'));
+
+  // client
+
+  // template routes
+    \Flight::route('GET /admin/templates',  array('\Skeletor\Controllers\Client\TemplateController','view_all'));
+    \Flight::route('POST /admin/template',  array('\Skeletor\Controllers\Client\TemplateController','add'));
+    \Flight::route('GET /admin/template',  array('\Skeletor\Controllers\Client\TemplateController','add_view'));
+    \Flight::route('GET /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit_view'));
+    \Flight::route('POST /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit'));
+
+
+    // set up html view components
+
+        \Flight::map('skeletor_view_subheader', function(){
+      $name = \Flight::get('formal-name');
+      $uri = $_SERVER['REQUEST_URI'];
+      $pieces = explode("/", $uri);
+      $page_title = ucwords(str_replace('_', ' ',$pieces[4]));
+      $subheader = '<div class="row">
+
+        <div class="twelve columns">
+        <h3>'.$name.'  '.$page_title.'<span style="float:right;">Administration</span></h3>
+        <hr />
+        </div>
+        </div>';        
+
+        return $subheader;
+              });
+      \Flight::map('skeletor_view_table_pager', function(){
+        $tablesorter_pager = '
+<!-- tablesorter pager -->
+<div id="tablesorter-pager" class="tablesorter-pager">
+    <form class="twelve">
+      <div class="row">
+        <div class="two columns">
+          <input type="text" class="pagedisplay"/>
+        </div>
+        <div class="two columns">
+          <select class="pagesize support attribute">
+            <option selected="selected"  value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option  value="40">40</option>
+          </select>
+        </div>
+        <div class="six columns" style="text-align:right">
+    <span class="tablesorter-pager-menu">
+      <a href="javascript:;" class="first websymbol"><<</a>
+      <a href="javascript:;" class="prev websymbol"><</a>
+      <a href="javascript:;" class="next websymbol">></a>
+      <a href="javascript:;" class="last websymbol">>></a>
+    </span>
+        </div>
+      </div>
+    </form>
+  </div>
+
+<!-- end tablesorter pager -->';
+
+  return $tablesorter_pager;
+      });
 
   }
 

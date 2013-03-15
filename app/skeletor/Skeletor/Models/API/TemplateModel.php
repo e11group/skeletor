@@ -9,14 +9,8 @@ class TemplateModel extends \Skeletor\Abstracts\AbstractEntity implements \Skele
     public $_content;
     protected $_comments;
 
-    public function __construct($title = null, $content = null) {
-        // map post fields to the corresponding mutators
-        if (($title == null) && ($content == null)){
-
-        } else {
-        $this->setTitle($title);
-        $this->setContent($content);
-        }
+    public function __construct() {
+       
 
     }
     
@@ -31,10 +25,12 @@ class TemplateModel extends \Skeletor\Abstracts\AbstractEntity implements \Skele
         }
  
         $this->_id = $id;
-        return $this;
+        return $this->_id;
     }
 
     public function getId() {
+
+        return $this->_id;
 
     }
     

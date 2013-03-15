@@ -1,0 +1,25 @@
+<table class="twelve tsort" id="employee_widget">
+
+    <thead>
+       <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Edit</th>
+          <th>Delete</th>
+         </tr>
+  </thead>
+<tbody>
+  
+        {% for key,value in data %}
+        <tr>
+          <td>{{ value.id|e }}</td>
+          <td>{{ value.title|e }}</td>
+          <td><a href="./{{uri}}/{{value.id|e}}" class="tiny secondary button">Edit</a></td>
+          <td><a href="./{{uri}}/{{value.id|e}}" class="tiny secondary button">Delete</a></td>
+        </tr>
+        {% endfor %} 
+  
+
+</tbody>
+
+</table>

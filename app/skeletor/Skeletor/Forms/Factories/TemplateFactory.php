@@ -24,15 +24,15 @@ class TemplateFactory
 
    }
 
-   public function build()
+   public function build($data = null)
    {
 
+    if ($data == null) { 
      $form = $this->formFactory->createNamedBuilder('template_form')
      ->add(
        'title', 
        'text', 
        array(
-         'data' => '',
          'label' => 'asdf',
          'constraints' => array(
              new \Symfony\Component\Validator\Constraints\NotBlank(),
@@ -41,18 +41,58 @@ class TemplateFactory
      ))
      ->getForm();
 
-if (isset($_POST[$form->getName()])) {
-    $form->bind($_POST[$form->getName()]);
+     if (isset($_POST[$form->getName()])) {
+         $form->bind($_POST[$form->getName()]);     
 
-    if ($form->isValid()) {
-        var_dump('VALID', $form->getData());
-        $post = $form->getData();
-        var_dump($post);
-        die;
-    }
-}
+         if ($form->isValid()) {
+             var_dump('VALID', $form->getData());
+             $post = $form->getData();
+             var_dump($post);
+             die;
+         }
+     }
 
      return $form;
+
+     } else {
+
+foreach ($data as $obj) {
+
+  $form = $this->formFactory->createNamedBuilder('template_form')
+     ->add(
+       'title', 
+       'text', 
+       array(
+         'data' => $obj->title,
+         'label' => 'Title',
+         'constraints' => array(
+             new \Symfony\Component\Validator\Constraints\NotBlank(),
+             new \Symfony\Component\Validator\Constraints\MinLength(4),
+         ) 
+     ))
+     ->getForm();
+
+
+}
+
+   
+
+     if (isset($_POST[$form->getName()])) {
+         $form->bind($_POST[$form->getName()]);     
+
+         if ($form->isValid()) {
+             var_dump('VALID', $form->getData());
+             $post = $form->getData();
+             var_dump($post);
+             die;
+         }
+     }
+
+     return $form;
+
+
+
+     }
 
    }
 
