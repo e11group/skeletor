@@ -39,7 +39,7 @@ class TemplatesView
      // Call your custom method
       $data = array(
           'title' => 'title',
-          'uri' => 'templates',
+          'uri' => 'http://localhost/skeletor/public/admin/templates',
           'www' => WWW,
           'subtext' => 'subtext',
           'table_pager' => \Flight::skeletor_view_table_pager(),

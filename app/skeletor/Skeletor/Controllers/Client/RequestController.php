@@ -130,15 +130,14 @@ class RequestController
 
       switch ($status_code_type) {
           case 2:
-              header("Location: ./");
+              header("Location: .");
               break;
           case 3:
               break;
           case 4:
-              throw new Exception('Client Error');
               break;
           case 5:
-              throw new Exception('Server Error');
+              throw new \Exception();
               break;
       }    
     } else {

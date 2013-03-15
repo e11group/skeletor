@@ -61,13 +61,15 @@ class TemplateController
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
       $mapper = new \Skeletor\Mappers\API\TemplateMapper();
-      $select = $mapper->update($id);
-      \Skeletor\Controllers\API\ResponseController::respond($select, 204);
 
-
-      // grab view
-
-   
+      if ($select = $mapper->update($id)) {
+        //flush
+        $flush = $mapper->flush();
+        // grab view    
+        \Skeletor\Controllers\API\ResponseController::respond($select, 204);
+      } else {
+        \Skeletor\Controllers\API\ResponseController::respond($select, 400);
+      }
     }
 
   

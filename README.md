@@ -49,6 +49,7 @@ cli
 - build script
 
 skeleton
+- flash messaging system
 - change to symcom di
 - change to symcom console
 - implement symcom config
