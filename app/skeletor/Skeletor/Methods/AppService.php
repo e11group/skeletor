@@ -140,6 +140,7 @@ class AppService
   \Flight::set('api-public-key', 'uH9UVCSJ5yV3jo7VZi7jPXyfLzxmga54');
   \Flight::set('api-phrase', 'Skeletor');
   \Flight::set('formal-name', 'Skeletor');
+  \Flight::set('url', 'http://localhost/skeletor/public');
 
 
   // auto generated routes
@@ -155,6 +156,7 @@ class AppService
   \Flight::route('GET /api/template',  array('\Skeletor\Controllers\API\TemplateController','create_view'));
   \Flight::route('GET /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','find_by_id'));
   \Flight::route('POST /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','edit'));
+  \Flight::route('DELETE /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','delete'));
 
   // client
 

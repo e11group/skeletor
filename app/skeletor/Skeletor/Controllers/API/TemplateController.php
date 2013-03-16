@@ -34,11 +34,18 @@ class TemplateController
     public static function create() {
       
       \Skeletor\Controllers\API\ResponseController::authenticate();
-      \Flight::etag('skeletor-admin-view-template');
+      $request = \Flight::request();
+      $body = $request->body;
       $mapper = new \Skeletor\Mappers\API\TemplateMapper();
-      $select = $mapper->findAll();
-      \Skeletor\Controllers\API\ResponseController::respond($select, 'view_all');
-   
+      if ($select = $mapper->insert($body)) {
+          //commit
+          $mapper->commit();
+          // grab view    
+          \Skeletor\Controllers\API\ResponseController::respond($select, 200);
+       } else {
+          \Skeletor\Controllers\API\ResponseController::respond($select, 400);
+      }
+      
     }
 
 
@@ -64,17 +71,30 @@ class TemplateController
       $body = $request->body;
       $mapper = new \Skeletor\Mappers\API\TemplateMapper();
       if ($select = $mapper->update($id, $body)) {
-        //commit
-        $mapper->commit();
-        // grab view    
-        \Skeletor\Controllers\API\ResponseController::respond($select, 200);
-      } else {
-        \Skeletor\Controllers\API\ResponseController::respond($select, 400);
+          //commit
+          $mapper->commit();
+          // grab view    
+          \Skeletor\Controllers\API\ResponseController::respond($select, 200);
+       } else {
+          \Skeletor\Controllers\API\ResponseController::respond($select, 400);
       }
+      
     }
 
   
 
+    public static function delete($id) {
+
+      \Skeletor\Controllers\API\ResponseController::authenticate();
+       $mapper = new \Skeletor\Mappers\API\TemplateMapper();
+      if ($select = $mapper->delete($id)) {
+          $mapper->commit();
+          \Skeletor\Controllers\API\ResponseController::respond($select, 200);
+       } else {
+          \Skeletor\Controllers\API\ResponseController::respond($select, 400);
+      }
+   
+    }
 
 }
 

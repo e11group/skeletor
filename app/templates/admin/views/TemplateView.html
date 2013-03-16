@@ -15,7 +15,7 @@
           <td>{{ value.id|e }}</td>
           <td>{{ value.title|e }}</td>
           <td><a href="{{uri}}/{{value.id|e}}" class="tiny secondary button">Edit</a></td>
-          <td><a href="{{uri}}/{{value.id|e}}" class="tiny secondary button">Delete</a></td>
+          <td><a href="{{uri}}/{{value.id|e}}?method=delete" class="tiny secondary button">Delete</a></td>
         </tr>
         {% endfor %} 
   

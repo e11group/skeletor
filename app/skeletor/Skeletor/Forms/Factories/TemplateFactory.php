@@ -33,7 +33,7 @@ class TemplateFactory
        'title', 
        'text', 
        array(
-         'label' => 'asdf',
+         'label' => 'Template',
          'constraints' => array(
              new \Symfony\Component\Validator\Constraints\NotBlank(),
              new \Symfony\Component\Validator\Constraints\MinLength(4),

@@ -67,7 +67,7 @@ class RequestController
         }
   }
 
-  public function request($post = null, $api_client_key = null) 
+  public function request($post = null, $get = null, $api_client_key = null) 
   {
 
     $request = $this->http->newRequest();
@@ -97,16 +97,30 @@ class RequestController
       exit;
 
     }
-
     $request->setUrl($this->target);
-    if ($method == 'METHOD_GET') {
-    	$request->setMethod(\Aura\Http\Message\Request::METHOD_GET);
-      } elseif ($method == 'METHOD_POST') {
+    
+    switch ($method) {
+    case 'METHOD_GET':
+        $request->setMethod(\Aura\Http\Message\Request::METHOD_GET);
+        break;
+    case 'METHOD_POST':
         $request->setMethod(\Aura\Http\Message\Request::METHOD_POST);
-        $request->setContent(json_encode($_POST));    
-      }
+        $request->setContent(json_encode($_POST));
+        break;
+    case 'METHOD_PUT':
+        $request->setMethod(\Aura\Http\Message\Request::METHOD_PUT);
+        $request->setContent(json_encode($_POST));
+        break;
+    case 'METHOD_DELETE':
+        $request->setMethod(\Aura\Http\Message\Request::METHOD_DELETE);
+        break;
+     }
+   
 
-      $query = \Flight::get('api-phrase');
+    $query = \Flight::get('api-phrase');
+    $url = \Flight::get('url');
+    $url .= '/admin/templates';
+
     // hash the query
     $query = \Skeletor\Methods\AppService::hashHMAC($query); 
 
@@ -122,16 +136,13 @@ class RequestController
     if ($post !== null) {
       $status_code = $stack[0]->status_code;
       $status_code_type = substr($status_code, 0, 1);
+      $status_code;
       switch ($status_code_type) {
           case 2:
-              header("Location: .");
+              var_dump($stack[0]->content);
+              //header("Location: " . $url);
               break;
           case 3:
-              $response = $this->http->newResponse();
-              $response->headers->set('Content-Type', 'application/json');
-              $response->setStatusCode($status_code);
-              $this->http->send($response);
-              exit;
               break;
           case 4:
               $response = $this->http->newResponse();

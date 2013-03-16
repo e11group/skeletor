@@ -15,30 +15,15 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
       $this->template = new \Skeletor\Entities\API\Templates();
     }
 
-
-    protected function buildWork($work) {
-    	$this->works[] = array($work);
-    }
-
-     protected function getWork() {
-
-     	return $this->works;
-
-     	/*
-     	foreach ($this->works as $work) {
-     		print $work;
-     	}
-
-     	*/
-    }
-
    public function commit() {
 
       try {  
         $this->em->getConnection()->commit();
       } catch (Exception $e) {
-        throw new Exception( 'Doctrine Commit Error', 0, $e);  
-      }
+       $this->em->getConnection()->rollback();
+       $this->em->close();
+       throw $e;
+    }
 
 
    }
@@ -57,7 +42,7 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
     $query = $this->em->createQuery('SELECT u FROM Skeletor\Entities\API\Templates u WHERE u.id = '.$id);
     $users = $query->getResult();
     foreach ($users as $n => $row) {
-          $template = new \Skeletor\Models\API\TemplateModel();
+          $template = new \Skeletor\Models\API\Templates();
           $setTitle = $template->setTitle($row->title);
           $setId = $template->setId($row->id);
           $templates[] = $template;
@@ -81,7 +66,7 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
     $query = $qb->getQuery();
 		$users = $query->getResult();
 		foreach ($users as $n => $row) {
-    			$template = new \Skeletor\Models\API\TemplateModel();
+    			$template = new \Skeletor\Models\API\Templates();
           $setTitle = $template->setTitle($row->title);
           $setId = $template->setId($row->id);
           $templates[] = $template;
@@ -91,10 +76,29 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
     	
     }
 
-    public function insert() {
+    public function insert($body) {
 
-      
+      $body = json_decode($body);
+      //var_dump($body);
+      $template = new \Skeletor\Models\API\Templates();
+      foreach ($body as $obj) {
+          $setTitle = $this->template->setTitle($obj->title);
+      }
+
+      try {  
+        $this->em->persist($this->template);
+       // $this->em->flush();
+
+   } catch (Exception $e) {
+       $this->em->getConnection()->rollback();
+       $this->em->close();
+       throw $e;
+  }
+
+      return true; 
+
     }
+
 
     public function update($id, $body) {            
 
@@ -114,18 +118,13 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
               ))
               ->getQuery();  
 
-      try  
-      {  
-        
+      try {  
         $p = $q->execute();  
         $persist = $this->em->persist($this->template);
-
-      }  
-      catch (Exception $e)  
-      {    
-
-        return false;
-
+      } catch (Exception $e) {   
+       $this->em->getConnection()->rollback();
+       $this->em->close();
+       throw $e;
       } 
 
       return true; 
@@ -133,12 +132,23 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
     }
 
     public function delete($id) {
-        if ($id instanceof TemplateInterface) {
-            $id = $id->id;
-        }
 
-        $this->adapter->delete($this->entityTable, "id = $id");
-        return $this->commentMapper->delete("post_id = $id");
+      $qb = $this->em->createQueryBuilder();
+      $q = $qb->delete('Skeletor\Entities\API\Templates', 'u')
+              ->where($qb->expr()->orX(
+                $qb->expr()->eq('u.id', $id)
+              ))
+              ->getQuery();  
+      try {  
+        $p = $q->execute();  
+        $persist = $this->em->persist($this->template);
+      } catch (Exception $e) {   
+       $this->em->getConnection()->rollback();
+       $this->em->close();
+       throw $e;
+      } 
+
+      return true; 
     }
 
 

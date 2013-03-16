@@ -36,7 +36,7 @@ class TemplateController
       $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'template');
       $set_method = $request_controller->setMethodHeader('METHOD_POST');
       $set_method = $request_controller->setAcceptHeader('text/html');
-      $request = $request_controller->request();
+      $request = $request_controller->request($_POST);
       Print $request;
     } 
 
@@ -53,8 +53,15 @@ class TemplateController
     public static function edit_view($id) {
       \Flight::etag('skeletor-client-edit-template');
       $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'templates/' . $id);
-      $set_method = $request_controller->setMethodHeader('METHOD_GET');
-      $set_method = $request_controller->setAcceptHeader('text/html');
+      if (isset($_GET['method']) && ($_GET['method'] == 'delete')) {
+          $set_method = $request_controller->setMethodHeader('METHOD_DELETE');
+          $set_method = $request_controller->setAcceptHeader('text/html');
+
+      }
+      else {
+          $set_method = $request_controller->setMethodHeader('METHOD_GET');
+          $set_method = $request_controller->setAcceptHeader('text/html');
+      }
       $request = $request_controller->request();
       Print $request;
     }

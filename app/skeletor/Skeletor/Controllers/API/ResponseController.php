@@ -60,6 +60,7 @@ class ResponseController
         $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
 
           // shitty little switcher
+
           $isHtml = strpos($http_headers->accept, 'text/html');
           $isJson = strpos($http_headers->accept, 'application/json');
           if ($isHtml !== false) {

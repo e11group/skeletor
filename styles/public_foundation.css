@@ -884,7 +884,7 @@ form.custom .custom.disabled {
 /* The Grid ---------------------- */
 /* line 3, ../scss/foundation/components/_grid.scss */
 .row {
-  width: 980px;
+  width: 1200px;
   max-width: 100%;
   min-width: 768px;
   margin: 0 auto;
