@@ -1,22 +1,15 @@
 <?php
+namespace Skeletor\Services;
 
-//-------------------------------------------------------------------------------------------------------------
+class Bootstrap
+{
 
-    /**
-     *
-     * Load up
-     *
-     *
-    */
+	public function __construct() {
 
+	}
 
-    // autoloader
-    require_once '../vendor/autoload.php';
-
-    use Doctrine\ORM\Tools\Setup;
-    use Doctrine\ORM\EntityManager;
-
-    $isDevMode = true;
+	public function getEM() {
+		 $isDevMode = true;
 
 
     if ($isDevMode == true) {
@@ -34,14 +27,18 @@
     
 
     $paths = array('../app/skeletor/Skeletor/Entities');
-    $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
-    $entityManager = EntityManager::create($dbParams, $config);
+    $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+    $entityManager = \Doctrine\ORM\EntityManager::create($dbParams, $config);
 
-    $em = $entityManager;
+        $em = $entityManager;
 
 
     $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
         'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($em->getConnection()),
         'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em)
     ));
-    \Flight::set('em', $em);
+
+    	return $em;
+	}
+
+}

@@ -37,10 +37,7 @@ class TemplateController
       $request = \Flight::request();
       $body = $request->body;
       $mapper = new \Skeletor\Mappers\API\TemplateMapper();
-      if ($select = $mapper->insert($body)) {
-          //commit
-          $mapper->commit();
-          // grab view    
+      if ($select = $mapper->insert($body)) {   
           \Skeletor\Controllers\API\ResponseController::respond($select, 200);
        } else {
           \Skeletor\Controllers\API\ResponseController::respond($select, 400);

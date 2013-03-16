@@ -4,10 +4,9 @@ use \Skeletor\Abstracts;
 
 class Templates extends \Skeletor\Abstracts\AbstractEntity implements \Skeletor\Interfaces\API\TemplateInterface
 {
-    protected $_id;
-    public $_title;
-    public $_content;
-    protected $_comments;
+    protected $id;
+    public $title;
+  
 
     public function __construct() {
        
@@ -15,7 +14,7 @@ class Templates extends \Skeletor\Abstracts\AbstractEntity implements \Skeletor\
     }
     
     public function setId($id) {
-        if ($this->_id !== null) {
+        if ($this->id !== null) {
             throw new \BadMethodCallException(
                 "The ID for this post has been set already.");
         }
@@ -24,12 +23,12 @@ class Templates extends \Skeletor\Abstracts\AbstractEntity implements \Skeletor\
             throw new \InvalidArgumentException("The post ID is invalid.");
         }
  
-        $this->_id = $id;
-        return $this->_id;
+        $this->id = $id;
+        return $this->id;
     }
 
     public function getId() {
-        return $this->_id;
+        return $this->id;
     }
     
     public function setTitle($title) {
@@ -39,26 +38,13 @@ class Templates extends \Skeletor\Abstracts\AbstractEntity implements \Skeletor\
             throw new \InvalidArgumentException("The post title is invalid.");
         }
  
-        $this->_title = htmlspecialchars(trim($title), ENT_QUOTES);
+        $this->title = htmlspecialchars(trim($title), ENT_QUOTES);
         return $this;
     }
 
     public function getTitle() {
-        return $this->_title;
+        return $this->title;
     }
     
-    public function setContent($content)
-    {
-        if (!is_string($content) || strlen($content) < 2) {
-            throw new \InvalidArgumentException("The post content is invalid.");
-        }
- 
-        $this->_content = htmlspecialchars(trim($content), ENT_QUOTES);
-        return $this;
-    }
-    
-    public function getContent() {
-        return $this->_content;
-    }
-    
+
 }

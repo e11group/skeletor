@@ -136,11 +136,13 @@ class RequestController
     if ($post !== null) {
       $status_code = $stack[0]->status_code;
       $status_code_type = substr($status_code, 0, 1);
-      $status_code;
+      /*
+      var_dump($stack[0]);
+      echo $stack[0]->content;
+      */
       switch ($status_code_type) {
           case 2:
-              var_dump($stack[0]->content);
-              //header("Location: " . $url);
+              header("Location: " . $url);
               break;
           case 3:
               break;
@@ -150,9 +152,6 @@ class RequestController
               $response->setStatusCode($status_code);
               $this->http->send($response);
               exit;
-              break;
-          case 5:
-              throw new \Exception();
               break;
       }    
     } else {

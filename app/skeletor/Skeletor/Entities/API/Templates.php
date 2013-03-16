@@ -28,7 +28,7 @@ class Templates
             throw new \InvalidArgumentException("The post title is invalid.");
         }
  
-        $this->_title = htmlspecialchars(trim($title), ENT_QUOTES);
+        $this->title = htmlspecialchars(trim($title), ENT_QUOTES);
         return $this;
     }
     

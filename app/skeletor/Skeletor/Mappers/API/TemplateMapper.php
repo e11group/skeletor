@@ -23,7 +23,7 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
        $this->em->getConnection()->rollback();
        $this->em->close();
        throw $e;
-    }
+      }
 
 
    }
@@ -78,27 +78,32 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
 
     public function insert($body) {
 
-      $body = json_decode($body);
-      //var_dump($body);
-      $template = new \Skeletor\Models\API\Templates();
-      foreach ($body as $obj) {
-          $setTitle = $this->template->setTitle($obj->title);
+      $service = new \Skeletor\Services\Bootstrap;
+      $em = $service->getEM();
+      $em->getConnection()->beginTransaction();
+
+      try {
+          $body = json_decode($body);
+          foreach ($body as $obj) {
+            $title = $obj->title;
+          }
+
+          $entity = new \Skeletor\Entities\API\Templates;    
+          $entity->setTitle($title);
+          $em->persist($entity);
+          $em->flush();
+          $em->clear();
+          $em->getConnection()->commit();
+      } catch (Exception $e) {
+          $em->getConnection()->rollback();
+          $em->close();
+          throw $e;
       }
-
-      try {  
-        $this->em->persist($this->template);
-       // $this->em->flush();
-
-   } catch (Exception $e) {
-       $this->em->getConnection()->rollback();
-       $this->em->close();
-       throw $e;
-  }
-
-      return true; 
+    
+      return $title; 
+  
 
     }
-
 
     public function update($id, $body) {            
 
