@@ -32,20 +32,26 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
      	*/
     }
 
-   public function flush() {
+   public function commit() {
+
+      try {  
+        $this->em->getConnection()->commit();
+      } catch (Exception $e) {
+        throw new Exception( 'Doctrine Commit Error', 0, $e);  
+      }
+
 
    }
 
     public function findById($id) {
 
       $qb = $this->em->createQueryBuilder();
-      
-      $qb->add('select', new \Doctrine\ORM\Query\Expr\Select(array('u')))
-         ->add('from', new \Doctrine\ORM\Query\Expr\From('Skeletor\Entities\API\Templates', 'u'))
-         ->add('where', $qb->expr()->orX(
-           $qb->expr()->eq('u.id', $id)
-         ))
-         ->add('orderBy', new \Doctrine\ORM\Query\Expr\OrderBy('u.id', 'ASC'));
+       $qb->select(array('u'))
+         ->from('Skeletor\Entities\API\Templates', 'u')
+         ->where($qb->expr()->orX(
+             $qb->expr()->eq('u.id', $id)
+         ));
+
 
     $query = $qb->getQuery();
     $query = $this->em->createQuery('SELECT u FROM Skeletor\Entities\API\Templates u WHERE u.id = '.$id);
@@ -67,9 +73,10 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
       
       $qb = $this->em->createQueryBuilder();
 
-      $qb->add('select', new \Doctrine\ORM\Query\Expr\Select(array('u')))
-         ->add('from', new \Doctrine\ORM\Query\Expr\From('Skeletor\Entities\API\Templates', 'u'))
-         ->add('orderBy', new \Doctrine\ORM\Query\Expr\OrderBy('u.id', 'ASC'));
+      $qb->select('u')
+       ->from('Skeletor\Entities\API\Templates', 'u')
+       ->orderBy('u.id', 'ASC');
+
 
     $query = $qb->getQuery();
 		$users = $query->getResult();
@@ -89,19 +96,39 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
       
     }
 
-    public function update($id) {
+    public function update($id, $body) {            
+
+      $body = json_decode($body);
+
+      foreach ($body as $obj) {
+        $title = $obj->title;
+      }
+
+      $this->template->setTitle($title);
+
       $qb = $this->em->createQueryBuilder();
       $q = $qb->update('Skeletor\Entities\API\Templates', 'u')
-              ->set('u.username', $qb->expr()->literal($username))
-              ->set('u.email', $qb->expr()->literal($email))
-              ->where('u.id = ?1')
-              ->setParameter(1, $editId)
-              ->getQuery();
-      $p = $q->execute();
-    $query = "UPDATE  u SET u.password = 'new' WHERE u.id = ".$id;
-    $users = $query->getResult();
+              ->set('u.title', $qb->expr()->literal($title))
+              ->where($qb->expr()->orX(
+                $qb->expr()->eq('u.id', $id)
+              ))
+              ->getQuery();  
 
-      return false;
+      try  
+      {  
+        
+        $p = $q->execute();  
+        $persist = $this->em->persist($this->template);
+
+      }  
+      catch (Exception $e)  
+      {    
+
+        return false;
+
+      } 
+
+      return true; 
 
     }
 

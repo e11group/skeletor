@@ -60,13 +60,14 @@ class TemplateController
     public static function edit($id) {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
+      $request = \Flight::request();
+      $body = $request->body;
       $mapper = new \Skeletor\Mappers\API\TemplateMapper();
-
-      if ($select = $mapper->update($id)) {
-        //flush
-        $flush = $mapper->flush();
+      if ($select = $mapper->update($id, $body)) {
+        //commit
+        $mapper->commit();
         // grab view    
-        \Skeletor\Controllers\API\ResponseController::respond($select, 204);
+        \Skeletor\Controllers\API\ResponseController::respond($select, 200);
       } else {
         \Skeletor\Controllers\API\ResponseController::respond($select, 400);
       }

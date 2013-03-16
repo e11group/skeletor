@@ -6,8 +6,8 @@ interface TemplateMapperInterface
    public function findById($id);
    public function findAll();
    public function insert();
-   public function update($id);
+   public function update($id, $body);
    public function delete($id);
-   public function flush();	 
+   public function commit();	 
 
 }

@@ -113,28 +113,32 @@ class RequestController
     $request->setAuth(\Aura\Http\Message\Request::AUTH_BASIC);
     $request->setUsername($api_key);
     $request->setPassword($query);
-
     $request->headers->set('Accept', $accept);  
     $request->headers->set('Content-Type', 'application/json');
-
-    /*
-
-	*/
-     $stack = $this->http->send($request);
-
-
     if ($post !== null) {
-    
+      $request->setContent(json_encode($post));
+    }
+    $stack = $this->http->send($request);
+    if ($post !== null) {
       $status_code = $stack[0]->status_code;
       $status_code_type = substr($status_code, 0, 1);
-
       switch ($status_code_type) {
           case 2:
               header("Location: .");
               break;
           case 3:
+              $response = $this->http->newResponse();
+              $response->headers->set('Content-Type', 'application/json');
+              $response->setStatusCode($status_code);
+              $this->http->send($response);
+              exit;
               break;
           case 4:
+              $response = $this->http->newResponse();
+              $response->headers->set('Content-Type', 'application/json');
+              $response->setStatusCode($status_code);
+              $this->http->send($response);
+              exit;
               break;
           case 5:
               throw new \Exception();

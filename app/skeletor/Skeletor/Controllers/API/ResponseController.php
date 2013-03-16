@@ -71,6 +71,12 @@ class ResponseController
                 case 'view_item':
                     Print \Skeletor\Views\Client\TemplatesView::view_item('Template', $data);
                     break;
+                case 200:
+                      $response = $http->newResponse();
+                      $response->setStatusCode(200);
+                      $response->headers->set('Content-Type', 'text/plain');
+                      $http->send($response);
+                    break;
                 case 204:
                       $response = $http->newResponse();
                       $response->setStatusCode(204);

@@ -38,14 +38,15 @@ class TemplateController
       $set_method = $request_controller->setAcceptHeader('text/html');
       $request = $request_controller->request();
       Print $request;
-    }
+    } 
+
 
     public static function edit($id) {
       $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'templates/' . $id);
       $set_method = $request_controller->setMethodHeader('METHOD_POST');
       $set_method = $request_controller->setAcceptHeader('text/html');
+      $request = $request_controller->request($_POST);
 
-      $request = $request_controller->request(true);
       Print $request;
     }
 
