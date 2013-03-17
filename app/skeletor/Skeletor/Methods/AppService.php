@@ -170,21 +170,7 @@ class AppService
 
     // set up html view components
 
-        \Flight::map('skeletor_view_subheader', function(){
-      $name = \Flight::get('formal-name');
-      $uri = $_SERVER['REQUEST_URI'];
-      $pieces = explode("/", $uri);
-      $page_title = ucwords(str_replace('_', ' ',$pieces[4]));
-      $subheader = '<div class="row">
 
-        <div class="twelve columns">
-        <h3>'.$name.'  '.$page_title.'<span style="float:right;">Administration</span></h3>
-        <hr />
-        </div>
-        </div>';        
-
-        return $subheader;
-              });
       \Flight::map('skeletor_view_table_pager', function(){
         $tablesorter_pager = '
 <!-- tablesorter pager -->

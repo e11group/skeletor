@@ -36,15 +36,19 @@ class TemplatesView
       $menu_no = $page_name['lower_name_ess'];
        // subheader
       $template_subheader = 'View All '. $page_name['upper_name_ess'];
+      $page_name = \Flight::get('formal-name');
+      $uri = $_SERVER['REQUEST_URI'];
+      $pieces = explode("/", $uri);
+      $page_title = ucwords(str_replace('_', ' ',$pieces[4]));
      // Call your custom method
       $data = array(
           'title' => 'title',
           'uri' => 'http://localhost/skeletor/public/admin/templates',
           'www' => WWW,
-          'subtext' => 'subtext',
           'table_pager' => \Flight::skeletor_view_table_pager(),
-          'subheader' => \Flight::skeletor_view_subheader(),
-          'data' => $page_variables
+          'data' => $page_variables,
+          'page_name' => $page_name,
+          'page_title' => $page_title
         );
       //$data =  array_merge($data, $page_variables);
       try {       

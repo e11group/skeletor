@@ -5864,3 +5864,6 @@ table.hide-for-medium {
     margin: 0;
   }
 }
+.row {
+     width: 100%;
+}

@@ -56,13 +56,16 @@ class TemplateController
       if (isset($_GET['method']) && ($_GET['method'] == 'delete')) {
           $set_method = $request_controller->setMethodHeader('METHOD_DELETE');
           $set_method = $request_controller->setAcceptHeader('text/html');
+          $request = $request_controller->request('delete');
+
 
       }
       else {
           $set_method = $request_controller->setMethodHeader('METHOD_GET');
           $set_method = $request_controller->setAcceptHeader('text/html');
+          $request = $request_controller->request();
+
       }
-      $request = $request_controller->request();
       Print $request;
     }
 
