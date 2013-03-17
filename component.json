@@ -17,6 +17,7 @@
     "Backbone.dualStorage": "https://github.com/lucian1900/Backbone.dualStorage.git",
     "backbone-forms": "https://github.com/powmedia/backbone-forms.git#~0.11.0",
     "redactor-js": "https://github.com/dybskiy/redactor-js.git",
-    "tablesorter": "https://github.com/Mottie/tablesorter.git#~2.7.12"
+    "tablesorter": "https://github.com/Mottie/tablesorter.git#~2.7.12",
+    "jquery-modal": "https://github.com/kylefox/jquery-modal.git#~0.2.5"
   }
 }

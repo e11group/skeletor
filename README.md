@@ -68,6 +68,8 @@ todo today:
 
 - admin front end
   - js / modularization of plugins / requireset
+  - modals
+  - client side validation
   - css
 
 - db sessions

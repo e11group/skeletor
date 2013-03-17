@@ -4,9 +4,11 @@
 
   baseUrl: "http://localhost/skeletor/scripts",
   paths:{
-      jquery: 'vendor/jquery/jquery.min'
+      jquery: 'vendor/jquery/jquery.min',
   },
   shim: {
+
+        'foundation/foundation': { deps: ['jquery'] },
         'foundation/foundation.alerts': { deps: ['jquery'] },
         'foundation/foundation.clearing': { deps: ['jquery'] },
         'foundation/foundation.cookie': { deps: ['jquery'] },
@@ -14,7 +16,6 @@
         'foundation/foundation.forms': { deps: ['jquery'] },
         'foundation/foundation.joyride': { deps: ['jquery'] },
         'foundation/foundation.magellan': { deps: ['jquery'] },
-        'foundation/foundation.min': { deps: ['jquery'] },
         'foundation/foundation.orbit': { deps: ['jquery'] },
         'foundation/foundation.placeholder': { deps: ['jquery'] },
         'foundation/foundation.reveal': { deps: ['jquery'] },
@@ -38,6 +39,7 @@
 
  // lets init some plugins
 
+ // input masking
 require([
   'jquery',
   'vendor/jquery.maskedinput/jquery.maskedinput.min',
@@ -45,27 +47,40 @@ require([
 ], function ($) { });
 
 
+// drop down handling
 require([
   'jquery',
   'vendor/chosen/chosen/chosen.jquery',
   'modules/selectFields'
 ], function ($) { });
 
+
+// wysiwyg
 require([
   'jquery',
   'vendor/redactor-js/redactor/redactor.min',
   'modules/wysiwyg'
 ], function ($) { });
 
-
-
-
+// tablesorter
 require([
   'jquery', 
   'vendor/tablesorter/js/jquery.tablesorter.min', 
   'vendor/tablesorter/addons/pager/jquery.tablesorter.pager.min', 
   'modules/tableSorter'
   ], function ($) { });
+
+// modals
+require([
+  'jquery',
+  'foundation/foundation'
+], function ($) {
+  $(document).ready(function() {
+    $(document).foundation();
+    $('#modal').foundation('reveal', 'open');
+ });   
+ });
+
 
 // an example of an inline or dirty plugin with no git, so no bower, so no mvc
 
