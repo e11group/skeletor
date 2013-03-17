@@ -5864,3 +5864,7 @@ table.hide-for-medium {
     margin: 0;
   }
 }
+/* line 21, scss/admin_foundation.scss */
+.row {
+  width: 100%;
+}
