@@ -1,16 +1,33 @@
 
-          {{ form_errors(form) }}
+  {{ form_errors(form) }}
 
 <form action="" method="post">
+	  <fieldset>
+      <legend>{{ resource_name }}s</legend>
 
-        <legend>{{legend}}</legend>
 
-<div>
+      {{ form_label(form.title, 'Title', { 'label_attr': {'class': 'required right inline'} }) }}
+      {{ form_errors(form.title) }}
+      {{ form_widget(form.title, { 'attr': {'class': 'custom_class'} }) }}
 
-    {{ form_widget(form) }}
-</div>
+
+      {{ form_label(form.gender, 'Test Select', { 'label_attr': {'class': 'right inline'} }) }}
+      {{ form_errors(form.gender) }}
+      {{ form_widget(form.gender, { 'attr': {'class': 'chzn-select'} }) }}
+
+            {{ form_label(form.tiss, 'Title', { 'label_attr': {'class': 'required right inline'} }) }}
+      {{ form_errors(form.tiss) }}
+      {{ form_widget(form.tiss, { 'attr': {'class': 'phone'} }) }}
+
+       {{ form_label(form.description, 'Description', { 'label_attr': {'class': 'right inline'} }) }}
+      {{ form_errors(form.description) }}
+      {{ form_widget(form.description, { 'attr': {'class': 'wysiwyg'} }) }}
+
+  </fieldset>
 
 
 {{ form_rest(form) }}
    <input type="submit" class="button" />
-</form>
+</form>		
+
+</div>

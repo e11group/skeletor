@@ -37,7 +37,8 @@ class TemplateController
       $request = \Flight::request();
       $body = $request->body;
       $mapper = new \Skeletor\Mappers\API\TemplateMapper();
-      if ($select = $mapper->insert($body)) {   
+      if ($select = $mapper->insert($body)) {  
+   
           \Skeletor\Controllers\API\ResponseController::respond($select, 200);
        } else {
           \Skeletor\Controllers\API\ResponseController::respond($select, 400);
@@ -63,6 +64,9 @@ class TemplateController
 
     public static function edit($id) {
 
+    
+
+// set a read-once value on the segment
       \Skeletor\Controllers\API\ResponseController::authenticate();
       $request = \Flight::request();
       $body = $request->body;
@@ -70,6 +74,7 @@ class TemplateController
       if ($select = $mapper->update($id, $body)) {
           //commit
           $mapper->commit();
+    
           // grab view    
           \Skeletor\Controllers\API\ResponseController::respond($select, 200);
        } else {

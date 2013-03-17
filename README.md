@@ -49,8 +49,7 @@ cli
 - build script
 
 skeleton
-- flash messaging system
-- standardize twig globals
+
 - change to symcom di
 - change to symcom console
 - implement symcom config
@@ -66,14 +65,28 @@ skeleton
 ###log
 
 todo today:
-- hybrid auth
-- pages widget
-- blog widget
-- account widget
-- generator scripts
+
+- admin front end
+  - js / modularization of plugins / requireset
+  - css
+
+- db sessions
+  - flash messaging system
+  - hybrid auth
+
+- clean up
+- standardize twig globals
+
+- widgets
+  - pages widget
+  - modules widget
+  - account widget
+  - orders widget
+  - products widget
+
+- generator script
 
 0.04
-- admin front end
 - server side forms
 - switched from mustache to twig
 - hmac authorization api

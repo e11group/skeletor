@@ -94,6 +94,9 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
           $em->flush();
           $em->clear();
           $em->getConnection()->commit();
+
+
+
       } catch (Exception $e) {
           $em->getConnection()->rollback();
           $em->close();
@@ -126,6 +129,7 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
       try {  
         $p = $q->execute();  
         $persist = $this->em->persist($this->template);
+
       } catch (Exception $e) {   
        $this->em->getConnection()->rollback();
        $this->em->close();

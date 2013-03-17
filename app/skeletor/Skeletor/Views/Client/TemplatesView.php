@@ -30,12 +30,7 @@ class TemplatesView
       /* CONFIG STUFF
       /*
       */
-      // sidebar title
-      $pages_active = 'true';  
-      // menu type
-      $menu_no = $page_name['lower_name_ess'];
-       // subheader
-      $template_subheader = 'View All '. $page_name['upper_name_ess'];
+
 
      // Call your custom method
       $data = array(
@@ -45,13 +40,14 @@ class TemplatesView
           'url' => \Flight::get('url'),
           'data' => $page_variables,
           'page_name' => \Flight::get('formal-name'),
-          'resource_name' => 'Template'
+          'resource_name' => 'Template',
+          'message' => isset($message) ? $message : ''
         );
       //$data =  array_merge($data, $page_variables);
       try {       
          \Flight::view()->display("admin/layout/view_layout.html",$data);
       } catch (\Twig_Error $e) {       
-        echo 'error';
+        throw $e;
       }
 
     }
@@ -67,12 +63,7 @@ class TemplatesView
       /* CONFIG STUFF
       /*
       */
-      // sidebar title
-      $pages_active = 'true';  
-      // menu type
-      $menu_no = $page_name['lower_name_ess'];
-       // subheader
-      $template_subheader = 'View All '. $page_name['upper_name_ess'];
+    
       // Set up Twig
        $formFactory = new \Skeletor\Forms\Factories\TemplateFactory();
       $form = $formFactory->build($page_variables);
@@ -92,7 +83,7 @@ class TemplatesView
       try {       
          \Flight::view_form()->display("admin/layout/form_layout.html",$data);
       } catch (\Twig_Error $e) {       
-        echo 'error';
+        throw $e;
       }
 
     }

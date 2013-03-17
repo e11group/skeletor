@@ -15,6 +15,7 @@
         "php": ">=5.3.0",
         "mikecao/flight": "dev-master",
         "aura/http": "*",
+        "aura/session": "dev-master",
         "doctrine/orm": "*",
         "symfony/yaml": "*",
         "symfony/dependency-injection": "*",

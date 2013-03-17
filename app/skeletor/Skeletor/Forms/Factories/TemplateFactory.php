@@ -33,7 +33,6 @@ class TemplateFactory
        'title', 
        'text', 
        array(
-         'label' => 'Template',
          'constraints' => array(
              new \Symfony\Component\Validator\Constraints\NotBlank(),
              new \Symfony\Component\Validator\Constraints\MinLength(4),
@@ -70,23 +69,39 @@ foreach ($data as $obj) {
              new \Symfony\Component\Validator\Constraints\MinLength(4),
          ) 
      ))
+    ->add('gender', 'choice', array(
+    'choices'   => array(
+        '' => 'Please Select',
+        'morning'   => 'Morning',
+        'afternoon' => 'Afternoon',
+        'evening'   => 'Evening',
+    ),
+    //'multiple'  => true,
+    ))
+    ->add(
+       'tiss', 
+       'text', 
+       array(
+         'data' => $obj->title,
+         'label' => 'Title',
+         'constraints' => array(
+             new \Symfony\Component\Validator\Constraints\NotBlank(),
+             new \Symfony\Component\Validator\Constraints\MinLength(4),
+         ) 
+     ))
+    ->add(
+       'description', 
+       'textarea', 
+       array(
+         'label' => 'Desc',
+
+     ))
      ->getForm();
 
 
 }
 
    
-
-     if (isset($_POST[$form->getName()])) {
-         $form->bind($_POST[$form->getName()]);     
-
-         if ($form->isValid()) {
-             var_dump('VALID', $form->getData());
-             $post = $form->getData();
-             var_dump($post);
-             die;
-         }
-     }
 
      return $form;
 

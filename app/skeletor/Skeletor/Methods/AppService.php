@@ -134,6 +134,8 @@ class AppService
 
   // ready
 
+  session_start();
+
   // api config
   \Flight::set('api-service','http://localhost/skeletor/public/api/');
   \Flight::set('api-private-key', 'P4p79B9N369w48z9Qrcf8sRk29gVJUKX');
@@ -141,6 +143,8 @@ class AppService
   \Flight::set('api-phrase', 'Skeletor');
   \Flight::set('formal-name', 'Skeletor');
   \Flight::set('url', 'http://localhost/skeletor/public');
+  $session = include VENDOR_DIR . "aura/session/scripts/instance.php";
+  \Flight::set('session', $session);
 
   // auto generated routes
 

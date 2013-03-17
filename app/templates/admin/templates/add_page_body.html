@@ -1,21 +1,13 @@
-<div class="row">
-  <div class="twelve columns">
-          {{alert}}
-  </div>
-</div>
-
-
-<div class="row">
-
-	<div class="twelve columns">
-
 {{upload_flag}}
 
-		<h3 class="subheader">{{ subtext|raw }}</h3>
+
+<div class="row">
+
+<div class="small-12 columns">
 
 {% include 'admin/views/TemplateForm.html' %}
 
-	</div>
+</div>
 
 </div>
 
@@ -27,4 +19,3 @@
   <a href="{{modal_link}}" class="button alert">Close</a>
   <a class="close-reveal-modal" href="{{modal_link}}">&#215;</a>
 </div>
-
