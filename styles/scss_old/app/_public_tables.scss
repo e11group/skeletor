@@ -1,0 +1,90 @@
+
+/* Tables ---------------------- */
+/* line 227, ../scss/foundation/components/modules/_ui.scss */
+table {
+  background: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  margin: 0 0 18px;
+  padding:0;
+  border: 1px solid #ddd;
+    padding: 0 !important;
+
+}
+
+/* line 229, ../scss/foundation/components/modules/_ui.scss */
+table thead, table tfoot {
+ background-image: linear-gradient(bottom, rgb(21,85,138) 35%, rgb(36,115,179) 100%);
+background-image: -o-linear-gradient(bottom, rgb(21,85,138) 35%, rgb(36,115,179) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(21,85,138) 35%, rgb(36,115,179) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(21,85,138) 35%, rgb(36,115,179) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(21,85,138) 35%, rgb(36,115,179) 100%);
+
+background-image: -webkit-gradient(
+  linear,
+  left bottom,
+  left top,
+  color-stop(0.35, rgb(21,85,138)),
+  color-stop(1, rgb(36,115,179))
+);
+}
+
+table thead tr th,
+table tfoot tr th {
+  
+  color: #fff !important;
+  margin: 0 !important;
+
+}
+
+/* line 234, ../scss/foundation/components/modules/_ui.scss */
+table thead tr th,
+table tfoot tr th,
+table tbody tr td,
+table tr td,
+table tfoot tr td {
+  display: table-cell;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: left;
+
+}
+
+/* line 236, ../scss/foundation/components/modules/_ui.scss */
+table thead tr th,
+table tfoot tr td {
+  padding: 8px 10px 9px;
+  font-size: 14px;
+  font-weight: bold;
+}
+table thead th {
+  
+  border: none !important;
+
+}
+/* line 237, ../scss/foundation/components/modules/_ui.scss */
+table thead tr th, table tfoot tr td {
+  border:none !important;
+}
+
+/* line 241, ../scss/foundation/components/modules/_ui.scss */
+table tbody tr.even,
+table tbody tr.alt {
+  background: #f9f9f9;
+}
+
+/* line 242, ../scss/foundation/components/modules/_ui.scss */
+table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* line 243, ../scss/foundation/components/modules/_ui.scss */
+table tbody tr td {
+  color: #333;
+  padding: 9px 10px;
+  vertical-align: top;
+  border: none;
+}

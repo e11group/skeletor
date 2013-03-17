@@ -1,8 +1,127 @@
+
+
+<nav class="top-bar">
+  <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <h1><a href="{{ url }}">{{ page_name }} Admin</a></h1>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li class="divider"></li>
+      <li class="active"><a href="#">Orders</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Products</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Pages</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Modules</a></li>
+      <li class="divider"></li>
+      <li class="has-dropdown"><a href="#">Main Item 3</a>
+
+        <ul class="dropdown">
+          <li class="has-dropdown"><a href="#">Dropdown Level 1a</a>
+
+            <ul class="dropdown">
+              <li><label>Dropdown Level 2 Label</label></li>
+              <li><a href="#">Dropdown Level 2a</a></li>
+              <li><a href="#">Dropdown Level 2b</a></li>
+              <li class="has-dropdown"><a href="#">Dropdown Level 2c</a>
+
+                <ul class="dropdown">
+                  <li><label>Dropdown Level 3 Label</label></li>
+                  <li><a href="#">Dropdown Level 3a</a></li>
+                  <li><a href="#">Dropdown Level 3b</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Dropdown Level 3c</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown Level 2d</a></li>
+              <li><a href="#">Dropdown Level 2e</a></li>
+              <li><a href="#">Dropdown Level 2f</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Dropdown Level 1b</a></li>
+          <li><a href="#">Dropdown Level 1c</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Dropdown Level 1d</a></li>
+          <li><a href="#">Dropdown Level 1e</a></li>
+          <li><a href="#">Dropdown Level 1f</a></li>
+          <li class="divider"></li>
+          <li><a href="#">See all &rarr;</a></li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+    </ul>
+
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class="divider hide-for-small"></li>
+     
+
+      <li class="has-form">
+        <form>
+          <div class="row collapse">
+            <div class="small-12 columns">
+              <input type="text">
+            </div>
+            
+          </div>
+        </form>
+      </li>
+      
+      <li class="divider"></li>
+      
+      <li class="has-dropdown"><a href="#">user@gmail.com</a>
+
+        <ul class="dropdown">
+          <li><label>Dropdown Level 1 Label</label></li>
+          <li class="has-dropdown"><a href="#" class="">Dropdown Level 1a</a>
+
+            <ul class="dropdown">
+              <li><a href="#">Dropdown Level 2a</a></li>
+              <li><a href="#">Dropdown Level 2b</a></li>
+              <li class="has-dropdown"><a href="#">Dropdown Level 2c</a>
+
+                <ul class="dropdown">
+                  <li><a href="#">Dropdown Level 3a</a></li>
+                  <li><a href="#">Dropdown Level 3b</a></li>
+                  <li><a href="#">Dropdown Level 3c</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown Level 2d</a></li>
+              <li><a href="#">Dropdown Level 2e</a></li>
+              <li><a href="#">Dropdown Level 2f</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Dropdown Level 1b</a></li>
+          <li><a href="#">Dropdown Level 1c</a></li>
+          <li class="divider"></li>
+          <li><label>Dropdown Level 1 Label</label></li>
+          <li><a href="#">Dropdown Level 1d</a></li>
+          <li><a href="#">Dropdown Level 1e</a></li>
+          <li><a href="#">Dropdown Level 1f</a></li>
+          <li class="divider"></li>
+          <li><a href="#">See all &rarr;</a></li>
+        </ul>
+      </li>
+      <li class="divider show-for-small"></li>
+    </ul>
+  </section>
+</nav>
+
+
+<!--
 <nav class="top-bar">
 
 	<ul>
 		
-		<li class="name"><h1><a href="<?php echo WWW; ?>">Leader Tech Admin</a></h1></li>
+		<li class="name"><h1><a href="</a></h1></li>
 		<li class="toggle-topbar"><a href="#"></a></li>
 
 	</ul>
@@ -12,17 +131,17 @@
 
 			<li class="has-dropdown">
 
-      			<a href="<?php echo WWW; ?>products">Products</a>
+      			<a href="{{ url }}products">Products</a>
 
       			<ul class="dropdown">
 
-        			<li><a href="<?php echo WWW; ?>products/categories">Categories</a></li>
-              <li><a href="<?php echo WWW; ?>products/subcategories">Subcategories</a></li>
-              <li><a href="<?php echo WWW; ?>products/product_categories">Product Categories</a></li>
-        		  <li><a href="<?php echo WWW; ?>products/fields">Field Manager</a></li>
-            	<li><a href="<?php echo WWW; ?>products">Products</a></li>
+        			<li><a href="{{ url }}products/categories">Categories</a></li>
+              <li><a href="{{ url }}products/subcategories">Subcategories</a></li>
+              <li><a href="{{ url }}products/product_categories">Product Categories</a></li>
+        		  <li><a href="{{ url }}products/fields">Field Manager</a></li>
+            	<li><a href="{{ url }}products">Products</a></li>
               <li class="divider"></li>
-              <li><a href="<?php echo WWW; ?>products/add">Add Product</a></li>
+              <li><a href="{{ url }}products/add">Add Product</a></li>
 
 
 
@@ -34,21 +153,21 @@
 
     		<li class="has-dropdown">
 
-      			<a href="<?php echo WWW; ?>pages">Pages</a>
+      			<a href="{{ url }}pages">Pages</a>
 
       			<ul class="dropdown">
-              <li><a href="<?php echo WWW; ?>pages/templates">Templates</a></li>
-              <li><a href="<?php echo WWW; ?>pages/templates/add">Add Template</a></li>
+              <li><a href="{{ url }}pages/templates">Templates</a></li>
+              <li><a href="{{ url }}pages/templates/add">Add Template</a></li>
 
               <li class="divider"></li>
 
-                <li><a href="<?php echo WWW; ?>pages/templates/modules">Modules</a></li>
-              <li><a href="<?php echo WWW; ?>pages/templates/modules/add">Add Module</a></li>
+                <li><a href="{{ url }}pages/templates/modules">Modules</a></li>
+              <li><a href="{{ url }}pages/templates/modules/add">Add Module</a></li>
 
               <li class="divider"></li>
 
-        			<li><a href="<?php echo WWW; ?>pages">Pages</a></li>
-              <li><a href="<?php echo WWW; ?>pages/add">Add Page</a></li>
+        			<li><a href="{{ url }}pages">Pages</a></li>
+              <li><a href="{{ url }}pages/add">Add Page</a></li>
 
       			
       			</ul>
@@ -56,12 +175,12 @@
     		</li>
         <li class="has-dropdown">
 
-            <a href="<?php echo WWW; ?>people">People</a>
+            <a href="{{ url }}people">People</a>
 
             <ul class="dropdown">
 
-              <li><a href="<?php echo WWW; ?>people/add">Add Person</a></li>
-              <li><a href="<?php echo WWW; ?>people">View People</a></li>
+              <li><a href="{{ url }}people/add">Add Person</a></li>
+              <li><a href="{{ url }}people">View People</a></li>
             
             </ul>
 
@@ -69,19 +188,19 @@
 
         <li class="has-dropdown">
 
-            <a href="<?php echo WWW; ?>pages">Blog</a>
+            <a href="{{ url }}pages">Blog</a>
 
             <ul class="dropdown">
 
-              <li><a href="<?php echo WWW; ?>blog/posts/add">New Post</a></li>
-              <li><a href="<?php echo WWW; ?>blog/posts">View Posts</a></li>
-              <li><a href="<?php echo WWW; ?>blog/categories">Categories</a></li>
+              <li><a href="{{ url }}blog/posts/add">New Post</a></li>
+              <li><a href="{{ url }}blog/posts">View Posts</a></li>
+              <li><a href="{{ url }}blog/categories">Categories</a></li>
             </ul>
 
         </li>
 
-        <li><a href="<?php echo WWW; ?>related_links">Related Links</a></li>
-        <li><a href="<?php echo WWW; ?>featured_video">Featured Video</a></li>
+        <li><a href="{{ url }}related_links">Related Links</a></li>
+        <li><a href="{{ url }}featured_video">Featured Video</a></li>
 
 
 
@@ -91,14 +210,14 @@
  
       <li class="has-dropdown">
 
-        <a href="<?php echo WWW; ?>dashboard">Dashboard</a>
+        <a href="{{ url }}dashboard">Dashboard</a>
 
         <ul class="dropdown">
 
-          <li><a href="<?php echo WWW; ?>account">Account</a></li>
+          <li><a href="{{ url }}account">Account</a></li>
           
 
-          <li><a href="<?php echo WWW; ?>logout">Logout</a></li>
+          <li><a href="{{ url }}logout">Logout</a></li>
 
         </ul>
 
@@ -109,5 +228,5 @@
    
   </section>
 
-</nav>
-
+<</nav>
+-->

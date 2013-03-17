@@ -36,19 +36,16 @@ class TemplatesView
       $menu_no = $page_name['lower_name_ess'];
        // subheader
       $template_subheader = 'View All '. $page_name['upper_name_ess'];
-      $page_name = \Flight::get('formal-name');
-      $uri = $_SERVER['REQUEST_URI'];
-      $pieces = explode("/", $uri);
-      $page_title = ucwords(str_replace('_', ' ',$pieces[4]));
+
      // Call your custom method
       $data = array(
-          'title' => 'title',
+          'title' => \Flight::get('formal-name'),
           'uri' => 'http://localhost/skeletor/public/admin/templates',
           'www' => WWW,
-          'table_pager' => \Flight::skeletor_view_table_pager(),
+          'url' => \Flight::get('url'),
           'data' => $page_variables,
-          'page_name' => $page_name,
-          'page_title' => $page_title
+          'page_name' => \Flight::get('formal-name'),
+          'resource_name' => 'Template'
         );
       //$data =  array_merge($data, $page_variables);
       try {       
@@ -82,12 +79,14 @@ class TemplatesView
 
       $data = array(
           'form' => $form->createView(),
-          'title' => 'title',
-          'uri' => 'templates',
+          'title' => \Flight::get('formal-name'),
+          'uri' => 'http://localhost/skeletor/public/admin/templates',
           'www' => WWW,
-          'subtext' => 'subtext',
-          'table_pager' => \Flight::skeletor_view_table_pager(),
-          'data' => $page_variables
+          'url' => \Flight::get('url'),
+          'page_name' => \Flight::get('formal-name'),
+          'data' => $page_variables,
+          'resource_name' => 'Template'
+
         );
       //$data =  array_merge($data, $page_variables);
       try {       

@@ -1,25 +1,25 @@
 
 <div class="row">
 
-<div class="twelve columns">
+<div class="small-12 large-12 columns">
 
 <div class="panel">
 
 <div class="row collapse">
 
-  <div class="ten mobile-three columns">
+  <div class="small-10 large-10 columns">
 
     <input type="text" name="filter" id="filter-box" value="" placeholder="Filter Content"/>
   </div>
-  <div class="two mobile-one columns">
-    <input id="filter-clear-button" class="button expand postfix" type="submit" value="Clear"/>
+  <div class="small-2 large-2 columns">
+    <input id="filter-clear-button" class="button secondary expand postfix" type="submit" value="Clear"/>
 
   </div>
 </div>
 </div>
 {% include 'admin/views/TemplateView.html' %}
 <hr>
-{{table_pager | raw}}
+{% include 'admin/templates/table_pager.html' %}
 </div>
 
 </div>
