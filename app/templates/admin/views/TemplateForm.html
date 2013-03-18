@@ -1,7 +1,6 @@
 
-  {{ form_errors(form) }}
 
-<form action="" method="post" id="{{ resource_name }}">
+<form action="" method="post" id="{{ encoded_name }}">
 	  <fieldset>
       <legend>{{ resource_name }}s</legend>
 
@@ -15,7 +14,7 @@
       {{ form_errors(form.gender) }}
       {{ form_widget(form.gender, { 'attr': {'class': 'chzn-select'} }) }}
 
-            {{ form_label(form.tiss, 'Title', { 'label_attr': {'class': 'required right inline'} }) }}
+            {{ form_label(form.tiss, 'Tiss', { 'label_attr': {'class': 'right inline'} }) }}
       {{ form_errors(form.tiss) }}
       {{ form_widget(form.tiss, { 'attr': {'class': 'phone'} }) }}
 
@@ -26,8 +25,7 @@
   </fieldset>
 
 
-{{ form_rest(form) }}
-   <input type="submit" class="button" />
+   <input type="submit" class="button form-submit" />
 </form>		
 
 </div>

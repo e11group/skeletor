@@ -93,6 +93,19 @@ require([
   'modules/tableSorter'
   ], function ($) { });
 
+// client side validation
+require([
+  'jquery', 
+  'lib/jquery.validate.min',
+  'modules/validation'
+  ], function($) { });
+
+// app stuff
+require([
+  'jquery',
+  'modules/skeletor'
+  ], function($) { });
+
 
 // an example of an inline or dirty plugin with no git, so no bower, so no mvc
 
@@ -104,13 +117,3 @@ require(['jquery', 'lib/jquery.passwordstrength'], function($) {
 
 });
 
-
-
-require([
-  'jquery', 
-  'lib/jquery.validate.min',
-  'modules/validation'
-  ], function($) {
-
-
-});

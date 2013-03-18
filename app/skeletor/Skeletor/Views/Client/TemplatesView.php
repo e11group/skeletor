@@ -34,13 +34,11 @@ class TemplatesView
 
      // Call your custom method
       $data = array(
-          'title' => \Flight::get('formal-name'),
-          'uri' => 'http://localhost/skeletor/public/admin/templates',
-          'www' => WWW,
+          'page_name' => \Flight::get('formal-name'),
           'url' => \Flight::get('url'),
           'data' => $page_variables,
-          'page_name' => \Flight::get('formal-name'),
           'resource_name' => 'Template',
+          'encoded_name' => 'template',
           'message' => isset($message) ? $message : ''
         );
       //$data =  array_merge($data, $page_variables);
@@ -70,13 +68,12 @@ class TemplatesView
 
       $data = array(
           'form' => $form->createView(),
-          'title' => \Flight::get('formal-name'),
-          'uri' => 'http://localhost/skeletor/public/admin/templates',
-          'www' => WWW,
-          'url' => \Flight::get('url'),
           'page_name' => \Flight::get('formal-name'),
+          'url' => \Flight::get('url'),
           'data' => $page_variables,
-          'resource_name' => 'Template'
+          'resource_name' => 'Template',
+          'encoded_name' => 'template',
+          'message' => isset($message) ? $message : ''
 
         );
       //$data =  array_merge($data, $page_variables);

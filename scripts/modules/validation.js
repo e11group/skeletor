@@ -7,7 +7,7 @@ define([
     'use strict';
     $(document).ready(function(){    
 
-    $('#Template').validate({
+    $('#template').validate({
           rules: {
             
             template_form_title: {
@@ -15,8 +15,8 @@ define([
               required: true
             }
           },
-          highlight: function(label) {
-            $(label).addClass('validation-error').removeClass('validation-success');
+          highlight: function(input) {
+            $(input).addClass('error');
             $('label.error').removeClass('validation-success');
           },
           success: function(label) {

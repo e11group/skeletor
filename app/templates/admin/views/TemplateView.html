@@ -14,7 +14,7 @@
         <tr>
           <td>{{ value.id|e }}</td>
           <td>{{ value.title|e }}</td>
-          <td><a href="{{uri}}/{{value.id|e}}" class="tiny secondary button">Edit</a></td>
+          <td><a href="{{url}}/admin/{{encoded_name}}s/{{value.id|e}}" class="tiny secondary button">Edit</a></td>
           <td><a href="javascript:;" data-reveal-id="modal{{value.id|e}}" class="tiny secondary button">Delete</a>
             <!-- TODO inject id somehow through link? -->
 <div id="modal{{value.id|e}}" class="reveal-modal large">

@@ -27,43 +27,20 @@ class TemplateFactory
    public function build($data = null)
    {
 
-    if ($data == null) { 
-     $form = $this->formFactory->createNamedBuilder('template_form')
-     ->add(
-       'title', 
-       'text', 
-       array(
-         'constraints' => array(
-             new \Symfony\Component\Validator\Constraints\NotBlank(),
-             new \Symfony\Component\Validator\Constraints\MinLength(4),
-         ) 
-     ))
-     ->getForm();
+    if ($data !== null) { 
+      foreach ($data as $obj) {
+         $title = $obj->title;
+      }
+    } 
 
-     if (isset($_POST[$form->getName()])) {
-         $form->bind($_POST[$form->getName()]);     
-
-         if ($form->isValid()) {
-             var_dump('VALID', $form->getData());
-             $post = $form->getData();
-             var_dump($post);
-             die;
-         }
-     }
-
-     return $form;
-
-     } else {
-
-foreach ($data as $obj) {
+$title = isset($title) ? $title : '';
 
   $form = $this->formFactory->createNamedBuilder('template_form')
      ->add(
        'title', 
        'text', 
        array(
-         'data' => $obj->title,
-         'label' => 'Title',
+         'data' => $title,
          'constraints' => array(
              new \Symfony\Component\Validator\Constraints\NotBlank(),
              new \Symfony\Component\Validator\Constraints\MinLength(4),
@@ -80,15 +57,10 @@ foreach ($data as $obj) {
     ))
     ->add(
        'tiss', 
-       'text', 
+       'text',
        array(
-         'data' => $obj->title,
-         'label' => 'Title',
-         'constraints' => array(
-             new \Symfony\Component\Validator\Constraints\NotBlank(),
-             new \Symfony\Component\Validator\Constraints\MinLength(4),
-         ) 
-     ))
+        'required' => false
+    ))
     ->add(
        'description', 
        'textarea', 
@@ -98,16 +70,13 @@ foreach ($data as $obj) {
      ))
      ->getForm();
 
-
-}
-
    
 
      return $form;
 
 
 
-     }
+     
 
    }
 
