@@ -9,23 +9,16 @@ class AppService
    
  public static function createNameVariety($page_name) 
     {
-
-
       $page_name_arr = array(
-
         'lower_name_ess' => strtolower($page_name) . 's',
         'upper_name_ess' => strtoupper($page_name) . 's',
         'ucName_ess' => ucwords($page_name) . 's',
         'lower_name' => strtolower($page_name),
         'upperName' => strtoupper($page_name),
         'ucName' => ucwords($page_name)
-
-      );
-      
+      ); 
       return $page_name_arr;
-
     }
-
 
   public static function hashHMAC($data, $api_client_key = null) 
   {
@@ -169,6 +162,13 @@ class AppService
     \Flight::route('GET /admin/template',  array('\Skeletor\Controllers\Client\TemplateController','add_view'));
     \Flight::route('GET /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit_view'));
     \Flight::route('POST /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit'));
+
+
+  // stock routes
+  
+  // client admin
+  \Flight::route('GET /admin/login',  array('\Skeletor\Controllers\Client\LoginController', 'login'));
+  \Flight::route('POST /admin/login',  array('\Skeletor\Controllers\Client\LoginController', 'process_login'));
 
 
 
