@@ -15,9 +15,15 @@
           <td>{{ value.id|e }}</td>
           <td>{{ value.title|e }}</td>
           <td><a href="{{uri}}/{{value.id|e}}" class="tiny secondary button">Edit</a></td>
-          <td><!--<a href="{{uri}}/{{value.id|e}}?method=delete" class="tiny secondary button">Delete</a>-->
-
-<a href="#" data-reveal-id="modal">Click Me For A Modal</a>
+          <td><a href="javascript:;" data-reveal-id="modal{{value.id|e}}" class="tiny secondary button">Delete</a>
+            <!-- TODO inject id somehow through link? -->
+<div id="modal{{value.id|e}}" class="reveal-modal large">
+  <h2>Delete This Template</h2>
+  <p class="lead">This record will be deleted forever.</p>
+  <p>Please confirm permanent deletion of this record.</p>
+  <a href="{{uri}}/{{value.id|e}}?method=delete" class="alert button">Delete</a>
+  <a class="close-reveal-modal tiny secondary button">&#215;</a>
+</div>
 
 </td>
         </tr>
@@ -26,3 +32,4 @@
 </tbody>
 
 </table>
+

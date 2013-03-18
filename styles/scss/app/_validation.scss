@@ -1,9 +1,10 @@
 
 		label.error {
-			background: url(../images/app/error.png) top left no-repeat;
+						background: url(../images/app/error.png) top left no-repeat;
+
 			font-weight: normal;
 			color: #000;
-			font-size: 11px;
+			font-size: 12px;
 			display:block;
 			padding: 5px 8px 15px 35px;
 			margin-top: 2px;
@@ -12,8 +13,17 @@
 		}
 
 
-		label.valid {
+		label.validation-success {
+			background: url(../images/app/success.png) top left no-repeat;
+
+			font-weight: normal;
+			color: #000;
+			font-size: 12px;
+			display:block;
+			padding: 5px 8px 15px 35px;
+			margin-top: 2px;
+			margin-bottom: 15px;
+			border-bottom: 1px solid #dadada
 		  
-		  display:none !important;
 
 		}

@@ -32,10 +32,33 @@
           ]
         },
         'vendor/redactor-js/redactor/redactor.min': { deps: ['jquery']},
-        'lib/jquery.passwordstrength': { deps: ['jquery']}
+        'lib/jquery.passwordstrength': { deps: ['jquery']},
+        'lib/jquery.validate.min': { deps: ['jquery']}
+
   }
 
 });
+
+
+require(["jquery",
+"foundation/foundation",
+"foundation/foundation.alerts",
+"foundation/foundation.clearing",
+"foundation/foundation.cookie",
+"foundation/foundation.dropdown",
+"foundation/foundation.forms",
+"foundation/foundation.joyride",
+"foundation/foundation.magellan",
+"foundation/foundation.orbit",
+"foundation/foundation.placeholder",
+"foundation/foundation.reveal",
+"foundation/foundation.section",
+"foundation/foundation.tooltips",
+"foundation/foundation.topbar"
+], function ($) {
+  $(document).foundation();
+});
+
 
  // lets init some plugins
 
@@ -70,17 +93,6 @@ require([
   'modules/tableSorter'
   ], function ($) { });
 
-// modals
-require([
-  'jquery',
-  'foundation/foundation'
-], function ($) {
-  $(document).ready(function() {
-    $(document).foundation();
-    $('#modal').foundation('reveal', 'open');
- });   
- });
-
 
 // an example of an inline or dirty plugin with no git, so no bower, so no mvc
 
@@ -94,22 +106,11 @@ require(['jquery', 'lib/jquery.passwordstrength'], function($) {
 
 
 
-/*
-
-require(['vendor/jquery/jquery.min', 'foundation/foundation.forms', 'foundation/foundation.navigation', 'foundation/foundation.alerts', 'foundation/foundation.buttons', 'foundation/foundation.mediaQueryToggle', 'foundation/foundation.tabs', 'foundation/foundation.topbar', 'foundation/app'], function(jQuery, app, forms, navi, alerts, buttons, mediaquery, tabs, topbar) {
-
-
-});
-
-require(['vendor/jquery/jquery.min', 'foundation/foundation.reveal'], function(jQuery, reveal) {
+require([
+  'jquery', 
+  'lib/jquery.validate.min',
+  'modules/validation'
+  ], function($) {
 
 
 });
-
-
-
-
-
-
-
-*/
