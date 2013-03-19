@@ -10,13 +10,9 @@ class LoginView
 
      $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
 
-
-      // TODO partition this shit out to the various builders 
-      /*********
-      /* CONFIG STUFF
-      /*
-      */
-
+     foreach ($page_variables as $k => $v) {
+       if($k == 'message') { $message = $v; }
+     }
 
      // Call your custom method
       $data = array(

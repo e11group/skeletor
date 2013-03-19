@@ -70,11 +70,6 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
         return false;
     }
 
-    $uid1 = uniqid();
-    $uid2 = uniqid();
-    $uid = $uid1 * $uid2;
-
-
     if (crypt($this->pw, $user['hash']) == $user['hash']) {
                 $_SESSION['auth'] = 'true';
                 $_SESSION['user_type'] = $user['type'];
