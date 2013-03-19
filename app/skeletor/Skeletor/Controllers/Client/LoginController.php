@@ -25,8 +25,7 @@ class LoginController
 
     public static function process_login()
     {
-
-      
+          
       $mapper = new \Skeletor\Mappers\API\LoginMapper();
       $email = $mapper->setEmail($_POST['email']);
       $pw = $mapper->setPW($_POST['password']);

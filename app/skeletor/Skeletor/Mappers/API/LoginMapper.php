@@ -65,12 +65,16 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
        ->setParameter('email', $this->email);
        $query = $qb->getQuery();
     // one or null
-    $users = $query->getOneOrNullResult();
+    $users = $query->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
     if ($users == null) {
         return false;
     }
 
-    if (crypt($this->pw, $user['hash']) == $user['hash']) {
+    $hash = $users->getHash();
+    echo $hash;
+    break;
+
+    if (crypt($this->pw, $hash) == $hash) {
                 $_SESSION['auth'] = 'true';
                 $_SESSION['user_type'] = $user['type'];
                 $_SESSION['user_email'] = $user['email'];

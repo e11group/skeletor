@@ -51,7 +51,7 @@ class Users
     	$this->email = $name;
     }
 
-    public function getEmail($email) 
+    public function getEmail() 
     {
     	return $this->email;
     }
@@ -67,9 +67,14 @@ class Users
     	$this->email = $name;
     }
 
-    public function getType($type) 
+    public function getType() 
     {
     	return $this->type;
+    }
+
+    public function getHash()
+    {
+        return $this->hash;
     }
 
 }
