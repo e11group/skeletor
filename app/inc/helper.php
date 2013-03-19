@@ -1,4 +1,5 @@
 <?php
+// TODO make these helper methods
 function findexts($filename) // find extensions of files
 {
 $filename = strtolower($filename) ;

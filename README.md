@@ -30,8 +30,9 @@ for more see wiki
 
 ###log
 
-0.04
+todo
 
+- 404 handling
 - implement symcom config
 
 - pages widget
@@ -40,8 +41,15 @@ for more see wiki
 - orders widget
 
 - flash messaging system
-- login
+
 - db sessions
+
+
+0.04
+
+
+
+- login
 
 - payment classes
 

@@ -1,0 +1,47 @@
+.tablesorter-pager-menu {
+
+background-color:#fff; 
+border:1px Solid #ccc; 
+ -webkit-border-radius: 8px; 
+ -moz-border-radius: 8px; 
+ border-radius: 8px;
+  font-size:75%; padding:5px
+
+}
+
+.tablesorter-pager-menu a {
+	color:#ccc; cursor:pointer; padding:5px 10px 5px 10px;
+}
+
+.tablesorter-pager-menu a:hover {
+
+	color:#333;
+
+}
+		
+.ts td {
+
+	cursor:pointer !important;
+
+}	
+
+table.tsort .header {
+	background: url(../images/app/tsort-bg.png) 6px 11px no-repeat;
+	padding-left: 19px;
+	padding-top: 8px;
+	height: auto;
+		cursor:pointer !important;
+
+}
+
+table.tsort .headerSortUp {
+	background:  #efefef url(../images/app/tsort-bg-up.png) 6px 15px  no-repeat;
+	cursor:pointer !important;
+
+}
+table.tsort .headerSortDown {
+	background:  #efefef url(../images/app/tsort-bg-down.png) 6px 15px no-repeat;
+	cursor:pointer !important;
+
+
+}	

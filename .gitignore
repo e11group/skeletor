@@ -2,14 +2,14 @@
 /.sass-cache/*
 /styles/scss/.sass-cache/*
 /logs/*
-/fonts/*
 /vendor/*
 /components/*
 /images/*
-/uploads/uploads/*
+/uploads/*
 /scripts/lib/*
 /scripts/vendor/*
 /app/config/config.php
+bootstrap.php
 composer.phar
 composer.lock
 .DS_STORE
