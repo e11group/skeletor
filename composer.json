@@ -26,12 +26,12 @@
         "symfony/config": "2.1.*",
         "symfony/translation": "2.1.*",
         "symfony/twig-bridge": "2.1.*",
+        "symfony/doctrine-bridge": "*",
         "twig/twig": "*",
         "swiftmailer/swiftmailer": "4.3.*@dev",
         "phpunit/phpunit": "*",
         "monolog/monolog": "1.4.*@dev",
         "herrera-io/cli-app": "*",
-        "symfony/doctrine-bridge": "*",
         "braintree/braintree_php": "*"
     },
 

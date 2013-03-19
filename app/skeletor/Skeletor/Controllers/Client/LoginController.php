@@ -17,21 +17,20 @@ class LoginController
 
     }
 
-    public function processLogin()
+    public static function process_login()
     {
 
-      $mapper = new \Skeletor\Mappers\API\LoginMapper();
+      
+      $mapper = new \Skeletor\Mappers\API\LoginMapper($_POST['email'], $_POST['password']);
       $select = $mapper->login();
+      $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
       $response = $http->newResponse();
       if($select) {
-        $response->headers->set('Location', 'dashboard');
+        $response->headers->set('Location', 'admin/dashboard');
       } else {
         $response->headers->set('Location', 'login');
       }
-
      $http->send($response);
-
-
     }
 
  }

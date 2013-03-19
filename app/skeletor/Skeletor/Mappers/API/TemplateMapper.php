@@ -39,7 +39,6 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
 
 
     $query = $qb->getQuery();
-    $query = $this->em->createQuery('SELECT u FROM Skeletor\Entities\API\Templates u WHERE u.id = '.$id);
     $users = $query->getResult();
     foreach ($users as $n => $row) {
           $template = new \Skeletor\Models\API\Templates();
@@ -50,7 +49,6 @@ class TemplateMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
         }
     return $templates;
       
-    	
 
     }
 

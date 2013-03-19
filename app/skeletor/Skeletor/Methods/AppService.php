@@ -82,6 +82,30 @@ class AppService
     }
   }
 
+    public function generateHash($password)
+    {
+        if ($password == null
+            || strlen($password) < 2
+            || strlen($password) > 100)  {
+              throw new \InvalidArgumentException("The password is too weak.");
+
+      }
+       
+      if (defined('CRYPT_SHA512') && CRYPT_SHA512) {
+
+        $Salt = uniqid();  
+        $Algo = '6';   
+        $Rounds = '5000';   
+        $CryptSalt = '$' . $Algo . '$rounds=' . $Rounds . '$' . $Salt;  
+        $HashedPassword = crypt($password, $CryptSalt);  
+        return $HashedPassword;
+
+        }
+    }
+
+
+
+
   public static function prepareFlight() {
 
     // TODO Clean this up
@@ -167,8 +191,8 @@ class AppService
   // stock routes
   
   // client admin
-  \Flight::route('GET /admin/login',  array('\Skeletor\Controllers\Client\LoginController', 'login'));
-  \Flight::route('POST /admin/login',  array('\Skeletor\Controllers\Client\LoginController', 'process_login'));
+  \Flight::route('GET /login',  array('\Skeletor\Controllers\Client\LoginController', 'login'));
+  \Flight::route('POST /login',  array('\Skeletor\Controllers\Client\LoginController', 'process_login'));
 
 
 

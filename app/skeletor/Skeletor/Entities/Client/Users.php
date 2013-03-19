@@ -1,5 +1,5 @@
 <?php
-namespace Skeletor\Entities;
+namespace Skeletor\Entities\Client;
 
 /** @Entity **/
 class Users

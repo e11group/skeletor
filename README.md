@@ -34,25 +34,18 @@ todo
 
 - 404 handling
 - implement symcom config
-
 - pages widget
 - modules widget
 - account widget
 - orders widget
-
 - flash messaging system
-
 - db sessions
 
 
 0.04
 
-
-
 - login
-
 - payment classes
-
 - js / modularization of plugins / requireset
 - modals
 - client side validation
