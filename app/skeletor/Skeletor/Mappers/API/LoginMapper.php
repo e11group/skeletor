@@ -5,28 +5,46 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
 {
     protected $login;
     protected $em;
-    private $email;
-    private $pw;
-    private $type;
+    protected $email;
+    protected $pw;
+    protected $type;
 
 
-    public function __construct($email, $pw) {
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    public function __construct() {
+
+
+      $this->em = \Flight::get('em');
+      $this->em->getConnection()->beginTransaction(); // suspend auto-commit
+      $this->login = new \Skeletor\Entities\Client\Users();
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         throw new \BadMethodCallException(
             "not an email");
       }
+
+      $this->email = $email;
+      return $email;
+    }
+
+    public function setPW($pw)
+    {
       if ($pw == null) {
         throw new \InvalidArgumentException(
             "no pass");
       }
-      $this->email = $email;
-      $this->pw = $pw;
-      $this->em = \Flight::get('em');
-      $this->em->getConnection()->beginTransaction(); // suspend auto-commit
-      $this->login = new \Skeletor\Entities\Client\Users();
-      
-    
+        $this->pw = $pw;
+        return true;
+
     }
+
 
     public function login()
     {
@@ -44,12 +62,11 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
     $qb = $this->em->createQueryBuilder();
     $qb->select(array('u'))
        ->from('Skeletor\Entities\Client\Users', 'u')
-       ->where($qb->expr()->orX(
-          $qb->expr()->eq('u.email', $this->email)
-        ));
-    $query = $qb->getQuery();
+       ->where('u.email = :email')
+       ->setParameter('email', $this->email);
+       $query = $qb->getQuery();
     // one or null
-    $users = $query->getOneOrNullResult();
+    $users = $query->getResult();
     if ($users == null) {
         return false;
     }

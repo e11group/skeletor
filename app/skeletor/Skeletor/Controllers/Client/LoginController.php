@@ -21,11 +21,13 @@ class LoginController
     {
 
       
-      $mapper = new \Skeletor\Mappers\API\LoginMapper($_POST['email'], $_POST['password']);
+      $mapper = new \Skeletor\Mappers\API\LoginMapper();
       $select = $mapper->login();
+      $e = $select->setEmail($_POST['email']);
+      $p = $select->setPW($_POST['password']);
       $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
       $response = $http->newResponse();
-      if($select) {
+      if($select->login()) {
         $response->headers->set('Location', 'admin/dashboard');
       } else {
         $response->headers->set('Location', 'login');
