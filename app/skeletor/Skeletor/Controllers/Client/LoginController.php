@@ -13,6 +13,8 @@ class LoginController
     {
 
       \Flight::etag('skeletor-client-view-login');
+              var_dump(\Flight::request());
+var_dump(getallheaders());
       Print \Skeletor\Views\Client\LoginView::login('Login', array());
 
     }
@@ -22,14 +24,14 @@ class LoginController
 
       
       $mapper = new \Skeletor\Mappers\API\LoginMapper();
-      $select = $mapper->login();
-      $e = $select->setEmail($_POST['email']);
-      $p = $select->setPW($_POST['password']);
+      $e = $mapper->setEmail($_POST['email']);
+      $p = $mapper->setPW($_POST['password']);
       $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
       $response = $http->newResponse();
-      if($select->login()) {
+      if($mapper->login()) {
         $response->headers->set('Location', 'admin/dashboard');
       } else {
+        $response->headers->set('Warning', 'login fail');
         $response->headers->set('Location', 'login');
       }
      $http->send($response);

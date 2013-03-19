@@ -15,7 +15,6 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
 
       $this->em = \Flight::get('em');
       $this->em->getConnection()->beginTransaction(); // suspend auto-commit
-      $this->login = new \Skeletor\Entities\Client\Users();
     }
 
     public function getEmail()
@@ -48,6 +47,7 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
 
     public function login()
     {
+
         $email = $this->checkLogin();
         if ($email) {
             return $email;
@@ -65,7 +65,7 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
        ->setParameter('email', $this->email);
        $query = $qb->getQuery();
     // one or null
-    $users = $query->getResult();
+    $users = $query->getOneOrNullResult();
     if ($users == null) {
         return false;
     }
@@ -75,8 +75,8 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
     $uid = $uid1 * $uid2;
 
 
-    if (crypt($this->_pw, $user['hash']) == $user['hash']) {
-                $_SESSION['authorization'] = 'true';
+    if (crypt($this->pw, $user['hash']) == $user['hash']) {
+                $_SESSION['auth'] = 'true';
                 $_SESSION['user_type'] = $user['type'];
                 $_SESSION['user_email'] = $user['email'];
                 return $email;
