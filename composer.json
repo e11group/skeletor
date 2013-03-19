@@ -31,7 +31,8 @@
         "phpunit/phpunit": "*",
         "monolog/monolog": "1.4.*@dev",
         "herrera-io/cli-app": "*",
-        "symfony/doctrine-bridge": "*"
+        "symfony/doctrine-bridge": "*",
+        "braintree/braintree_php": "*"
     },
 
      "autoload": {

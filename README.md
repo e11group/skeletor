@@ -4,21 +4,6 @@ skeletor is a got damn dry kiss skeleton with muscles for rapid app development.
 
 pre-pre-alpha.
 
-##requirements
-
-server side
-
-- php 5.3+
-- db agnostic
-
-build environment
-
-- lamp, mamp, lasp, lemp, wisp etc
-- (optional) build tool - node + npm + ruby + compass + sass (via rvm) - linux or mac only
-
-##components
-
-	see components.json, composer.json, config.rb
 
 ##buzzwords
 
@@ -30,29 +15,10 @@ build environment
 
 for more see wiki
 
-##goals
-
-- best practices everywhere - style guides, specs, industry standard libs, etc
-- fucking speed for 'real world developers' - dry kiss all day
-- hypermedia api, view+template agnostic (client-side mv*, server side mv*, cli / json)
-- opionated about being practical for dry kindness
-- flexible base for large variety of medium-scale projects - custom cms, mobile server, app api, etc
-- agnostic about some things, opionated about others - practical and pragmatic above all
-- be maintained at some level by info handlers, designers, project managers etc etc 
-- test-driven development
-- simple yaml config
-
 ##todo
-
-cli
-
-- build script
-
-skeleton
 
 - change to symcom di
 - change to symcom console
-- implement symcom config
 - clientside api client
 - i18n / l10n
 - add logging calls
@@ -64,31 +30,27 @@ skeleton
 
 ###log
 
-todo today:
+0.04
 
-- admin front end
-  - js / modularization of plugins / requireset
-  - modals
-  - client side validation
-  - css
+- implement symcom config
 
+- pages widget
+- modules widget
+- account widget
+- orders widget
+
+- flash messaging system
+- login
 - db sessions
-  - flash messaging system
-  - hybrid auth
 
+- payment classes
+
+- js / modularization of plugins / requireset
+- modals
+- client side validation
+- css
 - clean up
 - standardize twig globals
-
-- widgets
-  - pages widget
-  - modules widget
-  - account widget
-  - orders widget
-  - products widget
-
-- generator script
-
-0.04
 - server side forms
 - switched from mustache to twig
 - hmac authorization api

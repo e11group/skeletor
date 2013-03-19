@@ -7,16 +7,15 @@
                  
     /* SITE */
 
-    Standards: HTML5, CSS3, PHP 5.3+, PSR-0, AMDJS 
+    Standards: HTML5, CSS3, PHP 5.3+, PSR-x, AMDJS 
     Version Control: Git
     Dependency / Package Managers : Composer / Bower
-    REST Framework : Slim
-    Database Abstraction: Dibi
+    Framework : Flight
+    Database Abstraction and Persistance: Doctrine
     Testing : PHPUnit
-    Security : PDO, locked access, CSRF + XSS token protection
-    Templates : Mustache
+    Templates : Twig
     Front End : Zurb Foundation, Compass + Sass
-    UI : jQuery, Modernizr, RequireJS
+    UI : jQuery, Modernizr, RequireJS, optional backbone client
     Typography : Optimized with FontSquirrel
     Image Optimization : OptiPNG
 
