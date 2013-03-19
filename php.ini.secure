@@ -1,0 +1,5 @@
+session.cookie_httponly = 1 ;(helps mitigate xss)
+session.session.use_only_cookies = 1 ;(prevents session fixation)
+session.entropy_file = "/dev/urandom" ;(better entropy source)
+session.cookie_lifetime = 0  ;(smaller exploitation window for xss/csrf/clickjacking...)
+session.cookie_secure = 1 ;(owasp a9 violations)

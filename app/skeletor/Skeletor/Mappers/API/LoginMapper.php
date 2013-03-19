@@ -50,7 +50,6 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
     {
         $email = $this->checkLogin();
         if ($email) {
-            $this->email = $email; // store it so it can be accessed later
             return $email;
         }
         return false;
@@ -70,6 +69,11 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
     if ($users == null) {
         return false;
     }
+
+    $uid1 = uniqid();
+    $uid2 = uniqid();
+    $uid = $uid1 * $uid2;
+
 
     if (crypt($this->_pw, $user['hash']) == $user['hash']) {
                 $_SESSION['authorization'] = 'true';
