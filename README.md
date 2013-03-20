@@ -32,6 +32,7 @@ for more see wiki
 
 todo
 
+- privatize auth functions
 - 404 handling
 - implement symcom config
 - pages widget

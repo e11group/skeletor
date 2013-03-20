@@ -153,6 +153,9 @@ class AppService
 
   session_start();
 
+  // these routes are only valid if authenticated
+
+
   // api config
   \Flight::set('api-service','http://localhost/skeletor/public/api/');
   \Flight::set('api-private-key', 'P4p79B9N369w48z9Qrcf8sRk29gVJUKX');
@@ -160,8 +163,7 @@ class AppService
   \Flight::set('api-phrase', 'Skeletor');
   \Flight::set('formal-name', 'Skeletor');
   \Flight::set('url', 'http://localhost/skeletor/public');
-  $session = include VENDOR_DIR . "aura/session/scripts/instance.php";
-  \Flight::set('session', $session);
+
 
   // auto generated routes
 
@@ -180,6 +182,32 @@ class AppService
 
   // client
 
+  if (!empty($_SESSION['valid_auth']) && !empty($_SESSION['user_email'])) {
+          $em = \Flight::get('em');
+                   $email = $_SESSION['user_email'];
+
+  
+  $session_auth = $_SESSION['valid_auth'];
+  
+$qb = $em->createQueryBuilder();
+    $qb->select(array('u'))
+       ->from('Skeletor\Entities\Client\Users', 'u')
+       ->where('u.email = :email')
+       ->setParameter('email', $email);
+       $query = $qb->getQuery();
+    // one or null
+    $users = $query->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
+    if ($users == null) {
+        return false;
+    }
+    $check_hash = $users->getHash();
+
+    $check_auth = \Skeletor\Methods\AppService::hashHMAC($email, $check_hash);
+    $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
+    $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
+    $response = $http->newResponse();
+    if($session_auth == $check_auth) {
+
   // template routes
     \Flight::route('GET /admin/templates',  array('\Skeletor\Controllers\Client\TemplateController','view_all'));
     \Flight::route('POST /admin/template',  array('\Skeletor\Controllers\Client\TemplateController','add'));
@@ -187,13 +215,20 @@ class AppService
     \Flight::route('GET /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit_view'));
     \Flight::route('POST /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit'));
 
+      } else {
+        $response->headers->set('Location', 'login');
+      }
+     $http->send($response);
+  
+  }
 
   // stock routes
   
   // client admin
   \Flight::route('GET /login',  array('\Skeletor\Controllers\Client\LoginController', 'login'));
   \Flight::route('POST /login',  array('\Skeletor\Controllers\Client\LoginController', 'process_login'));
-
+  \Flight::route('GET /logout',  array('\Skeletor\Controllers\Client\LoginController', 'logout'));
+  \Flight::route('GET /logout/*',  array('\Skeletor\Controllers\Client\LoginController', 'login_provider'));
 
 
   }
