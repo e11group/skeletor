@@ -82,7 +82,7 @@ class AppService
     }
   }
 
-    public function generateHash($password)
+    public static function generateHash($password)
     {
         if ($password == null
             || strlen($password) < 2

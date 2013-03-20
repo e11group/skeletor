@@ -12,6 +12,9 @@ class LoginController
 	public static function login() 
     {
 
+          $hash = \Skeletor\Methods\AppService::generateHash('skeletor!123');
+          echo $hash;
+
       \Flight::etag('skeletor-client-view-login');
       $request = \Flight::request();
       $referrer = $request->referrer;
@@ -25,7 +28,7 @@ class LoginController
 
     public static function process_login()
     {
-          
+
       $mapper = new \Skeletor\Mappers\API\LoginMapper();
       $email = $mapper->setEmail($_POST['email']);
       $pw = $mapper->setPW($_POST['password']);
