@@ -6,7 +6,7 @@ class UserService
 
 	public static function create( $email, $password, $first_name, $last_name){ 
 
-			$sql = "INSERT INTO users ( email, password, first_name, last_name, created_at ) VALUES ( '$email', '$password', '$first_name', '$last_name', NOW() ) ";
+	   $sql = "INSERT INTO users ( email, password, first_name, last_name, created_at ) VALUES ( '$email', '$password', '$first_name', '$last_name', NOW() ) ";
 
 		mysql_query_excute($sql); 
 
@@ -43,6 +43,25 @@ class UserService
 		return mysql_fetch_assoc($result);
 	}
 
+	public static function find_by_provider_uid( $provider, $provider_uid )
+   {
+    $sql = "SELECT * FROM authentications WHERE provider = '$provider' AND provider_uid = '$provider_uid' LIMIT 1";
+    $result = mysql_query_excute($sql);  
+    return mysql_fetch_assoc($result);
+   }  
+
+   public static function find_by_user_id( $user_id )
+   {
+    $sql = "SELECT * FROM authentications WHERE user_id = '$user_id' LIMIT 1";  
+    $result = mysql_query_excute($sql);
+    return mysql_fetch_assoc($result);
+   } 
+  public function create( $user_id, $provider, $provider_uid, $email, $display_name, $first_name, $last_name, $profile_url, $website_url )
+  {
+    $sql = "INSERT INTO authentications ( user_id, provider, provider_uid, email, display_name, first_name, last_name, profile_url, website_url, created_at ) VALUES ( '$user_id', '$provider', '$provider_uid', '$email', '$display_name', '$first_name', '$last_name', '$profile_url', '$website_url', NOW() ) ";
+    mysql_query_excute($sql);    
+    return mysql_insert_id();
+  }  
 
 }
 

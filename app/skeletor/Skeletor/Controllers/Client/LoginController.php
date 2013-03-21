@@ -60,7 +60,7 @@ class LoginController
       $user_profile = $adapter->getUserProfile();
       $mapper = new \Skeletor\Mappers\API\LoginMapper();
 
-      $authentication_info = $mapper->find_by_provider_uid( $provider, $user_profile->identifier );
+      $authentication_info = \Skeletor\Methods\UserService::find_by_provider_uid( $provider, $user_profile->identifier );
 
       if( $authentication_info ){
         $_SESSION["user"] = $authentication_info["user_id"]; 
@@ -68,7 +68,7 @@ class LoginController
       }
 
       if( $user_profile->email ){ 
-       // $user_info = \Skeletor\Methods\UserService::find_by_email( $user_profile->email );
+       $user_info = \Skeletor\Methods\UserService::find_by_email( $user_profile->email );
 
         if( $user_info ) {
           die( '<br /><b style="color:red">Well! the email returned by the provider ('. $user_profile->email .') already exist in our database, so in this case you might use the <a href="index.php?route=users/login">Sign-in</a> to login using your email and password.</b>' );
@@ -84,10 +84,10 @@ class LoginController
       $profile_url   = $user_profile->profileURL;
       $password      = rand( ) ; # for the password we generate something random
 
-    //  $new_user_id = \Skeletor\Methods\UserService::create( $email, $password, $first_name, $last_name ); 
-      $mapper->create( $new_user_id, $provider, $provider_uid, $email, $display_name, $first_name, $last_name, $profile_url, $website_url );
-      $_SESSION["user"] = $new_user_id;
-      $this->redirect( "users/profile" );
+     // $new_user_id = \Skeletor\Methods\UserService::create( $email, $password, $first_name, $last_name ); 
+      \Skeletor\Methods\UserService::create( $new_user_id, $provider, $provider_uid, $email, $display_name, $first_name, $last_name, $profile_url, $website_url );
+         
+
     }
     catch( Exception $e ){
       // Display the recived error

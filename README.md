@@ -32,6 +32,7 @@ for more see wiki
 
 todo
 
+- client side lazy loading
 - privatize auth functions
 - pages widget
 - modules widget
