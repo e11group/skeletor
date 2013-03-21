@@ -76,7 +76,6 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
     if (crypt($this->pw, $hash) == $hash) {
 
                 $_SESSION['valid_auth'] = \Skeletor\Methods\AppService::hashHMAC($email, $hash);
-                $_SESSION['user_type'] = \Skeletor\Methods\AppService::hashHMAC($type, $hash);
                 $_SESSION['user_id'] = $user_id;
                 return $email;
             }

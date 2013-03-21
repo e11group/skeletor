@@ -7,16 +7,10 @@ class TemplateController
        
     public static function view_all() 
     {
+      // validate login
+      $validated = \Skeletor\Methods\UserService::authenticate_login(array('customer', 'admin'));
       // caching
       \Flight::etag('skeletor-client-view-templates');
-
-      $validated = \Skeletor\Methods\UserService::authenticate_login();
-      if ($validated == null) {
-         $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
-         $response = $http->newResponse();
-         $response->headers->set('Location', 'http://google.com');
-         $http->send($response);
-      }
       // let the real work go to building requests
       $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'templates');
       // set properties
@@ -31,6 +25,7 @@ class TemplateController
 
 
     public static function add_view() {
+      $validated = \Skeletor\Methods\UserService::authenticate_login(array('admin'));
       \Flight::etag('skeletor-client-view-template');
       $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'template');
       $set_method = $request_controller->setMethodHeader('METHOD_GET');
@@ -41,6 +36,7 @@ class TemplateController
 
 
     public static function add() {
+      $validated = \Skeletor\Methods\UserService::authenticate_login(array('admin'));
       $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'template');
       $set_method = $request_controller->setMethodHeader('METHOD_POST');
       $set_method = $request_controller->setAcceptHeader('text/html');
@@ -50,6 +46,7 @@ class TemplateController
 
 
     public static function edit($id) {
+      $validated = \Skeletor\Methods\UserService::authenticate_login(array('admin'));
       $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'templates/' . $id);
       $set_method = $request_controller->setMethodHeader('METHOD_POST');
       $set_method = $request_controller->setAcceptHeader('text/html');
@@ -59,6 +56,7 @@ class TemplateController
     }
 
     public static function edit_view($id) {
+      $validated = \Skeletor\Methods\UserService::authenticate_login(array('admin'));
       \Flight::etag('skeletor-client-edit-template');
       $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'templates/' . $id);
       if (isset($_GET['method']) && ($_GET['method'] == 'delete')) {
