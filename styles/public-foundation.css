@@ -124,7 +124,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 62.5em;
+  max-width: 87.5em;
   *zoom: 1;
 }
 /* line 184, scss/foundation/_foundation-global.scss */
@@ -3626,7 +3626,7 @@ form.custom .custom.disabled {
 
   /* line 342, scss/foundation/components/_top-bar.scss */
   .contain-to-grid .top-bar {
-    max-width: 62.5em;
+    max-width: 87.5em;
     margin: 0 auto;
   }
 

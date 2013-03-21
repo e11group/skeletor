@@ -165,6 +165,12 @@ class AppService
   \Flight::set('url', 'http://localhost/skeletor/public');
 
 
+
+\Flight::map('notFound', function(){
+    // Display custom 404 page
+    include  '404.html';
+});
+
   // auto generated routes
 
   // dbal
@@ -228,7 +234,7 @@ $qb = $em->createQueryBuilder();
   \Flight::route('GET /login',  array('\Skeletor\Controllers\Client\LoginController', 'login'));
   \Flight::route('POST /login',  array('\Skeletor\Controllers\Client\LoginController', 'process_login'));
   \Flight::route('GET /logout',  array('\Skeletor\Controllers\Client\LoginController', 'logout'));
-  \Flight::route('GET /logout/*',  array('\Skeletor\Controllers\Client\LoginController', 'login_provider'));
+  \Flight::route('GET /login/@provider',  array('\Skeletor\Controllers\Client\LoginController', 'login_provider'));
 
 
   }

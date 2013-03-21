@@ -33,18 +33,16 @@ for more see wiki
 todo
 
 - privatize auth functions
-- 404 handling
-- implement symcom config
 - pages widget
 - modules widget
 - account widget
 - orders widget
-- flash messaging system
-- db sessions
 
 
 0.04
-
+- 404 handling
+- db sessions
+- flash messaging system
 - login
 - payment classes
 - js / modularization of plugins / requireset

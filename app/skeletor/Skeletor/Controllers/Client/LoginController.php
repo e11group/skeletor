@@ -64,11 +64,11 @@ $hybridauth_config = VENDOR_DIR . '/../../hybridauth/config.php';
       $user_profile = $adapter->getUserProfile();
 
     // load user and authentication models, we will need them...
-      $authentication = $this->loadModel( "authentication" );
+      $mapper = $this->loadModel( "authentication" );
       $user = $this->loadModel( "user" );
 
     # 1 - check if user already have authenticated using this provider before
-      $authentication_info = $authentication->find_by_provider_uid( $provider, $user_profile->identifier );
+      $authentication_info = $mapper->find_by_provider_uid( $provider, $user_profile->identifier );
 
     # 2 - if authentication exists in the database, then we set the user as connected and redirect him to his profile page
       if( $authentication_info ){
@@ -105,7 +105,7 @@ $hybridauth_config = VENDOR_DIR . '/../../hybridauth/config.php';
       $new_user_id = $user->create( $email, $password, $first_name, $last_name ); 
 
       // 4.2 - creat a new authentication for him
-      $authentication->create( $new_user_id, $provider, $provider_uid, $email, $display_name, $first_name, $last_name, $profile_url, $website_url );
+      $mapper->create( $new_user_id, $provider, $provider_uid, $email, $display_name, $first_name, $last_name, $profile_url, $website_url );
  
       // 4.3 - store the new user_id in session
       $_SESSION["user"] = $new_user_id;
