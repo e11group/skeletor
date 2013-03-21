@@ -165,6 +165,29 @@ class AppService
   \Flight::set('url', 'http://localhost/skeletor/public');
 
 
+   // a real conditional, not breaking 'break first'
+  if (isset($_SESSION['user_id'])) {
+
+      $salt = \Flight::get('api-phrase');
+      $hashids = new \Hashids\Hashids($salt);      
+      $user_id = $hashids->decrypt($_SESSION['user_id']);
+      $em = \Flight::get('em');
+      $qb = $em->createQueryBuilder();
+      $qb->select(array('u'))
+         ->from('Skeletor\Entities\Client\Users', 'u')
+         ->where('u.id = :id')
+         ->setParameter('id', $user_id);
+         $query = $qb->getQuery();
+
+      // one or null
+      $users = $query->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
+      $email = $users->getEmail();  
+      \Flight::set('user_name', $email);
+      echo $email;
+
+  }
+
+
 
 \Flight::map('notFound', function(){
     // Display custom 404 page

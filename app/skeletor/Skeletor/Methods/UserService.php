@@ -84,12 +84,34 @@ class UserService
 		return mysql_query_excute($sql);
 	}
 
-	public static function find_by_id( $id ){
-		$sql = "SELECT * FROM users WHERE id = '$id' LIMIT 1";
+	public static function find_email_by_id($id){
+      $salt = \Flight::get('api-phrase');
+	  $hashids = new \Hashids\Hashids($salt);      
+	  $user_id = $hashids->decrypt($id);
+		$qb = $em->createQueryBuilder();
+        $qb->select(array('u'))
+         ->from('Skeletor\Entities\Client\Users', 'u')
+         ->where('u.id = :id')
+         ->setParameter('id', $user_id);
+         $query = $qb->getQuery();
+      
+      // one or null
+      $users = $query->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
+      if ($users == null) {
+         throw new \InvalidArgumentException('
+         	fucked up');
+      }
 
-		$result = mysql_query_excute($sql);
+     $email = $users->getEmail();
+     if ($email == null) {
+         throw new \InvalidArgumentException('
+         	fucked up');
+      }
 
-		return mysql_fetch_assoc($result);
+      return $email;
+
+
+
 	}
 
 	public static function find_by_email( $email ){

@@ -63,9 +63,8 @@ class TemplatesView
       */
     
       // Set up Twig
-       $formFactory = new \Skeletor\Forms\Factories\TemplateFactory();
+      $formFactory = new \Skeletor\Forms\Factories\TemplateFactory();
       $form = $formFactory->build($page_variables);
-
       $data = array(
           'form' => $form->createView(),
           'page_name' => \Flight::get('formal-name'),
@@ -73,6 +72,7 @@ class TemplatesView
           'data' => $page_variables,
           'resource_name' => 'Template',
           'encoded_name' => 'template',
+          'user_name' => \Flight::get('user_name'),
           'message' => isset($message) ? $message : ''
 
         );
