@@ -186,32 +186,7 @@ class AppService
   \Flight::route('POST /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','edit'));
   \Flight::route('DELETE /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','delete'));
 
-  // client
-    $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
-    $response = $http->newResponse();
-  if (!empty($_SESSION['valid_auth']) && !empty($_SESSION['user_email'])) {
-          $em = \Flight::get('em');
-                   $email = $_SESSION['user_email'];
 
-  
-  $session_auth = $_SESSION['valid_auth'];
-  
-$qb = $em->createQueryBuilder();
-    $qb->select(array('u'))
-       ->from('Skeletor\Entities\Client\Users', 'u')
-       ->where('u.email = :email')
-       ->setParameter('email', $email);
-       $query = $qb->getQuery();
-    // one or null
-    $users = $query->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
-    if ($users == null) {
-        return false;
-    }
-    $check_hash = $users->getHash();
-
-    $check_auth = \Skeletor\Methods\AppService::hashHMAC($email, $check_hash);
-
-    if($session_auth == $check_auth) {
 
   // template routes
     \Flight::route('GET /admin/templates',  array('\Skeletor\Controllers\Client\TemplateController','view_all'));
@@ -219,10 +194,6 @@ $qb = $em->createQueryBuilder();
     \Flight::route('GET /admin/template',  array('\Skeletor\Controllers\Client\TemplateController','add_view'));
     \Flight::route('GET /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit_view'));
     \Flight::route('POST /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit'));
-
-      } 
-  
-  }
 
 
 

@@ -9,6 +9,14 @@ class TemplateController
     {
       // caching
       \Flight::etag('skeletor-client-view-templates');
+
+      $validated = \Skeletor\Methods\UserService::authenticate_login();
+      if ($validated == null) {
+         $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
+         $response = $http->newResponse();
+         $response->headers->set('Location', 'http://google.com');
+         $http->send($response);
+      }
       // let the real work go to building requests
       $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'templates');
       // set properties

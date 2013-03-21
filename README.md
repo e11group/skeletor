@@ -32,6 +32,7 @@ for more see wiki
 
 todo
 
+- yaml driver to doctrine annotations
 - client side lazy loading
 - privatize auth functions
 - pages widget
@@ -39,6 +40,8 @@ todo
 - account widget
 - orders widget
 
+0.05
+-
 
 0.04
 - 404 handling

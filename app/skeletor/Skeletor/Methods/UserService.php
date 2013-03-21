@@ -4,14 +4,43 @@ namespace Skeletor\Methods;
 class UserService
 {
 
-	public static function create( $email, $password, $first_name, $last_name){ 
 
-	   $sql = "INSERT INTO users ( email, password, first_name, last_name, created_at ) VALUES ( '$email', '$password', '$first_name', '$last_name', NOW() ) ";
+	public static function authenticate_login()
+	{
 
-		mysql_query_excute($sql); 
+		  // client
+    if (!empty($_SESSION['valid_auth']) && !empty($_SESSION['user_id'])) {
+      $em = \Flight::get('em');
+      $user_id = $_SESSION['user_id'];
+      $session_auth = $_SESSION['valid_auth'];
+    
+      $qb = $em->createQueryBuilder();
+      $qb->select(array('u'))
+         ->from('Skeletor\Entities\Client\Users', 'u')
+         ->where('u.id = :id')
+         ->setParameter('id', $user_id);
+         $query = $qb->getQuery();
+      // one or null
+      $users = $query->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
+      if ($users == null) {
+          return false;
+      }
+      $check_hash = $users->getHash();  
+      $email = $users->getEmail();
+      $check_auth = \Skeletor\Methods\AppService::hashHMAC($email, $check_hash);  
 
-		return mysql_insert_id();
-	}
+      if($session_auth == $check_auth) {
+      	return true;
+  	  } else { 
+  	  	return null;
+      }
+
+    } else {
+      return null;
+    } 
+  
+   }
+
 
 	public static function update( $user_id, $email, $password, $first_name, $last_name){ 
 		$sql = "UPDATE users SET email = '$email', password = '$password', first_name = '$first_name', last_name = '$last_name' WHERE id = '$user_id' LIMIT 1";
