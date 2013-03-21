@@ -14,6 +14,10 @@ class Users
     protected $hash;
     /** @Column(type="string") **/
     protected $type;
+    /** @Column(type="string") **/
+    protected $provider;
+    /** @Column(type="string") **/
+    protected $provider_uid;
 
     public function getId()
     {
@@ -76,6 +80,41 @@ class Users
     {
         return $this->hash;
     }
+
+    public function setProvider($provider) 
+    {
+        
+        if ($provider == null) {
+            throw new \BadMethodCallException(
+                "empty provider");
+        }
+
+        $this->provider = $provider;
+    }
+
+    public function getProvider($provider) 
+    {
+        return $this->provider;
+    }
+        public function setProviderUid($provider_uid) 
+    {
+        
+        if ($provider_uid == null) {
+            throw new \BadMethodCallException(
+                "empty provider_uid");
+        }
+
+        $this->provider_uid = $provider_uid;
+    }
+
+    public function getProviderUid($provider_uid) 
+    {
+        return $this->provider_uid;
+    }
+
+
+
+
 
 }
 

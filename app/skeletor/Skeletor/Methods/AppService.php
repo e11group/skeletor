@@ -65,7 +65,7 @@ class AppService
     define('MODELS_DIR', '../app/models/');
     define('CONTROLLERS_DIR', '../app/controllers/');
     define('METHODS_DIR', '../app/methods/');
-    define('VENDOR_DIR', '../vendor/');  
+    define('VENDOR_DIR', ROOT . 'vendor/');  
     define('BASE_URL', $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
     $routes = explode('/', str_replace($_SERVER['HTTP_HOST'], '', BASE_URL));  
     define('CSRF_SECRET', 'c2ioeEU1n48QF2WsHGWd2HmiuUUT6dxr');
@@ -187,7 +187,8 @@ class AppService
   \Flight::route('DELETE /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','delete'));
 
   // client
-
+    $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
+    $response = $http->newResponse();
   if (!empty($_SESSION['valid_auth']) && !empty($_SESSION['user_email'])) {
           $em = \Flight::get('em');
                    $email = $_SESSION['user_email'];
@@ -209,9 +210,7 @@ $qb = $em->createQueryBuilder();
     $check_hash = $users->getHash();
 
     $check_auth = \Skeletor\Methods\AppService::hashHMAC($email, $check_hash);
-    $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
-    $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
-    $response = $http->newResponse();
+
     if($session_auth == $check_auth) {
 
   // template routes
@@ -221,12 +220,11 @@ $qb = $em->createQueryBuilder();
     \Flight::route('GET /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit_view'));
     \Flight::route('POST /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit'));
 
-      } else {
-        $response->headers->set('Location', 'login');
-      }
-     $http->send($response);
+      } 
   
   }
+
+
 
   // stock routes
   

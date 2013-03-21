@@ -51,7 +51,8 @@ class LoginController
     public static function login_provider($provider) {
   // load hybridauth base file, change the following paths if necessary
 // note: in your application you probably have to include these only when required.
-$hybridauth_config = VENDOR_DIR . '/../../hybridauth/config.php';
+   require_once VENDOR_DIR . 'hybridauth/hybridauth/Hybrid/Auth.php';
+$hybridauth_config = VENDOR_DIR . 'hybridauth/hybridauth/config.php';
 
     try{
     // create an instance for Hybridauth with the configuration file path as parameter
@@ -64,7 +65,8 @@ $hybridauth_config = VENDOR_DIR . '/../../hybridauth/config.php';
       $user_profile = $adapter->getUserProfile();
 
     // load user and authentication models, we will need them...
-      $mapper = $this->loadModel( "authentication" );
+      $mapper = new \Skeletor\Mappers\API\LoginMapper;
+      
       $user = $this->loadModel( "user" );
 
     # 1 - check if user already have authenticated using this provider before
@@ -130,14 +132,7 @@ $hybridauth_config = VENDOR_DIR . '/../../hybridauth/config.php';
                break;
       } 
 
-      // well, basically your should not display this to the end user, just give him a hint and move on..
-      $error .= "<br /><br /><b>Original error message:</b> " . $e->getMessage(); 
-      $error .= "<hr /><pre>Trace:<br />" . $e->getTraceAsString() . "</pre>"; 
-
-      // load error view
-      $data = array( "error" => $error ); 
-      $this->loadView( "pages/error", $data );
-    }
+  
 
     }
  }
