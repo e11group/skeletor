@@ -26,7 +26,10 @@ class UserService
 
 
       $em = \Flight::get('em');
-      $user_id = $_SESSION['user_id'];
+      $hashed = $_SESSION['user_id'];
+      $salt = \Flight::get('api-phrase');
+      $hashids = new \Hashids\Hashids($salt);      
+	  $user_id = $hashids->decrypt($hashed);
       $session_auth = $_SESSION['valid_auth'];
     
       $qb = $em->createQueryBuilder();
@@ -52,13 +55,11 @@ class UserService
          $response->headers->set('Location', 'http://google.com');
          $http->send($response);
          die;  
-
        }
 
         if(!empty($class_type)) {
 
         	foreach ($class_type as $ct) {
-
               if ($ct == $type) {
                $marked = true;
               } 
@@ -73,9 +74,7 @@ class UserService
 
 
       	}
-
        return true;
-  
    }
 
 

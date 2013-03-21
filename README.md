@@ -41,7 +41,11 @@ todo
 - orders widget
 
 0.05
--
+- hashed uids
+- implemented user classes
+- auth verified login
+- cleaned up authentication controller
+- handling for errors / misauthentication
 
 0.04
 - 404 handling

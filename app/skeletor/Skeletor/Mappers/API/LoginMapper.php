@@ -74,9 +74,13 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
     $type = $users->getType();
     $user_id = $users->getId();
     if (crypt($this->pw, $hash) == $hash) {
+      $salt = \Flight::get('api-phrase');
+      $hashids = new \Hashids\Hashids($salt);      
+
+      $hashed_id = $hashids->encrypt($user_id);
 
                 $_SESSION['valid_auth'] = \Skeletor\Methods\AppService::hashHMAC($email, $hash);
-                $_SESSION['user_id'] = $user_id;
+                $_SESSION['user_id'] = $hashed_id;
                 return $email;
             }
 
