@@ -20,6 +20,7 @@ class AppService
       return $page_name_arr;
     }
 
+
   public static function hashHMAC($data, $api_client_key = null) 
   {
 
@@ -183,7 +184,6 @@ class AppService
       $users = $query->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
       $email = $users->getEmail();  
       \Flight::set('user_name', $email);
-      echo $email;
 
   }
 

@@ -3,6 +3,7 @@ namespace Skeletor\Methods;
 
 class UserService
 {
+//these are methods for the client
 
 
 	public static function authenticate_login($class_type = array())
