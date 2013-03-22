@@ -1,31 +1,4 @@
-#skeletor
-
-skeletor is a got damn dry kiss skeleton with muscles for rapid app development. 
-
-pre-pre-alpha.
-
-
-##buzzwords
-
-- security
-- performance
-- scalability
-- extensibility
-- maintainability
-
-for more see wiki
-
-##todo
-
-- change to symcom di
-- change to symcom console
-- clientside api client
-- i18n / l10n
-- add logging calls
-- add test units
-- second pass at code style guides
-- example
-- documentation
+#barrrrap
 
 
 ###log
