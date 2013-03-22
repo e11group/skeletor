@@ -38,6 +38,7 @@ todo
 - pages widget
 - modules widget
 - account widget
+- payment link
 - orders widget
 
 0.05
