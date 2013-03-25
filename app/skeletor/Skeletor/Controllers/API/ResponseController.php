@@ -66,12 +66,6 @@ class ResponseController
           if ($isHtml !== false) {
               // load our server side client
             switch ($view) {
-                case 'view_all':
-                    Print \Skeletor\Views\Client\TemplatesView::view_all('Template', $data);
-                    break;
-                case 'view_item':
-                    Print \Skeletor\Views\Client\TemplatesView::view_item('Template', $data);
-                    break;
                 case 'dump':
                     Print $data;
                     break;

@@ -35,7 +35,7 @@ class UserService
     
       $qb = $em->createQueryBuilder();
       $qb->select(array('u'))
-         ->from('Skeletor\Entities\Client\Users', 'u')
+         ->from('Skeletor\Entities\API\Users', 'u')
          ->where('u.id = :id')
          ->setParameter('id', $user_id);
          $query = $qb->getQuery();

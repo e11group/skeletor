@@ -54,7 +54,7 @@ class AppService
     date_default_timezone_set('America/Los_Angeles');  
     define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/skeletor/');
     define('WWW', '/skeletor/public/');
-    define('API_LOC', 'http://localhost/skeletor/public/api/');
+    define('API_LOC', 'http://localhost/star/skeletor/public/api/');
     define('BASE', '/');
     define('CONFIG_DIR', '../app/config/');
     define('SCRIPTS_DIR', ROOT . 'scripts/');
@@ -117,13 +117,13 @@ class AppService
    * Initiate Twig, and register to Flight
    */
    $loader = new \Twig_Loader_Filesystem(array(
-    $_SERVER['DOCUMENT_ROOT'] . '/skeletor/app/templates',
+    $_SERVER['DOCUMENT_ROOT'] . '/star/skeletor/app/templates',
          VENDOR_TWIG_BRIDGE_DIR . '/Resources/views/Form',
      )
    );
    $twigConfig = array(
-       // 'cache'  =>  './cache/twig/',
-       // 'cache'  =>  false,
+        'cache'  =>  './cache/twig/',
+        'cache'  =>  false,
        'debug' =>  false,
    );
    \Flight::register('view_form', 'Twig_Environment', array($loader, $twigConfig), function($twig) {
@@ -165,7 +165,7 @@ class AppService
   \Flight::set('formal-name', 'Skeletor');
   \Flight::set('url', 'http://localhost/skeletor/public');
 
-
+/*
    // a real conditional, not breaking 'break first'
   if (isset($_SESSION['user_id'])) {
 
@@ -187,21 +187,14 @@ class AppService
 
   }
 
-
+*/
 
 \Flight::map('notFound', function(){
     // Display custom 404 page
     include  '404.html';
 });
 
-  // auto generated routes
-
-  // dbal
-  \Flight::route('/items',  array('\Skeletor\Controllers\Items\Items','get_items_page'));
-
-  // api
-
-  // template routes
+/*
   \Flight::route('GET /api/templates',  array('\Skeletor\Controllers\API\TemplateController','find_all'));
   \Flight::route('POST /api/template',  array('\Skeletor\Controllers\API\TemplateController','create'));
   \Flight::route('GET /api/template',  array('\Skeletor\Controllers\API\TemplateController','create_view'));
@@ -209,24 +202,36 @@ class AppService
   \Flight::route('POST /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','edit'));
   \Flight::route('DELETE /api/templates/@id',  array('\Skeletor\Controllers\API\TemplateController','delete'));
 
+  \Flight::route('GET /admin/templates',  array('\Skeletor\Controllers\Client\TemplateController','view_all'));
+  \Flight::route('POST /admin/template',  array('\Skeletor\Controllers\Client\TemplateController','add'));
+  \Flight::route('GET /admin/template',  array('\Skeletor\Controllers\Client\TemplateController','add_view'));
+  \Flight::route('GET /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit_view'));
+  \Flight::route('POST /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit'));
+
+*/
+
+  // api
+  // work routes
 
 
-  // template routes
-    \Flight::route('GET /admin/templates',  array('\Skeletor\Controllers\Client\TemplateController','view_all'));
-    \Flight::route('POST /admin/template',  array('\Skeletor\Controllers\Client\TemplateController','add'));
-    \Flight::route('GET /admin/template',  array('\Skeletor\Controllers\Client\TemplateController','add_view'));
-    \Flight::route('GET /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit_view'));
-    \Flight::route('POST /admin/templates/@id',  array('\Skeletor\Controllers\Client\TemplateController','edit'));
+  // nice api helper routes
+  \Flight::route('GET /api/customers',  array('\Skeletor\Controllers\API\CustomersController','find_all'));
+  \Flight::route('GET /api/customers/@id',  array('\Skeletor\Controllers\API\CustomersController','find_by_id'));
+  \Flight::route('POST /api/customer',  array('\Skeletor\Controllers\API\CustomersController','create'));
+  \Flight::route('POST /api/customers/@id',  array('\Skeletor\Controllers\API\CustomersController','update'));
+  \Flight::route('DELETE /api/customers/@id',  array('\Skeletor\Controllers\API\CustomersController','update'));
 
 
 
-  // stock routes
-  
+  // client
   // client admin
   \Flight::route('GET /login',  array('\Skeletor\Controllers\Client\LoginController', 'login'));
   \Flight::route('POST /login',  array('\Skeletor\Controllers\Client\LoginController', 'process_login'));
   \Flight::route('GET /logout',  array('\Skeletor\Controllers\Client\LoginController', 'logout'));
   \Flight::route('GET /login/@provider',  array('\Skeletor\Controllers\Client\LoginController', 'login_provider'));
+
+  \Flight::route('GET /admin/customers',  array('\Skeletor\Controllers\Client\CustomersController','view_all'));
+  \Flight::route('POST /admin/customers',  array('\Skeletor\Controllers\Client\CustomersController','find_all'));
 
 
   }

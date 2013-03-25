@@ -60,7 +60,7 @@ class LoginMapper implements \Skeletor\Interfaces\API\LoginMapperInterface
     // load up trusy query builder
     $qb = $this->em->createQueryBuilder();
     $qb->select(array('u'))
-       ->from('Skeletor\Entities\Client\Users', 'u')
+       ->from('Skeletor\Entities\API\Users', 'u')
        ->where('u.email = :email')
        ->setParameter('email', $this->email);
        $query = $qb->getQuery();
