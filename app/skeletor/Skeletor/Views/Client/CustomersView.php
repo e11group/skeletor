@@ -23,7 +23,6 @@ class CustomersView
       */
 
 
-
      // Call your custom method
       $data = array(
           'page_name' => \Flight::get('formal-name'),

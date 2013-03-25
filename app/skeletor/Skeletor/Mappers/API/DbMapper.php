@@ -58,9 +58,8 @@ class DbMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
        ->from("Skeletor\Entities\API\\$resource", 'u')
        ->orderBy('u.id', $order);
 
-
     $query = $qb->getQuery();
-		$users = $query->getResult();
+		$users = $query->getResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
 		return $users;
     }
 

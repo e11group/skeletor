@@ -1513,7 +1513,7 @@ body .redactor_toolbar li a.redactor_btn_alignment {
 }
 
 /* line 28, scss/app/_tables.scss */
-table.tsort .header {
+table.table-sort .tablesorter-header {
   background: url(../images/app/tsort-bg.png) 6px 11px no-repeat;
   padding-left: 19px;
   padding-top: 8px;
@@ -1522,13 +1522,13 @@ table.tsort .header {
 }
 
 /* line 37, scss/app/_tables.scss */
-table.tsort .headerSortUp {
+table.table-sort .tablesorter-headerAsc {
   background: #efefef url(../images/app/tsort-bg-up.png) 6px 15px no-repeat;
   cursor: pointer !important;
 }
 
 /* line 42, scss/app/_tables.scss */
-table.tsort .headerSortDown {
+table.table-sort .tablesorter-headerDesc {
   background: #efefef url(../images/app/tsort-bg-down.png) 6px 15px no-repeat;
   cursor: pointer !important;
 }

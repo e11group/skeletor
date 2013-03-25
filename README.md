@@ -35,13 +35,19 @@ todo
 - yaml driver to doctrine annotations
 - client side lazy loading
 - privatize auth functions
+- client side html validation
+
+
+- payment link
+
+0.1
+- 
+
+0.05
 - pages widget
 - modules widget
 - account widget
-- payment link
 - orders widget
-
-0.05
 - hashed uids
 - implemented user classes
 - auth verified login

@@ -10,20 +10,20 @@ class CustomersController
 
     }
        
-    public static function find_all() {
+    
+
+     public static function find_all() {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
-
       //caching
-      //\Flight::etag('skeletor-admin-view-customer');
-
+      \Flight::etag('skeletor-admin-view-template');
       $mapper = new \Skeletor\Mappers\API\DbMapper('Customers');
-      if ($data = $mapper->findAll()) {
-        Print \Skeletor\Views\Client\CustomersView::view_all('Customer', $data);
-      } else {
-        Skeletor\Controllers\API\ResponseController::respond($select, 400);
+      $data = $mapper->findAll();
 
+      if (empty($data)) {
+        \Skeletor\Controllers\API\ResponseController::respond($select, 400);
       }
+        Print \Skeletor\Views\Client\CustomersView::view_all('Customer', $data);
 
     }
 
