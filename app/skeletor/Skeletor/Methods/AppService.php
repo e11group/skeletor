@@ -79,7 +79,7 @@ class AppService
     if (isset($routes[3])) {
     define('PAGE_TITLE', ucwords($routes[3])); 
     } else {
-    define('PAGE_TITLE', 'LeaderTech'); 
+    define('PAGE_TITLE', 'Skeletor'); 
     }
   }
 

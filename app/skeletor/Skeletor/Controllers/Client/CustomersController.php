@@ -11,7 +11,7 @@ class CustomersController
       $validated = \Skeletor\Methods\UserService::authenticate_login(array('admin'));
 
       // caching
-      //\Flight::etag('skeletor-client-view-templates');
+      \Flight::etag('skeletor-client-view-templates');
       // let the real work go to building requests
       $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'customers');
       // set properties
