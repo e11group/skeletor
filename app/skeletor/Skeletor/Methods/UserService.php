@@ -9,18 +9,20 @@ class UserService
 	public static function authenticate_login($class_type = array())
 	{
 
+    $url = \Flight::get('url');
+
        $http = include VENDOR_DIR . 'aura/http/scripts/instance.php';
        $response = $http->newResponse();
 		  // client
       if (!isset($_SESSION['valid_auth'])) {
-         $response->headers->set('Location', 'http://google.com');
+         $response->headers->set('Location', $url);
          $http->send($response);
                   die;  
 
       }
       		  // client
       if (empty($_SESSION['user_id'])) {
-      	 $response->headers->set('Location', 'http://google.com');
+      	 $response->headers->set('Location', $url);
          $http->send($response);
          die;  
       }         
@@ -30,7 +32,7 @@ class UserService
       $hashed = $_SESSION['user_id'];
       $salt = \Flight::get('api-phrase');
       $hashids = new \Hashids\Hashids($salt);      
-	  $user_id = $hashids->decrypt($hashed);
+	    $user_id = $hashids->decrypt($hashed);
       $session_auth = $_SESSION['valid_auth'];
     
       $qb = $em->createQueryBuilder();
@@ -43,17 +45,18 @@ class UserService
       // one or null
       $users = $query->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
       if ($users == null) {
-         $response->headers->set('Location', 'http://google.com');
+         $response->headers->set('Location', $url);
          $http->send($response);
       }
 
       $check_hash = $users->getHash();  
       $email = $users->getEmail();
+      \Flight::set('client-email', $email);
       $type = $users->getType();
       $check_auth = \Skeletor\Methods\AppService::hashHMAC($email, $check_hash);  
 
       if($session_auth != $check_auth) {
-         $response->headers->set('Location', 'http://google.com');
+         $response->headers->set('Location', $url);
          $http->send($response);
          die;  
        }
@@ -68,7 +71,7 @@ class UserService
         	}
 
         	if (empty($marked)) {
-        		$response->headers->set('Location', 'http://google.com');
+        		$response->headers->set('Location', $url);
                 $http->send($response);
                 die; 
         	}

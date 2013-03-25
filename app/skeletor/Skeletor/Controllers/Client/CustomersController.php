@@ -17,6 +17,7 @@ class CustomersController
       // set properties
       $set_method = $request_controller->setMethodHeader('METHOD_GET');
       $set_method = $request_controller->setAcceptHeader('text/html');
+      
       // send request
       $request = $request_controller->request();
       // print it

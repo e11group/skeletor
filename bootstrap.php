@@ -45,3 +45,9 @@
         'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em)
     ));
     \Flight::set('em', $em);
+
+foreach (getallheaders() as $name => $value) {
+    if ($name == 'From') {
+      \Flight::set('client-email',  $value);
+    }
+}
