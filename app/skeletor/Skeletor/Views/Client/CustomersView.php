@@ -22,7 +22,6 @@ class CustomersView
       /*
       */
 
-var_dump($page_variables);
      // Call your custom method
       $data = array(
           'page_name' => \Flight::get('formal-name'),
@@ -31,6 +30,8 @@ var_dump($page_variables);
           'resource_name' => 'Customer',
           'encoded_name' => 'customer',
           'template_name' => 'admin/views/Customer.html',
+          'addable' => false,
+          'user' => \Flight::get('client-email'),
           'message' => isset($message) ? $message : ''
         );
       //$data =  array_merge($data, $page_variables);

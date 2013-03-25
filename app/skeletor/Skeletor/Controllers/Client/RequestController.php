@@ -120,6 +120,7 @@ class RequestController
     $query = \Flight::get('api-phrase');
     $url = \Flight::get('url');
     $url .= '/admin/templates';
+    
 
     // hash the query
     $query = \Skeletor\Methods\AppService::hashHMAC($query); 
