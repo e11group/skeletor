@@ -54,7 +54,7 @@ class AppService
     date_default_timezone_set('America/Los_Angeles');  
     define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/skeletor/');
     define('WWW', '/skeletor/public/');
-    define('API_LOC', 'http://localhost/star/skeletor/public/api/');
+    define('API_LOC', 'http://localhost/skeletor/public/api/');
     define('BASE', '/');
     define('CONFIG_DIR', '../app/config/');
     define('SCRIPTS_DIR', ROOT . 'scripts/');
@@ -117,7 +117,7 @@ class AppService
    * Initiate Twig, and register to Flight
    */
    $loader = new \Twig_Loader_Filesystem(array(
-    $_SERVER['DOCUMENT_ROOT'] . '/star/skeletor/app/templates',
+    $_SERVER['DOCUMENT_ROOT'] . '/skeletor/app/templates',
          VENDOR_TWIG_BRIDGE_DIR . '/Resources/views/Form',
      )
    );

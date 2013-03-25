@@ -1,0 +1,45 @@
+<table class="small-12 large-12 table-sort" id="table_widget">
+
+    <thead>
+       <tr>
+          <th>ID</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Order History</th>
+          <th>Edit</th>
+          <th>Delete</th>
+         </tr>
+  </thead>
+<tbody>
+  
+        {% for key,value in data %}
+        a{{value.id}}
+                {% for k,val in value %}
+                          <td>{{ val.id|e }}</td>
+
+        {% endfor %} 
+
+        <tr>
+          <td>{{ value.id|e }}</td>
+          <td>{{ value.first_name|e }}</td>
+          <td>{{ value.email|e }}</td>
+          <td>{{ value.first_name|e }}</td>
+          <td><a href="{{url}}/admin/{{encoded_name}}s/{{value.id|e}}" class="tiny secondary button">Edit</a></td>
+          <td><a href="javascript:;" data-reveal-id="modal{{value.id|e}}" class="tiny secondary button">Delete</a>
+            <!-- TODO inject id somehow through link? -->
+<div id="modal{{value.id|e}}" class="reveal-modal large">
+  <h2>Delete This Template</h2>
+  <p class="lead">This record will be deleted forever.</p>
+  <p>Please confirm permanent deletion of this record.</p>
+  <a href="{{url}}/admin/{{encoded_name}}s/{{value.id|e}}?method=delete" class="alert button">Delete</a>
+  <a class="close-reveal-modal tiny secondary button">&#215;</a>
+</div>
+
+</td>
+        </tr>
+        {% endfor %} 
+  
+</tbody>
+
+</table>
+

@@ -22,6 +22,12 @@ class Customers
      **/
     private $user;
 
+    /** @Column(type="string") **/
+    protected $first_name;
+
+    /** @Column(type="string") **/
+    protected $last_name;
+
 /**
  * Getter for id
  *
