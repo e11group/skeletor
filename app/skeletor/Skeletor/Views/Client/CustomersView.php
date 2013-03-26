@@ -33,7 +33,7 @@ class CustomersView
           'template_name' => 'admin/views/Customer.html',
           'addable' => false,
           'user' => \Flight::get('client-email'),
-          'customers_active' => 'active',
+          'store_active' => 'active',
           'message' => isset($message) ? $message : ''
         );
       //$data =  array_merge($data, $page_variables);

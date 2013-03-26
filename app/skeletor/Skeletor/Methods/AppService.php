@@ -225,15 +225,103 @@ class AppService
 
   // client
   // client admin
+
   \Flight::route('GET /login',  array('\Skeletor\Controllers\Client\LoginController', 'login'));
   \Flight::route('POST /login',  array('\Skeletor\Controllers\Client\LoginController', 'process_login'));
   \Flight::route('GET /logout',  array('\Skeletor\Controllers\Client\LoginController', 'logout'));
   \Flight::route('GET /login/@provider',  array('\Skeletor\Controllers\Client\LoginController', 'login_provider'));
+  \Flight::route('GET /account',  array('\Skeletor\Controllers\Client\AccountController', 'view'));
+  \Flight::route('POST /account',  array('\Skeletor\Controllers\Client\AccountController', 'update'));
 
-  \Flight::route('GET /admin/customers',  array('\Skeletor\Controllers\Client\CustomersController','view_all'));
-  \Flight::route('POST /admin/customers',  array('\Skeletor\Controllers\Client\CustomersController','find_all'));
+  \Flight::route('GET /admin/store/settings/emails',  array('\Skeletor\Controllers\Client\EmailsController','find_settings'));
+  \Flight::route('POST /admin/store/settings/emails',  array('\Skeletor\Controllers\Client\EmailsController','update_settings'));
 
+  \Flight::route('GET /admin/store/settings/coupons',  array('\Skeletor\Controllers\Client\CouponsController','find_settings'));
+  \Flight::route('POST /admin/store/settings/coupons',  array('\Skeletor\Controllers\Client\CouponsController','update_settings'));
+
+  \Flight::route('GET /admin/store/settings/shipping',  array('\Skeletor\Controllers\Client\ShippingController','find_settings'));
+  \Flight::route('POST /admin/store/settings/shipping',  array('\Skeletor\Controllers\Client\ShippingController','update_settings'));
+
+  \Flight::route('GET /admin/store/settings/taxes',  array('\Skeletor\Controllers\Client\TaxesController','find_settings'));
+  \Flight::route('POSt /admin/store/settings/taxes',  array('\Skeletor\Controllers\Client\Taxesontroller','update_settings'));
+
+  \Flight::route('GET /admin/store',  array('\Skeletor\Controllers\Client\StoreController','run_store'));
+  \Flight::route('GET /admin/cms',  array('\Skeletor\Controllers\Client\CMSController','run_cms'));
+
+  \Flight::route('GET /admin/store/coupons',  array('\Skeletor\Controllers\Client\CouponsController','find_all'));
+  \Flight::route('GET /admin/store/coupons/@id',  array('\Skeletor\Controllers\Client\CouponsController','find_by_id'));
+  \Flight::route('GET /admin/store/coupon',  array('\Skeletor\Controllers\Client\CouponsController','create_view'));
+  \Flight::route('POST /admin/store/coupon',  array('\Skeletor\Controllers\Client\CouponsController','create'));
+  \Flight::route('POST /admin/store/coupons/@id',  array('\Skeletor\Controllers\Client\CouponsController','update'));
+  \Flight::route('DELETE /admin/store/coupons/@id',  array('\Skeletor\Controllers\Client\CouponsController','update'));
+
+  \Flight::route('GET /admin/store/emails',  array('\Skeletor\Controllers\Client\EmailsController','find_all'));
+  \Flight::route('GET /admin/store/emails/@id',  array('\Skeletor\Controllers\Client\EmailsController','find_by_id'));
+  \Flight::route('GET /admin/store/email',  array('\Skeletor\Controllers\Client\EmailsController','create_view'));
+  \Flight::route('POST /admin/store/email',  array('\Skeletor\Controllers\Client\EmailsController','create'));
+  \Flight::route('POST /admin/store/emails/@id',  array('\Skeletor\Controllers\Client\EmailsController','update'));
+  \Flight::route('DELETE /admin/store/emails/@id',  array('\Skeletor\Controllers\Client\EmailsController','update'));
+
+  \Flight::route('GET /admin/store/emails/templates',  array('\Skeletor\Controllers\Client\EmailsController','find_all_templates'));
+  \Flight::route('GET /admin/store/emails/templates/@id',  array('\Skeletor\Controllers\Client\EmailsController','find_template_by_id'));
+  \Flight::route('GET /admin/emails/template',  array('\Skeletor\Controllers\Client\EmailsController','create_template_view'));
+  \Flight::route('POST /admin/emails/template',  array('\Skeletor\Controllers\Client\EmailsController','create_template'));
+  \Flight::route('POST /admin/store/emails/templates/@id',  array('\Skeletor\Controllers\Client\EmailsController','update_template'));
+  \Flight::route('DELETE /admin/store/emails/templates/@id',  array('\Skeletor\Controllers\Client\EmailsController','update_template'));
+
+  \Flight::route('GET /admin/store/customers',  array('\Skeletor\Controllers\Client\CustomersController','view_all'));
+  \Flight::route('GET /admin/store/customers/history/@id',  array('\Skeletor\Controllers\Client\CustomersController','view_history_by_id'));
+  \Flight::route('GET /admin/store/customers/@id',  array('\Skeletor\Controllers\Client\CustomersController','view_by_id'));
+
+  \Flight::route('GET /admin/store/orders',  array('\Skeletor\Controllers\Client\OrdersController','find_all'));
+  \Flight::route('GET /admin/store/orders/@id',  array('\Skeletor\Controllers\Client\OrdersController','find_by_id'));
+  \Flight::route('GET /admin/store/orders/details/@id',  array('\Skeletor\Controllers\Client\OrdersController','find_details_by_id'));
+  \Flight::route('GET /admin/store/orders/status/@id',  array('\Skeletor\Controllers\Client\OrdersController','find_status_by_id'));
+  \Flight::route('POST /admin/store/orders/status/@id',  array('\Skeletor\Controllers\Client\OrdersController','update_status'));
+  \Flight::route('GET /admin/store/orders/tracking/@id',  array('\Skeletor\Controllers\Client\OrdersController','find_tracking_by_id'));
+  \Flight::route('POST /admin/store/orders/tracking/@id',  array('\Skeletor\Controllers\Client\OrdersController','update_tracking'));
+
+  \Flight::route('GET /admin/store/products',  array('\Skeletor\Controllers\Client\ProductsController','find_all'));
+  \Flight::route('GET /admin/store/products/@id',  array('\Skeletor\Controllers\Client\ProductsController','find_by_id'));
+  \Flight::route('GET /admin/store/product',  array('\Skeletor\Controllers\Client\ProductsController','create_view'));
+  \Flight::route('POST /admin/store/product',  array('\Skeletor\Controllers\Client\ProductsController','create'));
+  \Flight::route('POST /admin/store/products/@id',  array('\Skeletor\Controllers\Client\ProductsController','update'));
+  \Flight::route('DELETE /admin/store/products/@id',  array('\Skeletor\Controllers\Client\ProductsController','update'));
+
+  \Flight::route('GET /admin/store/products/categories',  array('\Skeletor\Controllers\Client\ProductsController','find_all_categories'));
+  \Flight::route('GET /admin/store/products/categories/@id',  array('\Skeletor\Controllers\Client\ProductsController','find_category_by_id'));
+  \Flight::route('GET /admin/store/products/categories',  array('\Skeletor\Controllers\Client\ProductsController','create_category_view'));
+  \Flight::route('POST /admin/store/products/categories',  array('\Skeletor\Controllers\Client\ProductsController','create_category'));
+  \Flight::route('POST /admin/store/products/categories/@id',  array('\Skeletor\Controllers\Client\ProductsController','update_category'));
+  \Flight::route('DELETE /admin/store/products/categories/@id',  array('\Skeletor\Controllers\Client\ProductsController','update_category'));
+
+  \Flight::route('GET /admin/store/products/tags',  array('\Skeletor\Controllers\Client\ProductsController','find_all_tags'));
+  \Flight::route('GET /admin/store/products/tags/@id',  array('\Skeletor\Controllers\Client\ProductsController','find__tagby_id'));
+  \Flight::route('GET /admin/store/products/tag',  array('\Skeletor\Controllers\Client\ProductsController','create_tag_view'));
+  \Flight::route('POST /admin/store/products/tag',  array('\Skeletor\Controllers\Client\ProductsController','create_tag'));
+  \Flight::route('POST /admin/store/products/tags/@id',  array('\Skeletor\Controllers\Client\ProductsController','update_tag'));
+  \Flight::route('DELETE /admin/store/products/tags/@id',  array('\Skeletor\Controllers\Client\ProductsController','update_tag'));
+
+  \Flight::route('GET /admin/cms/pages',  array('\Skeletor\Controllers\Client\PagesController','find_all'));
+  \Flight::route('GET /admin/cms/pages/@id',  array('\Skeletor\Controllers\Client\PagesController','find_by_id'));
+  \Flight::route('GET /admin/cms/page',  array('\Skeletor\Controllers\Client\PagesController','create_view'));
+  \Flight::route('POST /admin/cms/page',  array('\Skeletor\Controllers\Client\PagesController','create'));
+  \Flight::route('POST /admin/cms/pages/@id',  array('\Skeletor\Controllers\Client\PagesController','update'));
+  \Flight::route('DELETE /admin/cms/pages/@id',  array('\Skeletor\Controllers\Client\PagesController','update'));
+
+    \Flight::route('GET /admin/cms/pages/templates',  array('\Skeletor\Controllers\Client\PagesController','find_all_templates'));
+  \Flight::route('GET /admin/cms/pages/templates/@id',  array('\Skeletor\Controllers\Client\PagesController','find_template_by_id'));
+  \Flight::route('GET /admin/cms/pages/template',  array('\Skeletor\Controllers\Client\PagesController','create_template_view'));
+  \Flight::route('POST /admin/cms/pages/template',  array('\Skeletor\Controllers\Client\PagesController','create_template'));
+  \Flight::route('POST /admin/cms/pages/templates/@id',  array('\Skeletor\Controllers\Client\PagesController','update_template'));
+  \Flight::route('DELETE /admin/cms/pages/templates/@id',  array('\Skeletor\Controllers\Client\PagesController','update_template'));
+
+  \Flight::route('GET /admin/cms/pages/blocks',  array('\Skeletor\Controllers\Client\PagesController','find_all_blocks'));
+  \Flight::route('GET /admin/cms/pages/blocks/@id',  array('\Skeletor\Controllers\Client\PagesController','find_block_by_id'));
+  \Flight::route('GET /admin/cms/pages/block',  array('\Skeletor\Controllers\Client\PagesController','create_block_view'));
+  \Flight::route('POST /admin/cms/pages/block',  array('\Skeletor\Controllers\Client\PagesController','create_block'));
+  \Flight::route('POST /admin/cms/pages/blocks/@id',  array('\Skeletor\Controllers\Client\PagesController','update_block'));
+  \Flight::route('DELETE /admin/cms/pages/blocks/@id',  array('\Skeletor\Controllers\Client\PagesController','update_block'));
 
   }
-
 }
