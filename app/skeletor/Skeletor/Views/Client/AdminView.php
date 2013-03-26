@@ -4,17 +4,9 @@ namespace Skeletor\Views\Client;
 use Symfony\Component\Validator\Constraints\MinLength;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-//-------------------------------------------------------------------------------------------------------------
-
-    /**
-     *
-     * The Admin View Page Model
-     *
-     *
-    */
 
 
-class TemplatesView
+class AdminView
 
 {
 
@@ -28,8 +20,12 @@ class TemplatesView
           'page_name' => \Flight::get('formal-name'),
           'url' => \Flight::get('url'),
           'data' => $page_variables,
-          'resource_name' => 'Template',
-          'encoded_name' => 'template',
+          'resource_name' => $page_name['resource'],
+          'encoded_name' => $page_name['encoded'],
+          'template_name' => 'admin/views/'.$page_name['resource'].'.html',
+          'addable' => false,
+          'user' => \Flight::get('client-email'),
+          'store_active' => 'active',
           'message' => isset($message) ? $message : ''
         );
      
@@ -47,27 +43,24 @@ class TemplatesView
      $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
 
 
-      // TODO partition this shit out to the various builders 
-      /*********
-      /* CONFIG STUFF
-      /*
-      */
-    
-      // Set up Twig
-      $formFactory = new \Skeletor\Forms\Factories\TemplateFactory();
+      $factory = '\Skeletor\Forms\Factories\\' .$page_name['resource'];
+      $formFactory = new $factory;
       $form = $formFactory->build($page_variables);
       $data = array(
           'form' => $form->createView(),
           'page_name' => \Flight::get('formal-name'),
           'url' => \Flight::get('url'),
           'data' => $page_variables,
-          'resource_name' => 'Template',
-          'encoded_name' => 'template',
-          'user_name' => \Flight::get('user_name'),
+          'resource_name' => $page_name['resource'],
+          'encoded_name' => $page_name['encoded'],
+          'template_name' => 'admin/forms/'.$page_name['resource'].'.html',
+          'addable' => false,
+          'user' => \Flight::get('client-email'),
+          'store_active' => 'active',
           'message' => isset($message) ? $message : ''
 
         );
-      //$data =  array_merge($data, $page_variables);
+
       try {       
          \Flight::view_form()->display("admin/layout/form_layout.html",$data);
       } catch (\Twig_Error $e) {       

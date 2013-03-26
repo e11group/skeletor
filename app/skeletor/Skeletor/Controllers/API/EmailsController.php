@@ -21,7 +21,7 @@ class EmailsController
       if (empty($data)) {
         \Skeletor\Controllers\API\ResponseController::respond($select, 400);
       }
-        Print \Skeletor\Views\Client\TemplatesView::view_all('Email', $data);
+        Print \Skeletor\Views\Client\AdminView::view_all('Email', $data);
 
     }
 
@@ -36,7 +36,7 @@ class EmailsController
       if (empty($data)) {
         \Skeletor\Controllers\API\ResponseController::respond($select, 400);
       }
-        Print \Skeletor\Views\Client\TemplatesView::view_all('Email', $data);
+        Print \Skeletor\Views\Client\AdminView::view_all('Email', $data);
 
     }
 
@@ -57,7 +57,7 @@ class EmailsController
           $Emails[] = $Email;
         }
         $data = isset($Emails) ? $Emails : array();
-        Print \Skeletor\Views\Client\TemplatesView::view_item('Email', $data);
+        Print \Skeletor\Views\Client\AdminView::view_item('Email', $data);
 
     }
 
@@ -77,7 +77,7 @@ class EmailsController
           $Emails[] = $Email;
         }
         $data = isset($Emails) ? $Emails : array();
-        Print \Skeletor\Views\Client\TemplatesView::view_item('Email', $data);
+        Print \Skeletor\Views\Client\AdminView::view_item('Email', $data);
 
     }
 
@@ -97,7 +97,7 @@ class EmailsController
           $Emails[] = $Email;
         }
         $data = isset($Emails) ? $Emails : array();
-        Print \Skeletor\Views\Client\TemplatesView::view_item('Email', $data);
+        Print \Skeletor\Views\Client\AdminView::view_item('Email', $data);
 
     }
 
@@ -134,14 +134,59 @@ class EmailsController
       
     }
 
+
+
+    public static function create_template() {
+      
+      \Skeletor\Controllers\API\ResponseController::authenticate();
+      \Skeletor\Controllers\API\ResponseController::beginTransaction();
+
+
+      try {
+          $body = json_decode($body);
+
+          foreach ($body as $obj) {
+            $title = $obj->title;
+          }
+
+          $entity = new \Skeletor\Entities\API\Emails;    
+          $entity->setTitle($title);
+          $em->persist($entity);
+          $em->flush();
+          $em->clear();
+          $em->getConnection()->commit();
+
+      } catch (Exception $e) {
+          $em->getConnection()->rollback();
+          $em->close();
+          \Skeletor\Controllers\API\ResponseController::respond($select, 400);
+         // throw $e;
+      }
+    
+        \Skeletor\Controllers\API\ResponseController::respond(array(), 200);
+     
+      
+    }
+
     public static function create_view() {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
      \Flight::etag('skeletor-admin-view-template');
      $data = array();
-      Print \Skeletor\Views\Client\TemplatesView::view_item('Email', $data);
+      Print \Skeletor\Views\Client\AdminView::view_item('Email', $data);
 
     }
+
+
+    public static function create_template_view() {
+
+      \Skeletor\Controllers\API\ResponseController::authenticate();
+     \Flight::etag('skeletor-admin-view-template');
+     $data = array();
+      Print \Skeletor\Views\Client\AdminView::view_item('Email', $data);
+
+    }
+
 
 
 

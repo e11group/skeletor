@@ -10,12 +10,10 @@ class AppService
  public static function createNameVariety($page_name) 
     {
       $page_name_arr = array(
-        'lower_name_ess' => strtolower($page_name) . 's',
-        'upper_name_ess' => strtoupper($page_name) . 's',
-        'ucName_ess' => ucwords($page_name) . 's',
-        'lower_name' => strtolower($page_name),
-        'upperName' => strtoupper($page_name),
-        'ucName' => ucwords($page_name)
+        'encoded_plural' => strtolower($page_name) . 's',
+        'plural' => ucwords($page_name) . 's',
+        'encoded' => strtolower($page_name),
+        'resource' => ucwords($page_name)
       ); 
       return $page_name_arr;
     }
@@ -299,17 +297,27 @@ class AppService
   \Flight::route('POST /api/store/orders/status/@id',  array('\Skeletor\Controllers\API\OrdersController','update_status'));
   \Flight::route('POST /api/store/orders/tracking/@id',  array('\Skeletor\Controllers\API\OrdersController','update_tracking'));
 
+
+  \Flight::route('GET /account',  array('\Skeletor\Controllers\API\AccountController', 'find_by_id'));
+  \Flight::route('POST /account',  array('\Skeletor\Controllers\API\AccountController', 'update'));
+  \Flight::route('GET /admin/dashboard',  array('\Skeletor\Controllers\API\AccountController', 'view_dashboard'));
+  \Flight::route('GET /admin/store',  array('\Skeletor\Controllers\API\AccountController','view_store'));
+  \Flight::route('GET /admin/cms',  array('\Skeletor\Controllers\API\AccountController','view_cms'));
+  
+
   // client admin
 
   \Flight::route('GET /login',  array('\Skeletor\Controllers\Client\LoginController', 'login'));
   \Flight::route('POST /login',  array('\Skeletor\Controllers\Client\LoginController', 'process_login'));
   \Flight::route('GET /logout',  array('\Skeletor\Controllers\Client\LoginController', 'logout'));
   \Flight::route('GET /login/@provider',  array('\Skeletor\Controllers\Client\LoginController', 'login_provider'));
-  \Flight::route('GET /account',  array('\Skeletor\Controllers\Client\AccountController', 'view'));
+  
+  \Flight::route('GET /account',  array('\Skeletor\Controllers\Client\AccountController', 'find_by_id'));
   \Flight::route('POST /account',  array('\Skeletor\Controllers\Client\AccountController', 'update'));
-
   \Flight::route('GET /admin/dashboard',  array('\Skeletor\Controllers\Client\AccountController', 'view_dashboard'));
-
+  \Flight::route('GET /admin/store',  array('\Skeletor\Controllers\Client\AccountController','view_store'));
+  \Flight::route('GET /admin/cms',  array('\Skeletor\Controllers\Client\AccountController','view_cms'));
+  
   \Flight::route('GET /admin/store/settings/emails',  array('\Skeletor\Controllers\Client\EmailsController','find_settings'));
   \Flight::route('POST /admin/store/settings/emails',  array('\Skeletor\Controllers\Client\EmailsController','update_settings'));
 
@@ -322,8 +330,7 @@ class AppService
   \Flight::route('GET /admin/store/settings/taxes',  array('\Skeletor\Controllers\Client\TaxesController','find_settings'));
   \Flight::route('POSt /admin/store/settings/taxes',  array('\Skeletor\Controllers\Client\Taxesontroller','update_settings'));
 
-  \Flight::route('GET /admin/store',  array('\Skeletor\Controllers\Client\StoreController','run_store'));
-  \Flight::route('GET /admin/cms',  array('\Skeletor\Controllers\Client\CMSController','run_cms'));
+
 
   \Flight::route('GET /admin/store/coupons',  array('\Skeletor\Controllers\Client\CouponsController','find_all'));
   \Flight::route('GET /admin/store/coupons/@id',  array('\Skeletor\Controllers\Client\CouponsController','find_by_id'));

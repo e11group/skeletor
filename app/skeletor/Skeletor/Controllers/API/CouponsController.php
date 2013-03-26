@@ -22,7 +22,7 @@ class CouponsController
       if (empty($data)) {
         \Skeletor\Controllers\API\ResponseController::respond($select, 400);
       }
-        Print \Skeletor\Views\Client\TemplatesView::view_all('Coupon', $data);
+        Print \Skeletor\Views\Client\AdminView::view_all('Coupon', $data);
 
     }
 
@@ -42,7 +42,7 @@ class CouponsController
           $Coupons[] = $Coupon;
         }
         $data = isset($Coupons) ? $Coupons : array();
-        Print \Skeletor\Views\Client\TemplatesView::view_item('Coupon', $data);
+        Print \Skeletor\Views\Client\AdminView::view_item('Coupon', $data);
 
     }
 
@@ -62,7 +62,7 @@ class CouponsController
           $Coupons[] = $Coupon;
         }
         $data = isset($Coupons) ? $Coupons : array();
-        Print \Skeletor\Views\Client\TemplatesView::view_item('Coupon', $data);
+        Print \Skeletor\Views\Client\AdminView::view_item('Coupon', $data);
 
     }
 
