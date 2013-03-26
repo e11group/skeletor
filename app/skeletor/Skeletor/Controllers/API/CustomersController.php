@@ -10,7 +10,6 @@ class CustomersController
 
     }
        
-    
 
      public static function find_all() {
 
@@ -27,14 +26,43 @@ class CustomersController
 
     }
 
-
     public static function find_by_id($id) {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
-      \Flight::etag('skeletor-admin-customer-' . $id);
-      $mapper = new \Skeletor\Mappers\API\TemplateMapper();
-      $select = $mapper->findById($id);
-      \Skeletor\Controllers\API\ResponseController::respond($select, 'view_item');
+      \Flight::etag('skeletor-admin-template-' . $id);
+      $mapper = new \Skeletor\Mappers\API\DbMapper('Templates');
+      $users = $mapper->findById($id);
+      if (empty($users)) {
+        Skeletor\Controllers\API\ResponseController::respond($select, 400);
+      }
+         foreach ($users as $n => $row) {
+          $template = new \Skeletor\Models\API\Templates();
+          $setTitle = $template->setTitle($row->title);
+          $setId = $template->setId($row->id);
+          $templates[] = $template;
+        }
+        $data = isset($templates) ? $templates : array();
+        Print \Skeletor\Views\Client\TemplatesView::view_item('Template', $data);
+
+    }
+
+     public static function find_history_by_id($id) {
+
+      \Skeletor\Controllers\API\ResponseController::authenticate();
+      \Flight::etag('skeletor-admin-template-' . $id);
+      $mapper = new \Skeletor\Mappers\API\DbMapper('Templates');
+      $users = $mapper->findById($id);
+      if (empty($users)) {
+        Skeletor\Controllers\API\ResponseController::respond($select, 400);
+      }
+         foreach ($users as $n => $row) {
+          $template = new \Skeletor\Models\API\Templates();
+          $setTitle = $template->setTitle($row->title);
+          $setId = $template->setId($row->id);
+          $templates[] = $template;
+        }
+        $data = isset($templates) ? $templates : array();
+        Print \Skeletor\Views\Client\TemplatesView::view_item('Template', $data);
 
     }
 
@@ -42,52 +70,124 @@ class CustomersController
     public static function create() {
       
       \Skeletor\Controllers\API\ResponseController::authenticate();
-      $request = \Flight::request();
-      $body = $request->body;
-      $mapper = new \Skeletor\Mappers\API\TemplateMapper();
-      if ($select = $mapper->insert($body)) {  
-   
-          \Skeletor\Controllers\API\ResponseController::respond($select, 200);
-       } else {
+      \Skeletor\Controllers\API\ResponseController::beginTransaction();
+
+
+      try {
+          $body = json_decode($body);
+
+          foreach ($body as $obj) {
+            $title = $obj->title;
+          }
+
+          $entity = new \Skeletor\Entities\API\Templates;    
+          $entity->setTitle($title);
+          $em->persist($entity);
+          $em->flush();
+          $em->clear();
+          $em->getConnection()->commit();
+
+      } catch (Exception $e) {
+          $em->getConnection()->rollback();
+          $em->close();
           \Skeletor\Controllers\API\ResponseController::respond($select, 400);
+         // throw $e;
       }
+    
+        \Skeletor\Controllers\API\ResponseController::respond(array(), 200);
+     
       
     }
 
 
-    public static function create_view() {
 
+    public static function update($id) {
+      // set a read-once value on the segment
       \Skeletor\Controllers\API\ResponseController::authenticate();
-      //caching
-     \Flight::etag('skeletor-admin-view-template');
+      \Skeletor\Controllers\API\ResponseController::beginTransaction();
 
-      \Skeletor\Controllers\API\ResponseController::respond(array(), 'view_item');
+      foreach ($body as $obj) {
+        $title = $obj->title;
+      }
 
-      // grab view
+      $template = new \Skeletor\Entities\API\Templates();
 
-   
+      $template->setTitle($title);
+
+      $qb = $em->createQueryBuilder();
+      $q = $qb->update('Skeletor\Entities\API\Templates', 'u')
+              ->set('u.title', $qb->expr()->literal($title))
+              ->where($qb->expr()->orX(
+                $qb->expr()->eq('u.id', $id)
+              ))
+              ->getQuery();  
+
+      try {  
+        $p = $q->execute();  
+        $persist = $em->persist($template);
+
+      } catch (Exception $e) {   
+       $em->getConnection()->rollback();
+       $em->close();
+          \Skeletor\Controllers\API\ResponseController::respond(true, 400);
+      } 
+
+       try {  
+        $em->getConnection()->commit();
+      } catch (Exception $e) {
+       $em->getConnection()->rollback();
+       $em->close();
+          \Skeletor\Controllers\API\ResponseController::respond(true, 400);
+      }
+
+          // grab view    
+          \Skeletor\Controllers\API\ResponseController::respond(true, 200);
+      
     }
 
+  
 
-
-    public static function edit($id) {
-
-    
-
-// set a read-once value on the segment
+    public static function update_address($id) {
+      // set a read-once value on the segment
       \Skeletor\Controllers\API\ResponseController::authenticate();
-      $request = \Flight::request();
-      $body = $request->body;
-      $mapper = new \Skeletor\Mappers\API\TemplateMapper();
-      if ($select = $mapper->update($id, $body)) {
-          //commit
-          $mapper->commit();
-    
-          // grab view    
-          \Skeletor\Controllers\API\ResponseController::respond($select, 200);
-       } else {
-          \Skeletor\Controllers\API\ResponseController::respond($select, 400);
+      \Skeletor\Controllers\API\ResponseController::beginTransaction();
+
+      foreach ($body as $obj) {
+        $title = $obj->title;
       }
+
+      $template = new \Skeletor\Entities\API\Templates();
+
+      $template->setTitle($title);
+
+      $qb = $em->createQueryBuilder();
+      $q = $qb->update('Skeletor\Entities\API\Templates', 'u')
+              ->set('u.title', $qb->expr()->literal($title))
+              ->where($qb->expr()->orX(
+                $qb->expr()->eq('u.id', $id)
+              ))
+              ->getQuery();  
+
+      try {  
+        $p = $q->execute();  
+        $persist = $em->persist($template);
+
+      } catch (Exception $e) {   
+       $em->getConnection()->rollback();
+       $em->close();
+          \Skeletor\Controllers\API\ResponseController::respond(true, 400);
+      } 
+
+       try {  
+        $em->getConnection()->commit();
+      } catch (Exception $e) {
+       $em->getConnection()->rollback();
+       $em->close();
+          \Skeletor\Controllers\API\ResponseController::respond(true, 400);
+      }
+
+          // grab view    
+          \Skeletor\Controllers\API\ResponseController::respond(true, 200);
       
     }
 
@@ -96,7 +196,7 @@ class CustomersController
     public static function delete($id) {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
-       $mapper = new \Skeletor\Mappers\API\TemplateMapper();
+       $mapper = new \Skeletor\Mappers\API\DbMapper('Customers');
       if ($select = $mapper->delete($id)) {
           $mapper->commit();
           \Skeletor\Controllers\API\ResponseController::respond($select, 200);
@@ -105,6 +205,7 @@ class CustomersController
       }
    
     }
+
 
 }
 

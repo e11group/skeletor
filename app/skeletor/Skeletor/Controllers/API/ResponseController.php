@@ -4,6 +4,14 @@ namespace Skeletor\Controllers\API;
 class ResponseController
 {
 
+  public static function beginTransaction()
+  {
+      $request = \Flight::request();
+      $body = $request->body;
+      $service = new \Skeletor\Services\Bootstrap;
+      $em = $service->getEM();
+      $em->getConnection()->beginTransaction();
+  }
   public static function authenticate()
   {    
 

@@ -13,7 +13,7 @@ class CustomersController
       // caching
       \Flight::etag('skeletor-client-view-templates');
       // let the real work go to building requests
-      $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'customers');
+      $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'store/customers');
       // set properties
       $set_method = $request_controller->setMethodHeader('METHOD_GET');
       $set_method = $request_controller->setAcceptHeader('text/html');
@@ -25,23 +25,20 @@ class CustomersController
       Print $request;
     }
 
-
-    public static function find_history_by_id() {
+    public static function find_history_by_id($id) {
       $validated = \Skeletor\Methods\UserService::authenticate_login(array('admin'));
       \Flight::etag('skeletor-client-view-template');
-      $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'template');
+      $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'store/customers/history/' . $id);
       $set_method = $request_controller->setMethodHeader('METHOD_GET');
       $set_method = $request_controller->setAcceptHeader('text/html');
       $request = $request_controller->request();
       Print $request;
     }
 
-
-
-    public static function find_by_id() {
+    public static function find_by_id($id) {
       $validated = \Skeletor\Methods\UserService::authenticate_login(array('admin'));
       \Flight::etag('skeletor-client-view-template');
-      $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'template');
+      $request_controller = new \Skeletor\Controllers\Client\RequestController( API_LOC . 'store/customers/'  . $id);
       $set_method = $request_controller->setMethodHeader('METHOD_GET');
       $set_method = $request_controller->setAcceptHeader('text/html');
       $request = $request_controller->request();

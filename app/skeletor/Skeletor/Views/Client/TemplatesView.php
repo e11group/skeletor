@@ -23,16 +23,7 @@ class TemplatesView
     {
 
      $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
-
-
-      // TODO partition this shit out to the various builders 
-      /*********
-      /* CONFIG STUFF
-      /*
-      */
-
-
-     // Call your custom method
+     
       $data = array(
           'page_name' => \Flight::get('formal-name'),
           'url' => \Flight::get('url'),
@@ -41,7 +32,7 @@ class TemplatesView
           'encoded_name' => 'template',
           'message' => isset($message) ? $message : ''
         );
-      //$data =  array_merge($data, $page_variables);
+     
       try {       
          \Flight::view()->display("admin/layout/view_layout.html",$data);
       } catch (\Twig_Error $e) {       

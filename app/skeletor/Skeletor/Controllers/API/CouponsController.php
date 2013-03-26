@@ -10,46 +10,59 @@ class CouponsController
 
     }
        
-    public static function find_all() {
+
+     public static function find_all() {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
       //caching
-      \Flight::etag('skeletor-admin-view-template');
-      $mapper = new \Skeletor\Mappers\API\DbMapper('Templates');
+      \Flight::etag('skeletor-admin-view-Coupon');
+      $mapper = new \Skeletor\Mappers\API\DbMapper('Coupons');
       $data = $mapper->findAll();
 
       if (empty($data)) {
-        Skeletor\Controllers\API\ResponseController::respond($select, 400);
+        \Skeletor\Controllers\API\ResponseController::respond($select, 400);
       }
-
-      foreach ($data as $n => $row) {
-          $template = new \Skeletor\Models\API\Customers();
-          $setEmail = $template->setEmail($row->email);
-          $setId = $template->setId($row->id);
-          $templates[] = $template;
-        }
-        $data = isset($templates) ? $templates : array();
-        Print \Skeletor\Views\Client\TemplatesView::view_all('Template', $data);
+        Print \Skeletor\Views\Client\TemplatesView::view_all('Coupon', $data);
 
     }
 
     public static function find_by_id($id) {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
-      \Flight::etag('skeletor-admin-template-' . $id);
-      $mapper = new \Skeletor\Mappers\API\DbMapper('Templates');
+      \Flight::etag('skeletor-admin-Coupon-' . $id);
+      $mapper = new \Skeletor\Mappers\API\DbMapper('Coupons');
       $users = $mapper->findById($id);
       if (empty($users)) {
         Skeletor\Controllers\API\ResponseController::respond($select, 400);
       }
          foreach ($users as $n => $row) {
-          $template = new \Skeletor\Models\API\Templates();
-          $setTitle = $template->setTitle($row->title);
-          $setId = $template->setId($row->id);
-          $templates[] = $template;
+          $Coupon = new \Skeletor\Entities\API\Coupons();
+          $setTitle = $Coupon->setTitle($row->title);
+          $setId = $Coupon->setId($row->id);
+          $Coupons[] = $Coupon;
         }
-        $data = isset($templates) ? $templates : array();
-        Print \Skeletor\Views\Client\TemplatesView::view_item('Template', $data);
+        $data = isset($Coupons) ? $Coupons : array();
+        Print \Skeletor\Views\Client\TemplatesView::view_item('Coupon', $data);
+
+    }
+
+     public static function find_settings($id) {
+
+      \Skeletor\Controllers\API\ResponseController::authenticate();
+      \Flight::etag('skeletor-admin-Coupon-' . $id);
+      $mapper = new \Skeletor\Mappers\API\DbMapper('Coupons');
+      $users = $mapper->findById($id);
+      if (empty($users)) {
+        Skeletor\Controllers\API\ResponseController::respond($select, 400);
+      }
+         foreach ($users as $n => $row) {
+          $Coupon = new \Skeletor\Entities\API\Coupons();
+          $setTitle = $Coupon->setTitle($row->title);
+          $setId = $Coupon->setId($row->id);
+          $Coupons[] = $Coupon;
+        }
+        $data = isset($Coupons) ? $Coupons : array();
+        Print \Skeletor\Views\Client\TemplatesView::view_item('Coupon', $data);
 
     }
 
@@ -57,11 +70,8 @@ class CouponsController
     public static function create() {
       
       \Skeletor\Controllers\API\ResponseController::authenticate();
-      $request = \Flight::request();
-      $body = $request->body;
-      $service = new \Skeletor\Services\Bootstrap;
-      $em = $service->getEM();
-      $em->getConnection()->beginTransaction();
+      \Skeletor\Controllers\API\ResponseController::beginTransaction();
+
 
       try {
           $body = json_decode($body);
@@ -70,7 +80,7 @@ class CouponsController
             $title = $obj->title;
           }
 
-          $entity = new \Skeletor\Entities\API\Templates;    
+          $entity = new \Skeletor\Entities\API\Coupons;    
           $entity->setTitle($title);
           $em->persist($entity);
           $em->flush();
@@ -90,40 +100,22 @@ class CouponsController
     }
 
 
-    public static function create_view() {
 
+    public static function update($id) {
+      // set a read-once value on the segment
       \Skeletor\Controllers\API\ResponseController::authenticate();
-     \Flight::etag('skeletor-admin-view-template');
-     $data = array();
-      Print \Skeletor\Views\Client\TemplatesView::view_item('Template', $data);
-
-    }
-
-
-
-    public static function edit($id) {
-
-    
-
-// set a read-once value on the segment
-      \Skeletor\Controllers\API\ResponseController::authenticate();
-      $request = \Flight::request();
-      $body = $request->body;
-      $body = json_decode($body);
-       $em = \Flight::get('em');
-      $em->getConnection()->beginTransaction(); // suspend auto-commit
-   
+      \Skeletor\Controllers\API\ResponseController::beginTransaction();
 
       foreach ($body as $obj) {
         $title = $obj->title;
       }
 
-      $template = new \Skeletor\Entities\API\Templates();
+      $Coupon = new \Skeletor\Entities\API\Coupons();
 
-      $template->setTitle($title);
+      $Coupon->setTitle($title);
 
       $qb = $em->createQueryBuilder();
-      $q = $qb->update('Skeletor\Entities\API\Templates', 'u')
+      $q = $qb->update('Skeletor\Entities\API\Coupons', 'u')
               ->set('u.title', $qb->expr()->literal($title))
               ->where($qb->expr()->orX(
                 $qb->expr()->eq('u.id', $id)
@@ -132,7 +124,53 @@ class CouponsController
 
       try {  
         $p = $q->execute();  
-        $persist = $em->persist($template);
+        $persist = $em->persist($Coupon);
+
+      } catch (Exception $e) {   
+       $em->getConnection()->rollback();
+       $em->close();
+          \Skeletor\Controllers\API\ResponseController::respond(true, 400);
+      } 
+
+       try {  
+        $em->getConnection()->commit();
+      } catch (Exception $e) {
+       $em->getConnection()->rollback();
+       $em->close();
+          \Skeletor\Controllers\API\ResponseController::respond(true, 400);
+      }
+
+          // grab view    
+          \Skeletor\Controllers\API\ResponseController::respond(true, 200);
+      
+    }
+
+  
+
+    public static function update_settings() {
+      // set a read-once value on the segment
+      \Skeletor\Controllers\API\ResponseController::authenticate();
+      \Skeletor\Controllers\API\ResponseController::beginTransaction();
+
+      foreach ($body as $obj) {
+        $title = $obj->title;
+      }
+
+      $Coupon = new \Skeletor\Entities\API\Coupons();
+
+      $Coupon->setTitle($title);
+
+      $qb = $em->createQueryBuilder();
+      $q = $qb->update('Skeletor\Entities\API\Coupons', 'u')
+              ->set('u.title', $qb->expr()->literal($title))
+              ->where($qb->expr()->orX(
+                $qb->expr()->eq('u.id', $id)
+              ))
+              ->getQuery();  
+
+      try {  
+        $p = $q->execute();  
+        $persist = $em->persist($Coupon);
 
       } catch (Exception $e) {   
        $em->getConnection()->rollback();
@@ -158,7 +196,7 @@ class CouponsController
     public static function delete($id) {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
-       $mapper = new \Skeletor\Mappers\API\DbMapper('Templates');
+       $mapper = new \Skeletor\Mappers\API\DbMapper('Coupons');
       if ($select = $mapper->delete($id)) {
           $mapper->commit();
           \Skeletor\Controllers\API\ResponseController::respond($select, 200);
@@ -167,6 +205,7 @@ class CouponsController
       }
    
     }
+
 
 }
 

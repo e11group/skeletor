@@ -215,6 +215,12 @@ class AppService
 
   \Flight::route('GET /api/store/customers',  array('\Skeletor\Controllers\API\CustomersController','find_all'));
   \Flight::route('GET /api/store/customers/@id',  array('\Skeletor\Controllers\API\CustomersController','find_by_id'));
+  \Flight::route('GET /api/store/customers/history/@id',  array('\Skeletor\Controllers\API\CustomersController','find_history_by_id'));
+  \Flight::route('POST /api/store/customer',  array('\Skeletor\Controllers\API\CouponsController','create'));
+  \Flight::route('POST /api/store/customers/@id',  array('\Skeletor\Controllers\API\CouponsController','update'));
+  \Flight::route('POST /api/store/customers/address/@id',  array('\Skeletor\Controllers\API\CouponsController','update_address'));
+  \Flight::route('DELETE /api/store/coupons/@id',  array('\Skeletor\Controllers\API\CouponsController','delete'));
+
 
   \Flight::route('GET /api/store/settings/emails',  array('\Skeletor\Controllers\API\EmailsController','find_settings'));
   \Flight::route('POST /api/store/settings/emails',  array('\Skeletor\Controllers\API\EmailsController','update_settings'));
@@ -230,7 +236,7 @@ class AppService
   \Flight::route('GET /api/store/coupon',  array('\Skeletor\Controllers\API\CouponsController','create_view'));
   \Flight::route('POST /api/store/coupon',  array('\Skeletor\Controllers\API\CouponsController','create'));
   \Flight::route('POST /api/store/coupons/@id',  array('\Skeletor\Controllers\API\CouponsController','update'));
-  \Flight::route('DELETE /api/store/coupons/@id',  array('\Skeletor\Controllers\API\CouponsController','update_view'));
+  \Flight::route('DELETE /api/store/coupons/@id',  array('\Skeletor\Controllers\API\CouponsController','delete'));
 
   \Flight::route('GET /api/store/emails',  array('\Skeletor\Controllers\API\EmailsController','find_all'));
   \Flight::route('GET /api/store/emails/@id',  array('\Skeletor\Controllers\API\EmailsController','find_by_id'));
@@ -304,7 +310,6 @@ class AppService
 
   \Flight::route('GET /admin/dashboard',  array('\Skeletor\Controllers\Client\AccountController', 'view_dashboard'));
 
-
   \Flight::route('GET /admin/store/settings/emails',  array('\Skeletor\Controllers\Client\EmailsController','find_settings'));
   \Flight::route('POST /admin/store/settings/emails',  array('\Skeletor\Controllers\Client\EmailsController','update_settings'));
 
@@ -325,7 +330,7 @@ class AppService
   \Flight::route('GET /admin/store/coupon',  array('\Skeletor\Controllers\Client\CouponsController','create_view'));
   \Flight::route('POST /admin/store/coupon',  array('\Skeletor\Controllers\Client\CouponsController','create'));
   \Flight::route('POST /admin/store/coupons/@id',  array('\Skeletor\Controllers\Client\CouponsController','update'));
-  \Flight::route('DELETE /admin/store/coupons/@id',  array('\Skeletor\Controllers\Client\CouponsController','update_view'));
+  \Flight::route('DELETE /admin/store/coupons/@id',  array('\Skeletor\Controllers\Client\CouponsController','delete'));
 
   \Flight::route('GET /admin/store/emails',  array('\Skeletor\Controllers\Client\EmailsController','find_all'));
   \Flight::route('GET /admin/store/emails/@id',  array('\Skeletor\Controllers\Client\EmailsController','find_by_id'));

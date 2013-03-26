@@ -30,7 +30,8 @@
         "monolog/monolog": "1.4.*@dev",
         "herrera-io/cli-app": "*",
         "braintree/braintree_php": "*",
-        "hashids/hashids": "0.3.*@dev"
+        "hashids/hashids": "0.3.*@dev",
+        "ezyang/htmlpurifier": "dev-master"
     },
 
      "autoload": {

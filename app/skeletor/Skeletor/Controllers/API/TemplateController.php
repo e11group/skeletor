@@ -57,11 +57,7 @@ class TemplateController
     public static function create() {
       
       \Skeletor\Controllers\API\ResponseController::authenticate();
-      $request = \Flight::request();
-      $body = $request->body;
-      $service = new \Skeletor\Services\Bootstrap;
-      $em = $service->getEM();
-      $em->getConnection()->beginTransaction();
+      \Skeletor\Controllers\API\ResponseController::beginTransaction();
 
       try {
           $body = json_decode($body);
