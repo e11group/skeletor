@@ -2,7 +2,7 @@
 namespace Skeletor\Controllers\Client;
 use Aura\Http\Message\Request;
 
-class CustomersController
+class TaxesController
 {
        
     public static function find_all() 

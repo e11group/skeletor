@@ -213,17 +213,86 @@ class AppService
   // api
   // work routes
 
+  \Flight::route('GET /api/store/customers',  array('\Skeletor\Controllers\API\CustomersController','find_all'));
+  \Flight::route('GET /api/store/customers/@id',  array('\Skeletor\Controllers\API\CustomersController','find_by_id'));
 
-  // nice api helper routes
-  \Flight::route('GET /api/customers',  array('\Skeletor\Controllers\API\CustomersController','find_all'));
-  \Flight::route('GET /api/customers/@id',  array('\Skeletor\Controllers\API\CustomersController','find_by_id'));
-  \Flight::route('POST /api/customer',  array('\Skeletor\Controllers\API\CustomersController','create'));
-  \Flight::route('POST /api/customers/@id',  array('\Skeletor\Controllers\API\CustomersController','update'));
-  \Flight::route('DELETE /api/customers/@id',  array('\Skeletor\Controllers\API\CustomersController','update'));
+  \Flight::route('GET /api/store/settings/emails',  array('\Skeletor\Controllers\API\EmailsController','find_settings'));
+  \Flight::route('POST /api/store/settings/emails',  array('\Skeletor\Controllers\API\EmailsController','update_settings'));
+  \Flight::route('GET /api/store/settings/coupons',  array('\Skeletor\Controllers\API\CouponsController','find_settings'));
+  \Flight::route('POST /api/store/settings/coupons',  array('\Skeletor\Controllers\API\CouponsController','update_settings'));
+  \Flight::route('GET /api/store/settings/shipping',  array('\Skeletor\Controllers\API\ShippingController','find_settings'));
+  \Flight::route('POST /api/store/settings/shipping',  array('\Skeletor\Controllers\API\ShippingController','update_settings'));
+  \Flight::route('GET /api/store/settings/taxes',  array('\Skeletor\Controllers\API\TaxesController','find_settings'));
+  \Flight::route('POSt /api/store/settings/taxes',  array('\Skeletor\Controllers\API\Taxesontroller','update_settings'));
 
+  \Flight::route('GET /api/store/coupons',  array('\Skeletor\Controllers\API\CouponsController','find_all'));
+  \Flight::route('GET /api/store/coupons/@id',  array('\Skeletor\Controllers\API\CouponsController','find_by_id'));
+  \Flight::route('GET /api/store/coupon',  array('\Skeletor\Controllers\API\CouponsController','create_view'));
+  \Flight::route('POST /api/store/coupon',  array('\Skeletor\Controllers\API\CouponsController','create'));
+  \Flight::route('POST /api/store/coupons/@id',  array('\Skeletor\Controllers\API\CouponsController','update'));
+  \Flight::route('DELETE /api/store/coupons/@id',  array('\Skeletor\Controllers\API\CouponsController','update_view'));
 
+  \Flight::route('GET /api/store/emails',  array('\Skeletor\Controllers\API\EmailsController','find_all'));
+  \Flight::route('GET /api/store/emails/@id',  array('\Skeletor\Controllers\API\EmailsController','find_by_id'));
+  \Flight::route('GET /api/store/email',  array('\Skeletor\Controllers\API\EmailsController','create_view'));
+  \Flight::route('POST /api/store/email',  array('\Skeletor\Controllers\API\EmailsController','create'));
+  \Flight::route('POST /api/store/emails/@id',  array('\Skeletor\Controllers\API\EmailsController','update'));
+  \Flight::route('DELETE /api/store/emails/@id',  array('\Skeletor\Controllers\API\EmailsController','update'));
 
-  // client
+  \Flight::route('GET /api/store/emails/templates',  array('\Skeletor\Controllers\API\EmailsController','find_all_templates'));
+  \Flight::route('GET /api/store/emails/templates/@id',  array('\Skeletor\Controllers\API\EmailsController','find_template_by_id'));
+  \Flight::route('GET /api/emails/template',  array('\Skeletor\Controllers\API\EmailsController','create_template_view'));
+  \Flight::route('POST /api/emails/template',  array('\Skeletor\Controllers\API\EmailsController','create_template'));
+  \Flight::route('POST /api/store/emails/templates/@id',  array('\Skeletor\Controllers\API\EmailsController','update_template'));
+  \Flight::route('DELETE /api/store/emails/templates/@id',  array('\Skeletor\Controllers\API\EmailsController','update_template'));
+
+   \Flight::route('GET /api/store/products',  array('\Skeletor\Controllers\API\ProductsController','find_all'));
+  \Flight::route('GET /api/store/products/@id',  array('\Skeletor\Controllers\API\ProductsController','find_by_id'));
+  \Flight::route('GET /api/store/product',  array('\Skeletor\Controllers\API\ProductsController','create_view'));
+  \Flight::route('POST /api/store/product',  array('\Skeletor\Controllers\API\ProductsController','create'));
+  \Flight::route('POST /api/store/products/@id',  array('\Skeletor\Controllers\API\ProductsController','update'));
+  \Flight::route('DELETE /api/store/products/@id',  array('\Skeletor\Controllers\API\ProductsController','update'));
+
+  \Flight::route('GET /api/store/products/categories',  array('\Skeletor\Controllers\API\ProductsController','find_all_categories'));
+  \Flight::route('GET /api/store/products/categories/@id',  array('\Skeletor\Controllers\API\ProductsController','find_category_by_id'));
+  \Flight::route('GET /api/store/products/categories',  array('\Skeletor\Controllers\API\ProductsController','create_category_view'));
+  \Flight::route('POST /api/store/products/categories',  array('\Skeletor\Controllers\API\ProductsController','create_category'));
+  \Flight::route('POST /api/store/products/categories/@id',  array('\Skeletor\Controllers\API\ProductsController','update_category'));
+  \Flight::route('DELETE /api/store/products/categories/@id',  array('\Skeletor\Controllers\API\ProductsController','update_category'));
+
+  \Flight::route('GET /api/store/products/tags',  array('\Skeletor\Controllers\API\ProductsController','find_all_tags'));
+  \Flight::route('GET /api/store/products/tags/@id',  array('\Skeletor\Controllers\API\ProductsController','find__tagby_id'));
+  \Flight::route('GET /api/store/products/tag',  array('\Skeletor\Controllers\API\ProductsController','create_tag_view'));
+  \Flight::route('POST /api/store/products/tag',  array('\Skeletor\Controllers\API\ProductsController','create_tag'));
+  \Flight::route('POST /api/store/products/tags/@id',  array('\Skeletor\Controllers\API\ProductsController','update_tag'));
+  \Flight::route('DELETE /api/store/products/tags/@id',  array('\Skeletor\Controllers\API\ProductsController','update_tag'));
+
+  \Flight::route('GET /api/cms/pages',  array('\Skeletor\Controllers\API\PagesController','find_all'));
+  \Flight::route('GET /api/cms/pages/@id',  array('\Skeletor\Controllers\API\PagesController','find_by_id'));
+  \Flight::route('GET /api/cms/page',  array('\Skeletor\Controllers\API\PagesController','create_view'));
+  \Flight::route('POST /api/cms/page',  array('\Skeletor\Controllers\API\PagesController','create'));
+  \Flight::route('POST /api/cms/pages/@id',  array('\Skeletor\Controllers\API\PagesController','update'));
+  \Flight::route('DELETE /api/cms/pages/@id',  array('\Skeletor\Controllers\API\PagesController','update'));
+
+  \Flight::route('GET /api/cms/pages/templates',  array('\Skeletor\Controllers\API\PagesController','find_all_templates'));
+  \Flight::route('GET /api/cms/pages/templates/@id',  array('\Skeletor\Controllers\API\PagesController','find_template_by_id'));
+  \Flight::route('GET /api/cms/pages/template',  array('\Skeletor\Controllers\API\PagesController','create_template_view'));
+  \Flight::route('POST /api/cms/pages/template',  array('\Skeletor\Controllers\API\PagesController','create_template'));
+  \Flight::route('POST /api/cms/pages/templates/@id',  array('\Skeletor\Controllers\API\PagesController','update_template'));
+  \Flight::route('DELETE /api/cms/pages/templates/@id',  array('\Skeletor\Controllers\API\PagesController','update_template'));
+
+  \Flight::route('GET /api/cms/pages/blocks',  array('\Skeletor\Controllers\API\PagesController','find_all_blocks'));
+  \Flight::route('GET /api/cms/pages/blocks/@id',  array('\Skeletor\Controllers\API\PagesController','find_block_by_id'));
+  \Flight::route('GET /api/cms/pages/block',  array('\Skeletor\Controllers\API\PagesController','create_block_view'));
+  \Flight::route('POST /api/cms/pages/block',  array('\Skeletor\Controllers\API\PagesController','create_block'));
+  \Flight::route('POST /api/cms/pages/blocks/@id',  array('\Skeletor\Controllers\API\PagesController','update_block'));
+  \Flight::route('DELETE /api/cms/pages/blocks/@id',  array('\Skeletor\Controllers\API\PagesController','update_block'));
+
+  \Flight::route('GET /api/store/orders',  array('\Skeletor\Controllers\API\OrdersController','find_all'));
+  \Flight::route('GET /api/store/orders/@id',  array('\Skeletor\Controllers\API\OrdersController','find_by_id'));
+  \Flight::route('POST /api/store/orders/status/@id',  array('\Skeletor\Controllers\API\OrdersController','update_status'));
+  \Flight::route('POST /api/store/orders/tracking/@id',  array('\Skeletor\Controllers\API\OrdersController','update_tracking'));
+
   // client admin
 
   \Flight::route('GET /login',  array('\Skeletor\Controllers\Client\LoginController', 'login'));
@@ -232,6 +301,9 @@ class AppService
   \Flight::route('GET /login/@provider',  array('\Skeletor\Controllers\Client\LoginController', 'login_provider'));
   \Flight::route('GET /account',  array('\Skeletor\Controllers\Client\AccountController', 'view'));
   \Flight::route('POST /account',  array('\Skeletor\Controllers\Client\AccountController', 'update'));
+
+  \Flight::route('GET /admin/dashboard',  array('\Skeletor\Controllers\Client\AccountController', 'view_dashboard'));
+
 
   \Flight::route('GET /admin/store/settings/emails',  array('\Skeletor\Controllers\Client\EmailsController','find_settings'));
   \Flight::route('POST /admin/store/settings/emails',  array('\Skeletor\Controllers\Client\EmailsController','update_settings'));
@@ -253,7 +325,7 @@ class AppService
   \Flight::route('GET /admin/store/coupon',  array('\Skeletor\Controllers\Client\CouponsController','create_view'));
   \Flight::route('POST /admin/store/coupon',  array('\Skeletor\Controllers\Client\CouponsController','create'));
   \Flight::route('POST /admin/store/coupons/@id',  array('\Skeletor\Controllers\Client\CouponsController','update'));
-  \Flight::route('DELETE /admin/store/coupons/@id',  array('\Skeletor\Controllers\Client\CouponsController','update'));
+  \Flight::route('DELETE /admin/store/coupons/@id',  array('\Skeletor\Controllers\Client\CouponsController','update_view'));
 
   \Flight::route('GET /admin/store/emails',  array('\Skeletor\Controllers\Client\EmailsController','find_all'));
   \Flight::route('GET /admin/store/emails/@id',  array('\Skeletor\Controllers\Client\EmailsController','find_by_id'));
@@ -269,9 +341,9 @@ class AppService
   \Flight::route('POST /admin/store/emails/templates/@id',  array('\Skeletor\Controllers\Client\EmailsController','update_template'));
   \Flight::route('DELETE /admin/store/emails/templates/@id',  array('\Skeletor\Controllers\Client\EmailsController','update_template'));
 
-  \Flight::route('GET /admin/store/customers',  array('\Skeletor\Controllers\Client\CustomersController','view_all'));
-  \Flight::route('GET /admin/store/customers/history/@id',  array('\Skeletor\Controllers\Client\CustomersController','view_history_by_id'));
-  \Flight::route('GET /admin/store/customers/@id',  array('\Skeletor\Controllers\Client\CustomersController','view_by_id'));
+  \Flight::route('GET /admin/store/customers',  array('\Skeletor\Controllers\Client\CustomersController','find_all'));
+  \Flight::route('GET /admin/store/customers/history/@id',  array('\Skeletor\Controllers\Client\CustomersController','find_history_by_id'));
+  \Flight::route('GET /admin/store/customers/@id',  array('\Skeletor\Controllers\Client\CustomersController','find_by_id'));
 
   \Flight::route('GET /admin/store/orders',  array('\Skeletor\Controllers\Client\OrdersController','find_all'));
   \Flight::route('GET /admin/store/orders/@id',  array('\Skeletor\Controllers\Client\OrdersController','find_by_id'));
@@ -309,7 +381,7 @@ class AppService
   \Flight::route('POST /admin/cms/pages/@id',  array('\Skeletor\Controllers\Client\PagesController','update'));
   \Flight::route('DELETE /admin/cms/pages/@id',  array('\Skeletor\Controllers\Client\PagesController','update'));
 
-    \Flight::route('GET /admin/cms/pages/templates',  array('\Skeletor\Controllers\Client\PagesController','find_all_templates'));
+  \Flight::route('GET /admin/cms/pages/templates',  array('\Skeletor\Controllers\Client\PagesController','find_all_templates'));
   \Flight::route('GET /admin/cms/pages/templates/@id',  array('\Skeletor\Controllers\Client\PagesController','find_template_by_id'));
   \Flight::route('GET /admin/cms/pages/template',  array('\Skeletor\Controllers\Client\PagesController','create_template_view'));
   \Flight::route('POST /admin/cms/pages/template',  array('\Skeletor\Controllers\Client\PagesController','create_template'));
@@ -322,6 +394,10 @@ class AppService
   \Flight::route('POST /admin/cms/pages/block',  array('\Skeletor\Controllers\Client\PagesController','create_block'));
   \Flight::route('POST /admin/cms/pages/blocks/@id',  array('\Skeletor\Controllers\Client\PagesController','update_block'));
   \Flight::route('DELETE /admin/cms/pages/blocks/@id',  array('\Skeletor\Controllers\Client\PagesController','update_block'));
+
+
+  // client public
+
 
   }
 }
