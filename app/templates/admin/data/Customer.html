@@ -1,1 +1,11 @@
-asdf
+{% for key,value in data %}
+        <tr>
+          <td>{{ value.id|e }}</td>
+          <td>{{ value.firstName|e }}</td>
+          {{value.email|e}}
+                    <td>{{ value.lastName|e }}</td>
+{% for k,v in value.address %}
+asd
+        {% endfor %} 
+        </tr>
+        {% endfor %} 

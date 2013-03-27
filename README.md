@@ -36,7 +36,10 @@ for more see wiki
 
 todo
 
+redundant controllers
+
 0.1
+
 
 0.05
 - pages widget

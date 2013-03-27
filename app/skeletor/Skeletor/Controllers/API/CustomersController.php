@@ -32,9 +32,11 @@ class CustomersController
       \Flight::etag('skeletor-admin-customer-' . $id);
       $mapper = new \Skeletor\Mappers\API\DbMapper('Customers');
       $data = $mapper->findById($id);
-      if (empty($users)) {
+      if (empty($data)) {
         \Skeletor\Controllers\API\ResponseController::respond(array(), 400);
       }
+
+        $data = isset($Accounts) ? $Accounts : $data;
 
         Print \Skeletor\Views\Client\AdminView::view_data('Customer', $data);
 
@@ -50,7 +52,7 @@ class CustomersController
         \Skeletor\Controllers\API\ResponseController::respond(array(), 400);
       }
 
-        Print \Skeletor\Views\Client\AdminView::view_data('Customer', $users);
+        Print \Skeletor\Views\Client\AdminView::view_data('Customer History', $users);
 
     }
 

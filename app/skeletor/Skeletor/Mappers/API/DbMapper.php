@@ -41,7 +41,6 @@ class DbMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
              $qb->expr()->eq('u.id', $id)
          ));
 
-
     $query = $qb->getQuery();
     $users = $query->getResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
     return $users;

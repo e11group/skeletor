@@ -75,6 +75,8 @@ class AdminView
 
      $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
 
+var_dump($page_variables);
+
       $data = array(
           'page_name' => \Flight::get('formal-name'),
           'url' => \Flight::get('url'),
