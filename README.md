@@ -37,6 +37,7 @@ for more see wiki
 todo
 
 redundant controllers
+researching how to fix entity associations
 
 0.1
 
