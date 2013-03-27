@@ -22,47 +22,35 @@ class CustomersController
       if (empty($data)) {
         \Skeletor\Controllers\API\ResponseController::respond($select, 400);
       }
-        Print \Skeletor\Views\Client\CustomersView::view_all('Customer', $data);
+        Print \Skeletor\Views\Client\AdminView::view_all('Customer', $data, false);
 
     }
 
     public static function find_by_id($id) {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
-      \Flight::etag('skeletor-admin-template-' . $id);
-      $mapper = new \Skeletor\Mappers\API\DbMapper('Templates');
-      $users = $mapper->findById($id);
+      \Flight::etag('skeletor-admin-customer-' . $id);
+      $mapper = new \Skeletor\Mappers\API\DbMapper('Customers');
+      $data = $mapper->findById($id);
       if (empty($users)) {
-        Skeletor\Controllers\API\ResponseController::respond($select, 400);
+        \Skeletor\Controllers\API\ResponseController::respond(array(), 400);
       }
-         foreach ($users as $n => $row) {
-          $template = new \Skeletor\Models\API\Templates();
-          $setTitle = $template->setTitle($row->title);
-          $setId = $template->setId($row->id);
-          $templates[] = $template;
-        }
-        $data = isset($templates) ? $templates : array();
-        Print \Skeletor\Views\Client\TemplatesView::view_item('Template', $data);
+
+        Print \Skeletor\Views\Client\AdminView::view_data('Customer', $data);
 
     }
 
      public static function find_history_by_id($id) {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
-      \Flight::etag('skeletor-admin-template-' . $id);
-      $mapper = new \Skeletor\Mappers\API\DbMapper('Templates');
+      \Flight::etag('skeletor-admin-customer-' . $id);
+      $mapper = new \Skeletor\Mappers\API\DbMapper('Customers');
       $users = $mapper->findById($id);
       if (empty($users)) {
-        Skeletor\Controllers\API\ResponseController::respond($select, 400);
+        \Skeletor\Controllers\API\ResponseController::respond(array(), 400);
       }
-         foreach ($users as $n => $row) {
-          $template = new \Skeletor\Models\API\Templates();
-          $setTitle = $template->setTitle($row->title);
-          $setId = $template->setId($row->id);
-          $templates[] = $template;
-        }
-        $data = isset($templates) ? $templates : array();
-        Print \Skeletor\Views\Client\TemplatesView::view_item('Template', $data);
+
+        Print \Skeletor\Views\Client\AdminView::view_data('Customer', $users);
 
     }
 

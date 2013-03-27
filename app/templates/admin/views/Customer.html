@@ -18,8 +18,8 @@
           <td>{{ value.id|e }}</td>
           <td>{{ value.lastName|e }}</td>
           <td>{{ value.email|e }}</td>
-          <td><a href="{{url}}/admin/{{encoded_name}}s/history/{{value.id|e}}" class="tiny secondary button">View History</a></td>
-          <td><a href="{{url}}/admin/{{encoded_name}}s/{{value.id|e}}" class="tiny secondary button">View Details</a></td>
+          <td><a href="{{url}}/admin/{{section}}/{{encoded_name}}s/history/{{value.id|e}}" class="tiny secondary button">View History</a></td>
+          <td><a href="{{url}}/admin/{{section}}/{{encoded_name}}s/{{value.id|e}}" class="tiny secondary button">View Details</a></td>
        
         </tr>
         {% endfor %} 

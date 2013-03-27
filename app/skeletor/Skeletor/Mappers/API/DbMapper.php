@@ -43,7 +43,7 @@ class DbMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
 
 
     $query = $qb->getQuery();
-    $users = $query->getResult();
+    $users = $query->getResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
     return $users;
       
 

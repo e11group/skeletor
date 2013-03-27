@@ -11,7 +11,7 @@ class AdminView
 {
 
 
-    public static function view_all($page_name, $page_variables) 
+    public static function view_all($page_name, $page_variables, $addable = true) 
     {
 
      $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
@@ -20,10 +20,11 @@ class AdminView
           'page_name' => \Flight::get('formal-name'),
           'url' => \Flight::get('url'),
           'data' => $page_variables,
+          'section' => 'store',
           'resource_name' => $page_name['resource'],
           'encoded_name' => $page_name['encoded'],
           'template_name' => 'admin/views/'.$page_name['resource'].'.html',
-          'addable' => false,
+          'addable' => $addable,
           'user' => \Flight::get('client-email'),
           'store_active' => 'active',
           'message' => isset($message) ? $message : ''
@@ -37,7 +38,7 @@ class AdminView
 
     }
 
-    public static function view_item($page_name, $page_variables) 
+    public static function view_form($page_name, $page_variables, $addable = true) 
     {
 
      $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
@@ -54,7 +55,7 @@ class AdminView
           'resource_name' => $page_name['resource'],
           'encoded_name' => $page_name['encoded'],
           'template_name' => 'admin/forms/'.$page_name['resource'].'.html',
-          'addable' => false,
+          'addable' => $addable,
           'user' => \Flight::get('client-email'),
           'store_active' => 'active',
           'message' => isset($message) ? $message : ''
@@ -69,6 +70,33 @@ class AdminView
 
     }
 
+    public static function view_data($page_name, $page_variables, $addable = true) 
+    {
+
+     $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
+
+      $data = array(
+          'page_name' => \Flight::get('formal-name'),
+          'url' => \Flight::get('url'),
+          'data' => $page_variables,
+          'section' => 'store',
+          'resource_name' => $page_name['resource'],
+          'encoded_name' => $page_name['encoded'],
+          'template_name' => 'admin/data/'.$page_name['resource'].'.html',
+          'addable' => $addable,
+          'user' => \Flight::get('client-email'),
+          'store_active' => 'active',
+          'message' => isset($message) ? $message : ''
+
+        );
+
+      try {       
+         \Flight::view()->display("admin/layout/data_layout.html",$data);
+      } catch (\Twig_Error $e) {       
+        throw $e;
+      }
+
+    }
 
 
 

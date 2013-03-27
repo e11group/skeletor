@@ -26,22 +26,17 @@ for more see wiki
 - second pass at code style guides
 - example
 - documentation
+- yaml driver to doctrine annotations
+- client side lazy loading
+- privatize auth functions
+- html validation
 
 
 ###log
 
 todo
 
-- yaml driver to doctrine annotations
-- client side lazy loading
-- privatize auth functions
-- client side html validation
-
-
-- payment link
-
 0.1
-- 
 
 0.05
 - pages widget
