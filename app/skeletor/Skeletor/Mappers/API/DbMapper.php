@@ -35,8 +35,29 @@ class DbMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
 
       $resource = $this->resource;
       $qb = $this->em->createQueryBuilder();
-       $qb->select(array('u'))
+       $qb->select(array('u', 'c'))
        ->from("Skeletor\Entities\API\\$resource", 'u')
+         ->where($qb->expr()->orX(
+             $qb->expr()->eq('u.id', $id)
+         ));
+
+    $query = $qb->getQuery();
+    $users = $query->getResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
+    return $users;
+      
+
+    }
+
+
+    public function findByIdWithJoin($id, $join) {
+
+
+      $j = 'u.'.$join;
+      $resource = $this->resource;
+      $qb = $this->em->createQueryBuilder();
+       $qb->select(array('u', 'c'))
+       ->from("Skeletor\Entities\API\\$resource", 'u')
+       ->join($j, 'c')
          ->where($qb->expr()->orX(
              $qb->expr()->eq('u.id', $id)
          ));
