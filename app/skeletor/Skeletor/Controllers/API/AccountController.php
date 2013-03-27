@@ -9,10 +9,6 @@ class AccountController
 
     }
        
-
-  
-
-
     public static function find_by_id($id) {
 
       \Skeletor\Controllers\API\ResponseController::authenticate();

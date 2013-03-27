@@ -298,11 +298,11 @@ class AppService
   \Flight::route('POST /api/store/orders/tracking/@id',  array('\Skeletor\Controllers\API\OrdersController','update_tracking'));
 
 
-  \Flight::route('GET /account',  array('\Skeletor\Controllers\API\AccountController', 'find_by_id'));
-  \Flight::route('POST /account',  array('\Skeletor\Controllers\API\AccountController', 'update'));
-  \Flight::route('GET /admin/dashboard',  array('\Skeletor\Controllers\API\AccountController', 'view_dashboard'));
-  \Flight::route('GET /admin/store',  array('\Skeletor\Controllers\API\AccountController','view_store'));
-  \Flight::route('GET /admin/cms',  array('\Skeletor\Controllers\API\AccountController','view_cms'));
+  \Flight::route('GET /api/account',  array('\Skeletor\Controllers\API\AccountController', 'find_by_id'));
+  \Flight::route('POST /api/account',  array('\Skeletor\Controllers\API\AccountController', 'update'));
+  \Flight::route('GET /api/dashboard',  array('\Skeletor\Controllers\API\AccountController', 'view_dashboard'));
+  \Flight::route('GET /api/store',  array('\Skeletor\Controllers\API\AccountController','view_store'));
+  \Flight::route('GET /api/cms',  array('\Skeletor\Controllers\API\AccountController','view_cms'));
   
 
   // client admin
