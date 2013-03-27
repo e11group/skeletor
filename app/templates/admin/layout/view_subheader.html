@@ -1,7 +1,10 @@
 <div class="row">
 
         <div class="twelve columns">
-        <h3 style="float:left">{{page_name}} {{resource_name}}s</h3> <span style="float:right;"><a href="{{url}}/admin/{{encoded_name}}" class="alert button">Add {{ resource_name }}</a></span>
+        <h3 style="float:left">{{page_name}} {{resource_name}}s</h3>
+{% if addable == true %}
+        <span style="float:right;"><a href="{{url}}/admin/{{encoded_name}}" class="alert button">Add {{ resource_name }}</a></span>
+{% endif %}
         <div style="clear:both"></div>
         <hr />
         </div>

@@ -25,7 +25,7 @@ border:1px Solid #ccc;
 
 }	
 
-table.tsort .header {
+table.table-sort .tablesorter-header, table.table-sort-filter .tablesorter-header {
 	background: url(../images/app/tsort-bg.png) 6px 11px no-repeat;
 	padding-left: 19px;
 	padding-top: 8px;
@@ -34,14 +34,18 @@ table.tsort .header {
 
 }
 
-table.tsort .headerSortUp {
+table.table-sort .tablesorter-headerAsc, table.table-sort-filter .tablesorter-headerAsc {
 	background:  #efefef url(../images/app/tsort-bg-up.png) 6px 15px  no-repeat;
 	cursor:pointer !important;
 
 }
-table.tsort .headerSortDown {
+table.table-sort .tablesorter-headerDesc, table.table-sort-filter .tablesorter-headerDesc {
 	background:  #efefef url(../images/app/tsort-bg-down.png) 6px 15px no-repeat;
 	cursor:pointer !important;
 
 
 }	
+
+table.tablesorter .tablesorter-filter {
+    display: none;
+}

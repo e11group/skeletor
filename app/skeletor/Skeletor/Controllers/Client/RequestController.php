@@ -123,12 +123,13 @@ class RequestController
 
     // hash the query
     $query = \Skeletor\Methods\AppService::hashHMAC($query); 
-
+    $user = \Flight::get('client-email');
     $request->setAuth(\Aura\Http\Message\Request::AUTH_BASIC);
     $request->setUsername($api_key);
     $request->setPassword($query);
     $request->headers->set('Accept', $accept);  
     $request->headers->set('Content-Type', 'application/json');
+    $request->headers->set('From', $user);
     if ($post !== null) {
       $request->setContent(json_encode($post));
     }

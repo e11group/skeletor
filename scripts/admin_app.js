@@ -31,6 +31,13 @@
           'vendor/tablesorter/js/jquery.tablesorter.min'
           ]
         },
+          'vendor/tablesorter/js/jquery.tablesorter.widgets.min': {
+          deps: [
+          'jquery', 
+          'vendor/tablesorter/js/jquery.tablesorter.min',
+          'vendor/tablesorter/addons/pager/jquery.tablesorter.pager.min'
+          ]
+        },
         'vendor/redactor-js/redactor/redactor.min': { deps: ['jquery']},
         'lib/jquery.passwordstrength': { deps: ['jquery']},
         'lib/jquery.validate.min': { deps: ['jquery']}
@@ -90,6 +97,7 @@ require([
   'jquery', 
   'vendor/tablesorter/js/jquery.tablesorter.min', 
   'vendor/tablesorter/addons/pager/jquery.tablesorter.pager.min', 
+  'vendor/tablesorter/js/jquery.tablesorter.widgets.min',
   'modules/tableSorter'
   ], function ($) { });
 

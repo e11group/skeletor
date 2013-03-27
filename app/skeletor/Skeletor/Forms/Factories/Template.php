@@ -1,7 +1,7 @@
 <?php
 namespace Skeletor\Forms\Factories;
 
-class TemplateFactory
+class Template
 {
 
   protected $csrfProvider;

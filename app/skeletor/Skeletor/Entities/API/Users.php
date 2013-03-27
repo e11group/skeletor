@@ -1,5 +1,5 @@
 <?php
-namespace Skeletor\Entities\Client;
+namespace Skeletor\Entities\API;
 
 /** @Entity **/
 class Users
@@ -7,8 +7,10 @@ class Users
    	/** @Id @GeneratedValue @Column(type="integer") **/
     protected $id;
     /** @Column(type="string") **/
-    protected $name;
-    /** @Column(type="string", length=32, unique=true, nullable=false) **/
+    protected $first_name;
+    /** @Column(type="string") **/
+    protected $last_name;
+    /** @Column(type="string", length=255, unique=true, nullable=false) **/
     protected $email;
     /** @Column(type="string") **/
     protected $hash;
@@ -18,12 +20,16 @@ class Users
     protected $provider;
     /** @Column(type="string") **/
     protected $provider_uid;
+    /**
+     * @OneToOne(targetEntity="Customers")
+     * @JoinColumn(name="customer_id", referencedColumnName="id")
+     **/
+    private $customer_id;
+
 
     public function getId()
     {
-
     	return $this->id;
-
     }
 
     public function setName($name) 
