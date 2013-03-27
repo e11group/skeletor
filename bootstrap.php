@@ -11,7 +11,7 @@
 
 
     // autoloader
-    require_once '../vendor/autoload.php';
+    require_once '../../vendor/autoload.php';
 
     use Doctrine\ORM\Tools\Setup;
     use Doctrine\ORM\EntityManager;
@@ -33,7 +33,7 @@
     );
     
 
-    $paths = array('../app/skeletor/Skeletor/Entities');
+    $paths = array('../../app/skeletor/Skeletor/Entities');
     $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
     $entityManager = EntityManager::create($dbParams, $config);
 
@@ -45,9 +45,10 @@
         'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em)
     ));
     \Flight::set('em', $em);
-
+/*
 foreach (getallheaders() as $name => $value) {
     if ($name == 'From') {
       \Flight::set('client-email',  $value);
     }
 }
+*/

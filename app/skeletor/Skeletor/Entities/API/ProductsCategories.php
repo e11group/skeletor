@@ -8,7 +8,7 @@ class ProductsCategories
     protected $id;
 
      /**
-     * @ManyToOne(targetEntity="Products", inversedBy="categories")
+     * @ManyToMany(targetEntity="Products", inversedBy="categories")
      * @JoinColumn(name="product_id", referencedColumnName="id")
      **/
     private $product;

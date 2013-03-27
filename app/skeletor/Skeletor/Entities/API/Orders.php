@@ -11,24 +11,25 @@ class Orders
     protected $datetime;
 
     /**
-     * @OneToOne(targetEntity="Customers")
+     * @ManyToMany(targetEntity="Customers")
      * @JoinColumn(name="customer_id", referencedColumnName="id")
      **/
     private $customer_id;
 
      /**
-     * @OneToMany(targetEntity="OrdersDetails", mappedBy="order")
+     * @ManyToOne(targetEntity="OrdersDetails")
+     * @JoinColumn(name="details_id", referencedColumnName="id")
      **/
     private $details;
 
      /**
-     * @OneToOne(targetEntity="OrdersStatus")
+     * @ManyToOne(targetEntity="OrdersStatus")
      * @JoinColumn(name="status_id", referencedColumnName="id")
      **/
     private $status;
 
      /**
-     * @OneToOne(targetEntity="OrdersTracking")
+     * @ManyToOne(targetEntity="OrdersTracking")
      * @JoinColumn(name="status_id", referencedColumnName="id")
      **/
     private $tracking;

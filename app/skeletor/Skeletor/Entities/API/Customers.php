@@ -11,13 +11,13 @@ class Customers
     protected $email;
 
     /**
-     * @OneToOne(targetEntity="CustomersAddress")
+     * @ManyToOne(targetEntity="CustomersAddress")
      * @JoinColumn(name="address_id", referencedColumnName="id")
      **/
     private $address;
 
         /**
-     * @OneToOne(targetEntity="Users")
+     * @ManyToOne(targetEntity="Users")
      * @JoinColumn(name="user_id", referencedColumnName="id")
      **/
     private $user;
