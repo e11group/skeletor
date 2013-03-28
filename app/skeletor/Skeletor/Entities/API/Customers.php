@@ -14,7 +14,7 @@ class Customers
      * @ManyToOne(targetEntity="CustomersAddress")
      * @JoinColumn(name="address_id", referencedColumnName="id")
      **/
-    private $address;
+    protected $address;
 
         /**
      * @ManyToOne(targetEntity="Users")

@@ -3,9 +3,9 @@
           <td>{{ value.id|e }}</td>
           <td>{{ value.firstName|e }}</td>
           {{value.email|e}}
+ {{value.shippingCity|e}}
                     <td>{{ value.lastName|e }}</td>
-{% for k,v in value.address %}
-asd
-        {% endfor %} 
+{{value.address.shippingCity}}
+
         </tr>
         {% endfor %} 
