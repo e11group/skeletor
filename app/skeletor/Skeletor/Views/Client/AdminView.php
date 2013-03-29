@@ -72,10 +72,8 @@ class AdminView
 
     public static function view_data($page_name, $page_variables, $addable = true) 
     {
-
-     $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
-
 var_dump($page_variables);
+     $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
 
       $data = array(
           'page_name' => \Flight::get('formal-name'),

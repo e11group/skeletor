@@ -1563,3 +1563,25 @@ label.validation-success {
   margin-bottom: 15px;
   border-bottom: 1px solid #dadada;
 }
+
+/* line 1, scss/views/layout/_admin_subheader.scss */
+.subhead {
+    /*
+    background: none repeat scroll 0 0 #33A6C9;
+    margin-top: 30px;
+    padding: 25px 0;
+	*/
+}
+
+/* line 1, scss/views/layout/_admin_footer.scss */
+.sub_footer {
+  background: none repeat scroll 0 0 #33A6C9;
+  margin-top: 30px;
+  padding: 25px 0;
+}
+
+/* line 9, scss/admin-style.scss */
+.full-width {
+  min-width: 100% !important;
+  width: 100% !important;
+}

@@ -28,7 +28,20 @@ class Customers
     /** @Column(type="string") **/
     protected $last_name;
 
+    /**
+     * @ManyToMany(targetEntity="Orders")
+     * @JoinColumn(name="orders_id", referencedColumnName="id")
+     **/
+    protected $orders;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -154,7 +167,36 @@ class Customers
         return $this->user;
     }
 
+    /**
+     * Add orders
+     *
+     * @param \Skeletor\Entities\API\Orders $orders
+     * @return Customers
+     */
+    public function addOrder(\Skeletor\Entities\API\Orders $orders)
+    {
+        $this->orders[] = $orders;
+    
+        return $this;
+    }
 
+    /**
+     * Remove orders
+     *
+     * @param \Skeletor\Entities\API\Orders $orders
+     */
+    public function removeOrder(\Skeletor\Entities\API\Orders $orders)
+    {
+        $this->orders->removeElement($orders);
+    }
 
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
 }
-

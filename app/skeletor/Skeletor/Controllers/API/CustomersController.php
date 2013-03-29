@@ -32,6 +32,7 @@ class CustomersController
       \Flight::etag('skeletor-admin-customer-' . $id);
       $mapper = new \Skeletor\Mappers\API\DbMapper('Customers');
       $data = $mapper->findByIdWithJoin($id, 'address');
+      $history = $mapper->findByIdWithJoins($id, 'address', 'orders');
       if (empty($data)) {
         \Skeletor\Controllers\API\ResponseController::respond(array(), 400);
       }

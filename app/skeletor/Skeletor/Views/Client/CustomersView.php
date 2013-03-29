@@ -15,14 +15,6 @@ class CustomersView
 
      $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
 
-
-      // TODO partition this shit out to the various builders 
-      /*********
-      /* CONFIG STUFF
-      /*
-      */
-
-
      // Call your custom method
       $data = array(
           'page_name' => \Flight::get('formal-name'),

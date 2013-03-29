@@ -1,11 +1,116 @@
 {% for key,value in data %}
+    
+        <div class="panel">
+
+<div class="row collapse">
+
+  <div class="small-12 columns">
+
+  		<h2>{{ value.lastName|e }}, {{ value.firstName|e }}</h2>
+  		<a class="button" href="mailto:{{value.email|e}}">{{ value.email|e}}</a>
+  		<hr>
+  </div>
+
+  <div class="small-6 columns" style="line-height:1.2em">
+  	<strong>Shipping Address</strong><br />
+  	{{value.address.shippingFirstName|e}} {{value.address.shippingLastName|e}}<br />
+  	{{value.address.shippingStreet|e}}, {{value.address.shippingstreetTwo|e}}<br />
+  	{{value.address.shippingCity|e}}, {{value.address.shippingState|e}}<br />
+  	{{value.address.shippingZip|e}}<br />
+  	{{value.address.shippingCountry|e}}
+  </div>
+
+  <div class="small-6 columns">
+  	  	<strong>Billing Address</strong><br>
+
+  </div>
+
+</div>
+</div>
+
+
+        {% endfor %} 
+
+ <div class="row">
+    <div class="large-12 columns">
+ 
+   
+ 
+ 
+      <!-- Header Content -->
+ 
+        <div class="row">
+ 
+          <div class="large-6 columns">
+ <table class="small-12 large-12 table-sort" id="table_widget">
+
+    <thead>
+       <tr>
+          <th class="filter-false">ID</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Order History</th>
+          <th>Customer Info</th>
+         </tr>
+  </thead>
+<tbody>
+  
+        {% for key,value in data %}
+      
+
         <tr>
           <td>{{ value.id|e }}</td>
-          <td>{{ value.firstName|e }}</td>
-          {{value.email|e}}
- {{value.shippingCity|e}}
-                    <td>{{ value.lastName|e }}</td>
-{{value.address.shippingCity}}
-
+          <td>{{ value.lastName|e }}</td>
+          <td>{{ value.email|e }}</td>
+          <td><a href="{{url}}/admin/{{section}}/{{encoded_name}}s/history/{{value.id|e}}" class="tiny secondary button">View History</a></td>
+          <td><a href="{{url}}/admin/{{section}}/{{encoded_name}}s/{{value.id|e}}" class="tiny secondary button">View Details</a></td>
+       
         </tr>
         {% endfor %} 
+  
+</tbody>
+
+</table>
+
+
+ 
+          </div>
+ 
+ 
+          <div class="large-6 columns">
+ 
+            <h3 class="show-for-small">Header<hr/></h3>
+ 
+            <div class="panel">
+              <h4 class="hide-for-small">Header<hr/></h4>
+            <h5 class="subheader">Fusce ullamcorper mauris in eros dignissim molestie posuere felis blandit. Aliquam erat volutpat. Mauris ultricies posuere vehicula. Sed sit amet posuere erat. Quisque in ipsum non augue euismod dapibus non et eros. Pellentesque consectetur tempus mi iaculis bibendum. Ut vel dolor sed eros tincidunt volutpat ac eget leo.</h5>
+            </div>
+ 
+          <div class="row">
+              <div class="large-6 small-6 columns">
+                <div class="panel">
+                  <h5>Header</h5>
+                <h6 class="subheader">Praesent placerat dui tincidunt elit suscipit sed.</h6>
+                <a href="#" class="small button">BUTTON TIME!</a>
+                </div>
+              </div>
+ 
+              <div class="large-6 small-6 columns">
+                <div class="panel">
+                  <h5>Header</h5>
+                <h6 class="subheader">Praesent placerat dui tincidunt elit suscipit sed.</h6>
+                <a href="#" class="small button">BUTTON TIME!</a>
+                </div>
+              </div>
+          </div>
+ 
+          </div>
+ 
+        </div>
+ 
+      <!-- End Header Content -->
+ 
+ 
+ 
+    </div>
+  </div>

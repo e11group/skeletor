@@ -2,4 +2,12 @@
   "app/selectFields",
   "app/wysiwyg",
   "app/tables",
-  "app/validation";
+  "app/validation",
+  "views/layout/admin_subheader",
+   "views/layout/admin_footer";
+
+  .full-width { 
+  	min-width: 100% !important; 
+  	width: 100% !important;
+  }
+

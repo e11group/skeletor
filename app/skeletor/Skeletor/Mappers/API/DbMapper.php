@@ -35,10 +35,28 @@ class DbMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
 
       $resource = $this->resource;
       $qb = $this->em->createQueryBuilder();
-       $qb->select(array('u', 'c'))
+       $qb->select(array('u'))
        ->from("Skeletor\Entities\API\\$resource", 'u')
          ->where($qb->expr()->orX(
              $qb->expr()->eq('u.id', $id)
+         ));
+
+    $query = $qb->getQuery();
+    $users = $query->getResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
+    return $users;
+      
+
+    }
+
+
+    public function findNewById($id, $new) {
+
+      $resource = $this->resource;
+      $qb = $this->em->createQueryBuilder();
+       $qb->select(array('u'))
+       ->from("Skeletor\Entities\API\\$new", 'u')
+         ->where($qb->expr()->orX(
+             $qb->expr()->eq('u.customers', $id)
          ));
 
     $query = $qb->getQuery();
@@ -58,6 +76,29 @@ class DbMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
        $qb->select(array('u', 'c'))
        ->from("Skeletor\Entities\API\\$resource", 'u')
        ->join($j, 'c')
+         ->where($qb->expr()->orX(
+             $qb->expr()->eq('u.id', $id)
+         ));
+
+    $query = $qb->getQuery();
+    $users = $query->getResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
+    return $users;
+      
+
+    }
+
+
+    public function findByIdWithJoins($id, $join1, $join2) {
+
+
+      $j = 'u.'.$join1;
+      $j2 = 'u.'.$join2;
+      $resource = $this->resource;
+      $qb = $this->em->createQueryBuilder();
+       $qb->select(array('u', 'c', 'd'))
+       ->from("Skeletor\Entities\API\\$resource", 'u')
+       ->join($j, 'c')
+       ->join($j2, 'd')
          ->where($qb->expr()->orX(
              $qb->expr()->eq('u.id', $id)
          ));
