@@ -9,11 +9,31 @@ class AppService
    
  public static function createNameVariety($page_name) 
     {
+
+      $page_name_url = strtolower(str_replace(" ", "_", $page_name));
+
+      $explode = explode(' ', $page_name);
+
+      $last = $page_name[strlen($page_name)-1];
+      if ($last == 's') {
+        $plural = $page_name;
+      } elseif ($last == 'y') {
+        $replacement = 'ies';
+        $plural = substr($page_name, 0, -1).$replacement;  
+      } else {
+        $plural = $page_names . 's';
+      }
+
+      $path = strtolower(str_replace(" ", "/", $page_name ));
+
       $page_name_arr = array(
-        'encoded_plural' => strtolower($page_name) . 's',
-        'plural' => ucwords($page_name) . 's',
-        'encoded' => strtolower($page_name),
-        'resource' => ucwords($page_name)
+        'plural' => $plural,
+        'encoded' => $page_name_url,
+        'resource' => ucwords($page_name),
+        'template' => ucwords(str_replace(" ", "", $page_name)),
+        'first' => $explode[0],
+        'encoded_first' => strtolower($explode[0]),
+        'path' => $path
       ); 
       return $page_name_arr;
     }

@@ -97,8 +97,8 @@ class DbMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
       $qb = $this->em->createQueryBuilder();
        $qb->select(array('u', 'c', 'd'))
        ->from("Skeletor\Entities\API\\$resource", 'u')
-       ->join($j, 'c')
-       ->join($j2, 'd')
+       ->join($j2, 'c')
+       ->join($j, 'd')
          ->where($qb->expr()->orX(
              $qb->expr()->eq('u.id', $id)
          ));
@@ -126,14 +126,9 @@ class DbMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
 
     public function insert($body) {
 
-     
-  
-
     }
 
     public function update($id, $body) {            
-
-   
 
     }
 

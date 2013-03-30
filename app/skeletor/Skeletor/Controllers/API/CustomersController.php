@@ -20,9 +20,9 @@ class CustomersController
       $data = $mapper->findAll();
 
       if (empty($data)) {
-        \Skeletor\Controllers\API\ResponseController::respond($select, 400);
+        \Skeletor\Controllers\API\ResponseController::respond(array(), 400);
       }
-        Print \Skeletor\Views\Client\AdminView::view_all('Customer', $data, false);
+        Print \Skeletor\Views\Client\AdminView::view_all('Customers', $data, false);
 
     }
 
@@ -32,14 +32,13 @@ class CustomersController
       \Flight::etag('skeletor-admin-customer-' . $id);
       $mapper = new \Skeletor\Mappers\API\DbMapper('Customers');
       $data = $mapper->findByIdWithJoin($id, 'address');
-      $history = $mapper->findByIdWithJoins($id, 'address', 'orders');
       if (empty($data)) {
         \Skeletor\Controllers\API\ResponseController::respond(array(), 400);
       }
 
         $data = isset($Accounts) ? $Accounts : $data;
 
-        Print \Skeletor\Views\Client\AdminView::view_data('Customer', $data);
+        Print \Skeletor\Views\Client\AdminView::view_data('Customers', $data);
 
     }
 
@@ -53,7 +52,7 @@ class CustomersController
         \Skeletor\Controllers\API\ResponseController::respond(array(), 400);
       }
 
-        Print \Skeletor\Views\Client\AdminView::view_data('Customer History', $users);
+        Print \Skeletor\Views\Client\AdminView::view_data('Customers History', $users);
 
     }
 

@@ -23,7 +23,9 @@ class AdminView
           'section' => 'store',
           'resource_name' => $page_name['resource'],
           'encoded_name' => $page_name['encoded'],
-          'template_name' => 'admin/views/'.$page_name['resource'].'.html',
+          'first' => $page_name['first'],
+          'encoded_first' => $page_name['encoded_first'],
+          'template_name' => 'admin/views/'.$page_name['template'].'.html',
           'addable' => $addable,
           'user' => \Flight::get('client-email'),
           'store_active' => 'active',
@@ -54,7 +56,9 @@ class AdminView
           'data' => $page_variables,
           'resource_name' => $page_name['resource'],
           'encoded_name' => $page_name['encoded'],
-          'template_name' => 'admin/forms/'.$page_name['resource'].'.html',
+          'first' => $page_name['first'],
+          'encoded_first' => $page_name['encoded_first'],
+          'template_name' => 'admin/forms/'.$page_name['template'].'.html',
           'addable' => $addable,
           'user' => \Flight::get('client-email'),
           'store_active' => 'active',
@@ -72,9 +76,8 @@ class AdminView
 
     public static function view_data($page_name, $page_variables, $addable = true) 
     {
-var_dump($page_variables);
      $page_name = \Skeletor\Methods\AppService::createNameVariety($page_name);
-
+var_dump($page_variables);
       $data = array(
           'page_name' => \Flight::get('formal-name'),
           'url' => \Flight::get('url'),
@@ -82,7 +85,10 @@ var_dump($page_variables);
           'section' => 'store',
           'resource_name' => $page_name['resource'],
           'encoded_name' => $page_name['encoded'],
-          'template_name' => 'admin/data/'.$page_name['resource'].'.html',
+          'first' => $page_name['first'],
+
+          'encoded_first' => $page_name['encoded_first'],
+          'template_name' => 'admin/data/'.$page_name['template'].'.html',
           'addable' => $addable,
           'user' => \Flight::get('client-email'),
           'store_active' => 'active',
