@@ -14,29 +14,29 @@ class Products
     protected $description;
     
     /**
-     * @OneToOne(targetEntity="ProductsAmount")
+     * @ManyToOne(targetEntity="ProductsAmount")
      * @JoinColumn(name="amount_id", referencedColumnName="id")
      **/
     protected $amount;
     
     /**
-     * @OneToOne(targetEntity="ProductsShipping")
+     * @ManyToOne(targetEntity="ProductsShipping")
      * @JoinColumn(name="shipping_id", referencedColumnName="id")
      **/
     private $shipping;
 
     /**
-     * @OneToMany(targetEntity="ProductsTags", mappedBy="product")
+     * @ManyToMany(targetEntity="ProductsTags", mappedBy="product")
      **/
     private $tags;
     
     /**
-     * @OneToMany(targetEntity="ProductsCategories", mappedBy="product")
+     * @ManyToMany(targetEntity="ProductsCategories", mappedBy="product")
      **/
     private $categories;
     
     /**
-     * @OneToMany(targetEntity="ProductsImages", mappedBy="product")
+     * @ManyToMany(targetEntity="ProductsImages", mappedBy="product")
      **/
     protected $images;
     
@@ -44,7 +44,7 @@ class Products
     protected $is_featured;
 
     /**
-     * @OneToOne(targetEntity="ProductsCoupon")
+     * @ManyToMany(targetEntity="ProductsCoupon")
      * @JoinColumn(name="coupon_id", referencedColumnName="id")
      **/
     protected $coupon;

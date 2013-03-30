@@ -11,7 +11,7 @@ class Pages
     /** @Column(type="text") **/
     protected $description;
      /**
-     * @OneToOne(targetEntity="PagesTemplates")
+     * @ManyToOne(targetEntity="PagesTemplates")
      * @JoinColumn(name="template_id", referencedColumnName="id")
      **/
     protected $template;

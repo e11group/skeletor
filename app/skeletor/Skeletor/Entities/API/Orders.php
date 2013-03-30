@@ -10,25 +10,26 @@ class Orders
     /** @Column(type="datetime") **/
     protected $datetime;
 
-    /**
-     * @OneToOne(targetEntity="Customers")
-     * @JoinColumn(name="customer_id", referencedColumnName="id")
-     **/
-    private $customer_id;
-
      /**
-     * @OneToMany(targetEntity="OrdersDetails", mappedBy="order")
+     * @ManyToOne(targetEntity="OrdersDetails")
+     * @JoinColumn(name="details_id", referencedColumnName="id")
      **/
     private $details;
 
+         /**
+     * @ManyToOne(targetEntity="Customers")
+     * @JoinColumn(name="customer_id", referencedColumnName="id")
+     **/
+    private $customer;
+
      /**
-     * @OneToOne(targetEntity="OrdersStatus")
+     * @ManyToOne(targetEntity="OrdersStatus")
      * @JoinColumn(name="status_id", referencedColumnName="id")
      **/
     private $status;
 
      /**
-     * @OneToOne(targetEntity="OrdersTracking")
+     * @ManyToOne(targetEntity="OrdersTracking")
      * @JoinColumn(name="status_id", referencedColumnName="id")
      **/
     private $tracking;
@@ -45,12 +46,15 @@ class Orders
 	/** @Column(type="integer") **/
     protected $grand_total;
     
-   /**
+ 
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->details = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->status = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tracking = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -179,29 +183,6 @@ class Orders
     }
 
     /**
-     * Set customer_id
-     *
-     * @param \Skeletor\Entities\API\Customers $customerId
-     * @return Orders
-     */
-    public function setCustomerId(\Skeletor\Entities\API\Customers $customerId = null)
-    {
-        $this->customer_id = $customerId;
-    
-        return $this;
-    }
-
-    /**
-     * Get customer_id
-     *
-     * @return \Skeletor\Entities\API\Customers 
-     */
-    public function getCustomerId()
-    {
-        return $this->customer_id;
-    }
-
-    /**
      * Add details
      *
      * @param \Skeletor\Entities\API\OrdersDetails $details
@@ -235,22 +216,32 @@ class Orders
     }
 
     /**
-     * Set status
+     * Add status
      *
      * @param \Skeletor\Entities\API\OrdersStatus $status
      * @return Orders
      */
-    public function setStatus(\Skeletor\Entities\API\OrdersStatus $status = null)
+    public function addStatu(\Skeletor\Entities\API\OrdersStatus $status)
     {
-        $this->status = $status;
+        $this->status[] = $status;
     
         return $this;
     }
 
     /**
+     * Remove status
+     *
+     * @param \Skeletor\Entities\API\OrdersStatus $status
+     */
+    public function removeStatu(\Skeletor\Entities\API\OrdersStatus $status)
+    {
+        $this->status->removeElement($status);
+    }
+
+    /**
      * Get status
      *
-     * @return \Skeletor\Entities\API\OrdersStatus 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getStatus()
     {
@@ -258,26 +249,35 @@ class Orders
     }
 
     /**
-     * Set tracking
+     * Add tracking
      *
      * @param \Skeletor\Entities\API\OrdersTracking $tracking
      * @return Orders
      */
-    public function setTracking(\Skeletor\Entities\API\OrdersTracking $tracking = null)
+    public function addTracking(\Skeletor\Entities\API\OrdersTracking $tracking)
     {
-        $this->tracking = $tracking;
+        $this->tracking[] = $tracking;
     
         return $this;
     }
 
     /**
+     * Remove tracking
+     *
+     * @param \Skeletor\Entities\API\OrdersTracking $tracking
+     */
+    public function removeTracking(\Skeletor\Entities\API\OrdersTracking $tracking)
+    {
+        $this->tracking->removeElement($tracking);
+    }
+
+    /**
      * Get tracking
      *
-     * @return \Skeletor\Entities\API\OrdersTracking 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getTracking()
     {
         return $this->tracking;
     }
-
 }

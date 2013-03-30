@@ -20,11 +20,7 @@ class Users
     protected $provider;
     /** @Column(type="string") **/
     protected $provider_uid;
-    /**
-     * @OneToOne(targetEntity="Customers")
-     * @JoinColumn(name="customer_id", referencedColumnName="id")
-     **/
-    private $customer_id;
+
 
 
     public function getId()

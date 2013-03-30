@@ -67,6 +67,7 @@ class OrdersStatus
      */
     public function getStatus()
     {
-        return $this->st
+        return $this->st;
+    }
 
 }
