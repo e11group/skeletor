@@ -46,8 +46,13 @@ class CustomersController
 
       \Skeletor\Controllers\API\ResponseController::authenticate();
       \Flight::etag('skeletor-admin-customer-' . $id);
-      $mapper = new \Skeletor\Mappers\API\DbMapper('Customers');
-      $users = $mapper->findById($id);
+      $mapper = new \Skeletor\Mappers\API\DbMapper('Orders');
+      $orders = $mapper->findByAssId($id, 'customer');
+      $mapper2 = new \Skeletor\Mappers\API\DbMapper('Customers');
+      $users = $mapper2->findById($id);
+
+      $users = array('orders' => $orders, 'user' => $users);
+
       if (empty($users)) {
         \Skeletor\Controllers\API\ResponseController::respond(array(), 400);
       }

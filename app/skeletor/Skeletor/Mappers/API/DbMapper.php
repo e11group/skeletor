@@ -49,6 +49,50 @@ class DbMapper implements \Skeletor\Interfaces\API\TemplateMapperInterface
     }
 
 
+
+    public function findByAssId($id, $ass) {
+
+      $u_ass = 'u.' . $ass;
+
+      $resource = $this->resource;
+      $qb = $this->em->createQueryBuilder();
+       $qb->select(array('u'))
+       ->from("Skeletor\Entities\API\\$resource", 'u')
+         ->where($qb->expr()->orX(
+             $qb->expr()->eq($u_ass, $id)
+         ));
+
+    $query = $qb->getQuery();
+    $users = $query->getResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
+    return $users;
+      
+
+    }
+
+
+    public function findByAssIdWithJoin($id, $ass, $join) {
+
+      $u_ass = 'u.' . $ass;
+      $j = 'u.'.$join;
+
+
+      $resource = $this->resource;
+      $qb = $this->em->createQueryBuilder();
+       $qb->select(array('u', 'c'))
+       ->from("Skeletor\Entities\API\\$resource", 'u')
+        ->join($j, 'c')
+         ->where($qb->expr()->orX(
+             $qb->expr()->eq($u_ass, $id)
+         ));
+
+    $query = $qb->getQuery();
+    $users = $query->getResult(\Doctrine\ORM\Query::HYDRATE_OBJECT);
+    return $users;
+      
+
+    }
+
+
     public function findNewById($id, $new) {
 
       $resource = $this->resource;

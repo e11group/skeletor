@@ -21,7 +21,7 @@ class AppService
         $replacement = 'ies';
         $plural = substr($page_name, 0, -1).$replacement;  
       } else {
-        $plural = $page_names . 's';
+        $plural = $page_name . 's';
       }
 
       $path = strtolower(str_replace(" ", "/", $page_name ));

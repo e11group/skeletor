@@ -16,6 +16,12 @@ class Orders
      **/
     private $details;
 
+         /**
+     * @ManyToOne(targetEntity="Customers")
+     * @JoinColumn(name="customer_id", referencedColumnName="id")
+     **/
+    private $customer;
+
      /**
      * @ManyToOne(targetEntity="OrdersStatus")
      * @JoinColumn(name="status_id", referencedColumnName="id")

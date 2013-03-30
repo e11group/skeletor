@@ -1,0 +1,58 @@
+
+<div class="small-2 columns">
+          <a href="{{url}}/admin/{{section}}/{{encoded_first}}" class="small-12 secondary button">&larr; Back</a>
+  
+</div>
+
+<div class="small-10 columns">
+
+<div class="row collapse">
+
+        {% for key,value in data.user %}
+
+
+  <div class="small-12 columns">
+
+      <h2>{{ value.lastName|e }}, {{ value.firstName|e }}</h2>
+      <a class="button" href="mailto:{{value.email|e}}">{{ value.email|e}}</a>
+      <hr>
+  </div>
+  
+        {% endfor %} 
+
+
+  <div class="small-12 columns">
+
+  		<table class="small-12 large-12 table-sort" id="table_widget">
+
+    <thead>
+       <tr>
+          <th class="filter-false">ID</th>
+          <th>Date</th>
+          <th>Total</th>
+          <th>Order Details</th>
+         </tr>
+  </thead>
+<tbody>
+  
+        {% for key,value in data.orders %}
+              
+
+        <tr>
+          <td>{{ value.id|e }}</td>
+          <td>{{ value.datetime|date('Y-m-d H:i:s') }}</td>
+          <td>${{ value.grandTotal|e }}</td>
+          <td><a href="{{url}}/admin/{{section}}/orders/{{encoded_name}}/{{value.id|e}}" class="tiny secondary button">View Details</a></td>
+       
+        </tr>
+        {% endfor %} 
+  
+</tbody>
+
+</table>
+  </div>
+
+</div>
+
+</div>
+

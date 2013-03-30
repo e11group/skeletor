@@ -86,7 +86,6 @@ var_dump($page_variables);
           'resource_name' => $page_name['resource'],
           'encoded_name' => $page_name['encoded'],
           'first' => $page_name['first'],
-
           'encoded_first' => $page_name['encoded_first'],
           'template_name' => 'admin/data/'.$page_name['template'].'.html',
           'addable' => $addable,

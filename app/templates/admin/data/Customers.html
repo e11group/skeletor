@@ -1,11 +1,11 @@
 {% for key,value in data %}
 
 <div class="small-2 columns">
-          <a href="{{url}}/admin/{{section}}/{{encoded_name}}" class="small-12 secondary button">&larr; Back</a>
+          <a href="{{url}}/admin/{{section}}/{{encoded_first}}" class="small-12 secondary button">&larr; Back</a>
 <!--
         
-
 <ul class="pricing-table">
+    <li class="price">{{value.firstName}} {{value.lastName|e}}</li>
   <li class="price">{{value.firstName}} {{value.lastName|e}}</li>
   <li class="bullet-item">First Order: </li>
   <li class="bullet-item">Last Order: </li>
